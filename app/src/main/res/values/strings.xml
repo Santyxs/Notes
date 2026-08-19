@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Tareas</string>
+    <string name="app_name">Notas</string>
+    <string name="notas">Notas</string>
+    <string name="tareas">Tareas</string>
     <string name="sin_tareas">No hay tareas todavía</string>
+    <string name="sin_notas">No hay notas todavía</string>
     <string name="tocar_para_editar">Tocar para editar</string>
     <string name="anadir">Añadir</string>
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="anadir_tarea">Añadir tarea</string>
+    <string name="anadir_nota">Añadir nota</string>
     <string name="marcar_tarea">Marcar tarea</string>
     <string name="eliminar_tarea">Eliminar tarea</string>
+    <string name="eliminar_nota">Eliminar nota</string>
 </resources>

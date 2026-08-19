@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/widget_note.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/widget_note.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/activity_notes.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/activity_notes.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/activity_main.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/widget_task.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/widget_task.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/widget_task_item.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/widget_task_item.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/activity_add_edit_task.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/activity_add_edit_task.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/item_note_row.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/item_note_row.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/activity_add_edit_note.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/activity_add_edit_note.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/item_task_row.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/item_task_row.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/widget_note_item.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/widget_note_item.xml"
+    },
+    {
+        "merged": "com.santos.tareas.app-mergeDebugResources-31:/layout/activity_tasks.xml",
+        "source": "com.santos.tareas.app-main-34:/layout/activity_tasks.xml"
+    }
+]

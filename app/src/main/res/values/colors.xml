@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="card_cream">#FBEFC6</color>
-    <color name="accent_yellow">#F0AD3D</color>
-    <color name="text_brown">#6B4A1E</color>
-    <color name="text_brown_light">#A98A5C</color>
-    <color name="background_app">#12224A</color>
+    <color name="card_cream">#FCEBB6</color>
+    <color name="accent_yellow">#F5A623</color>
+    <color name="text_brown">#5C4322</color>
+    <color name="text_brown_light">#A9895C</color>
+    <color name="background_app">#0B1E45</color>
     <color name="white">#FFFFFF</color>
 </resources>

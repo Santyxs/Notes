@@ -5,7 +5,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tareas">
 
@@ -20,9 +20,25 @@
         </activity>
 
         <activity
+            android:name=".TasksActivity"
+            android:exported="false"
+            android:label="@string/tareas" />
+
+        <activity
+            android:name=".NotesActivity"
+            android:exported="false"
+            android:label="@string/notas" />
+
+        <activity
             android:name=".AddEditTaskActivity"
             android:exported="false"
-            android:label="@string/app_name"
+            android:label="@string/tareas"
+            android:theme="@style/Theme.Tareas.Dialog" />
+
+        <activity
+            android:name=".AddEditNoteActivity"
+            android:exported="false"
+            android:label="@string/notas"
             android:theme="@style/Theme.Tareas.Dialog" />
 
         <receiver
@@ -37,8 +53,25 @@
                 android:resource="@xml/task_widget_info" />
         </receiver>
 
+        <receiver
+            android:name=".NoteWidgetProvider"
+            android:exported="false"
+            android:label="">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/note_widget_info" />
+        </receiver>
+
         <service
             android:name=".TaskWidgetService"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <service
+            android:name=".NoteWidgetService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
