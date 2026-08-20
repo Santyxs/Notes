@@ -4,9 +4,15 @@ package com.santos.tareas.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.santos.tareas.R;
@@ -16,24 +22,90 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final DrawerLayout rootView;
 
   @NonNull
-  public final LinearLayout notesCard;
+  public final RelativeLayout bottomBar;
 
   @NonNull
-  public final LinearLayout tasksCard;
+  public final LinearLayout drawerAllNotes;
 
-  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout notesCard,
-      @NonNull LinearLayout tasksCard) {
+  @NonNull
+  public final TextView drawerAllNotesLabel;
+
+  @NonNull
+  public final DrawerLayout drawerLayout;
+
+  @NonNull
+  public final LinearLayout drawerSettings;
+
+  @NonNull
+  public final LinearLayout drawerTrash;
+
+  @NonNull
+  public final TextView emptyText;
+
+  @NonNull
+  public final LinearLayout emptyView;
+
+  @NonNull
+  public final ImageView fabAdd;
+
+  @NonNull
+  public final ImageView menuButton;
+
+  @NonNull
+  public final RecyclerView recyclerView;
+
+  @NonNull
+  public final EditText searchInput;
+
+  @NonNull
+  public final ImageView sidebarButton;
+
+  @NonNull
+  public final TextView tabNotas;
+
+  @NonNull
+  public final LinearLayout tabPill;
+
+  @NonNull
+  public final TextView tabTareas;
+
+  @NonNull
+  public final RelativeLayout topBar;
+
+  private ActivityMainBinding(@NonNull DrawerLayout rootView, @NonNull RelativeLayout bottomBar,
+      @NonNull LinearLayout drawerAllNotes, @NonNull TextView drawerAllNotesLabel,
+      @NonNull DrawerLayout drawerLayout, @NonNull LinearLayout drawerSettings,
+      @NonNull LinearLayout drawerTrash, @NonNull TextView emptyText,
+      @NonNull LinearLayout emptyView, @NonNull ImageView fabAdd, @NonNull ImageView menuButton,
+      @NonNull RecyclerView recyclerView, @NonNull EditText searchInput,
+      @NonNull ImageView sidebarButton, @NonNull TextView tabNotas, @NonNull LinearLayout tabPill,
+      @NonNull TextView tabTareas, @NonNull RelativeLayout topBar) {
     this.rootView = rootView;
-    this.notesCard = notesCard;
-    this.tasksCard = tasksCard;
+    this.bottomBar = bottomBar;
+    this.drawerAllNotes = drawerAllNotes;
+    this.drawerAllNotesLabel = drawerAllNotesLabel;
+    this.drawerLayout = drawerLayout;
+    this.drawerSettings = drawerSettings;
+    this.drawerTrash = drawerTrash;
+    this.emptyText = emptyText;
+    this.emptyView = emptyView;
+    this.fabAdd = fabAdd;
+    this.menuButton = menuButton;
+    this.recyclerView = recyclerView;
+    this.searchInput = searchInput;
+    this.sidebarButton = sidebarButton;
+    this.tabNotas = tabNotas;
+    this.tabPill = tabPill;
+    this.tabTareas = tabTareas;
+    this.topBar = topBar;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public DrawerLayout getRoot() {
     return rootView;
   }
 
@@ -58,19 +130,108 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.notesCard;
-      LinearLayout notesCard = ViewBindings.findChildViewById(rootView, id);
-      if (notesCard == null) {
+      id = R.id.bottomBar;
+      RelativeLayout bottomBar = ViewBindings.findChildViewById(rootView, id);
+      if (bottomBar == null) {
         break missingId;
       }
 
-      id = R.id.tasksCard;
-      LinearLayout tasksCard = ViewBindings.findChildViewById(rootView, id);
-      if (tasksCard == null) {
+      id = R.id.drawerAllNotes;
+      LinearLayout drawerAllNotes = ViewBindings.findChildViewById(rootView, id);
+      if (drawerAllNotes == null) {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, notesCard, tasksCard);
+      id = R.id.drawerAllNotesLabel;
+      TextView drawerAllNotesLabel = ViewBindings.findChildViewById(rootView, id);
+      if (drawerAllNotesLabel == null) {
+        break missingId;
+      }
+
+      DrawerLayout drawerLayout = (DrawerLayout) rootView;
+
+      id = R.id.drawerSettings;
+      LinearLayout drawerSettings = ViewBindings.findChildViewById(rootView, id);
+      if (drawerSettings == null) {
+        break missingId;
+      }
+
+      id = R.id.drawerTrash;
+      LinearLayout drawerTrash = ViewBindings.findChildViewById(rootView, id);
+      if (drawerTrash == null) {
+        break missingId;
+      }
+
+      id = R.id.emptyText;
+      TextView emptyText = ViewBindings.findChildViewById(rootView, id);
+      if (emptyText == null) {
+        break missingId;
+      }
+
+      id = R.id.emptyView;
+      LinearLayout emptyView = ViewBindings.findChildViewById(rootView, id);
+      if (emptyView == null) {
+        break missingId;
+      }
+
+      id = R.id.fabAdd;
+      ImageView fabAdd = ViewBindings.findChildViewById(rootView, id);
+      if (fabAdd == null) {
+        break missingId;
+      }
+
+      id = R.id.menuButton;
+      ImageView menuButton = ViewBindings.findChildViewById(rootView, id);
+      if (menuButton == null) {
+        break missingId;
+      }
+
+      id = R.id.recyclerView;
+      RecyclerView recyclerView = ViewBindings.findChildViewById(rootView, id);
+      if (recyclerView == null) {
+        break missingId;
+      }
+
+      id = R.id.searchInput;
+      EditText searchInput = ViewBindings.findChildViewById(rootView, id);
+      if (searchInput == null) {
+        break missingId;
+      }
+
+      id = R.id.sidebarButton;
+      ImageView sidebarButton = ViewBindings.findChildViewById(rootView, id);
+      if (sidebarButton == null) {
+        break missingId;
+      }
+
+      id = R.id.tabNotas;
+      TextView tabNotas = ViewBindings.findChildViewById(rootView, id);
+      if (tabNotas == null) {
+        break missingId;
+      }
+
+      id = R.id.tabPill;
+      LinearLayout tabPill = ViewBindings.findChildViewById(rootView, id);
+      if (tabPill == null) {
+        break missingId;
+      }
+
+      id = R.id.tabTareas;
+      TextView tabTareas = ViewBindings.findChildViewById(rootView, id);
+      if (tabTareas == null) {
+        break missingId;
+      }
+
+      id = R.id.topBar;
+      RelativeLayout topBar = ViewBindings.findChildViewById(rootView, id);
+      if (topBar == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((DrawerLayout) rootView, bottomBar, drawerAllNotes,
+          drawerAllNotesLabel, drawerLayout, drawerSettings, drawerTrash, emptyText, emptyView,
+          fabAdd, menuButton, recyclerView, searchInput, sidebarButton, tabNotas, tabPill,
+          tabTareas, topBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

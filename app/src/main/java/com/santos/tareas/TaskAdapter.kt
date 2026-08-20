@@ -13,6 +13,7 @@ class TaskAdapter(
 ) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
 
     private var items: List<Task> = emptyList()
+    var flatStyle: Boolean = false
 
     fun submitList(newItems: List<Task>) {
         items = newItems
@@ -34,8 +35,13 @@ class TaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {
+            binding.root.setBackgroundResource(
+                if (flatStyle) R.drawable.dark_row_flat_background else R.drawable.dark_row_background
+            )
             binding.title.text = task.title
-            binding.checkbox.isChecked = task.done
+            binding.checkbox.setImageResource(
+                if (task.done) R.drawable.ic_check_circle_filled else R.drawable.ic_check_circle_outline
+            )
             binding.title.paintFlags = if (task.done) {
                 binding.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             } else {

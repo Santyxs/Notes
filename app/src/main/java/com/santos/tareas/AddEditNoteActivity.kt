@@ -22,23 +22,30 @@ class AddEditNoteActivity : AppCompatActivity() {
         if (noteId != -1L) {
             editingNoteId = noteId
             val note = NoteRepository.getNotes(this).find { it.id == noteId }
-            binding.noteInput.setText(note?.text ?: "")
-            binding.saveButton.text = getString(R.string.guardar)
+            binding.titleInput.setText(note?.title ?: "")
+            binding.bodyInput.setText(note?.text ?: "")
         }
 
-        binding.saveButton.setOnClickListener {
-            val text = binding.noteInput.text.toString().trim()
-            if (text.isNotEmpty()) {
-                val id = editingNoteId
-                if (id != null) {
-                    NoteRepository.updateNote(this, Note(id = id, text = text))
-                } else {
-                    NoteRepository.addNote(this, text)
-                }
-                finish()
-            }
-        }
-
+        binding.backButton.setOnClickListener { saveAndFinish() }
         binding.cancelButton.setOnClickListener { finish() }
+        binding.saveButton.setOnClickListener { saveAndFinish() }
+    }
+
+    private fun saveAndFinish() {
+        val title = binding.titleInput.text.toString().trim()
+        val body = binding.bodyInput.text.toString().trim()
+
+        if (title.isEmpty() && body.isEmpty()) {
+            finish()
+            return
+        }
+
+        val id = editingNoteId
+        if (id != null) {
+            NoteRepository.updateNote(this, Note(id = id, title = title, text = body))
+        } else {
+            NoteRepository.addNote(this, title, body)
+        }
+        finish()
     }
 }

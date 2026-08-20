@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -21,20 +22,29 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final TextView cancelButton;
+  public final ImageView backButton;
 
   @NonNull
-  public final EditText noteInput;
+  public final EditText bodyInput;
+
+  @NonNull
+  public final TextView cancelButton;
 
   @NonNull
   public final TextView saveButton;
 
-  private ActivityAddEditNoteBinding(@NonNull LinearLayout rootView, @NonNull TextView cancelButton,
-      @NonNull EditText noteInput, @NonNull TextView saveButton) {
+  @NonNull
+  public final EditText titleInput;
+
+  private ActivityAddEditNoteBinding(@NonNull LinearLayout rootView, @NonNull ImageView backButton,
+      @NonNull EditText bodyInput, @NonNull TextView cancelButton, @NonNull TextView saveButton,
+      @NonNull EditText titleInput) {
     this.rootView = rootView;
+    this.backButton = backButton;
+    this.bodyInput = bodyInput;
     this.cancelButton = cancelButton;
-    this.noteInput = noteInput;
     this.saveButton = saveButton;
+    this.titleInput = titleInput;
   }
 
   @Override
@@ -64,15 +74,21 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cancelButton;
-      TextView cancelButton = ViewBindings.findChildViewById(rootView, id);
-      if (cancelButton == null) {
+      id = R.id.backButton;
+      ImageView backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
         break missingId;
       }
 
-      id = R.id.noteInput;
-      EditText noteInput = ViewBindings.findChildViewById(rootView, id);
-      if (noteInput == null) {
+      id = R.id.bodyInput;
+      EditText bodyInput = ViewBindings.findChildViewById(rootView, id);
+      if (bodyInput == null) {
+        break missingId;
+      }
+
+      id = R.id.cancelButton;
+      TextView cancelButton = ViewBindings.findChildViewById(rootView, id);
+      if (cancelButton == null) {
         break missingId;
       }
 
@@ -82,8 +98,14 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityAddEditNoteBinding((LinearLayout) rootView, cancelButton, noteInput,
-          saveButton);
+      id = R.id.titleInput;
+      EditText titleInput = ViewBindings.findChildViewById(rootView, id);
+      if (titleInput == null) {
+        break missingId;
+      }
+
+      return new ActivityAddEditNoteBinding((LinearLayout) rootView, backButton, bodyInput,
+          cancelButton, saveButton, titleInput);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

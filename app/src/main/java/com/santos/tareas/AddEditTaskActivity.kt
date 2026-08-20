@@ -23,22 +23,25 @@ class AddEditTaskActivity : AppCompatActivity() {
             editingTaskId = taskId
             val task = TaskRepository.getTasks(this).find { it.id == taskId }
             binding.taskInput.setText(task?.title ?: "")
-            binding.saveButton.text = getString(R.string.guardar)
         }
 
-        binding.saveButton.setOnClickListener {
-            val title = binding.taskInput.text.toString().trim()
-            if (title.isNotEmpty()) {
-                val id = editingTaskId
-                if (id != null) {
-                    TaskRepository.updateTask(this, Task(id = id, title = title, done = false))
-                } else {
-                    TaskRepository.addTask(this, title)
-                }
-                finish()
-            }
-        }
-
+        binding.backButton.setOnClickListener { saveAndFinish() }
         binding.cancelButton.setOnClickListener { finish() }
+        binding.saveButton.setOnClickListener { saveAndFinish() }
+    }
+
+    private fun saveAndFinish() {
+        val title = binding.taskInput.text.toString().trim()
+        if (title.isEmpty()) {
+            finish()
+            return
+        }
+        val id = editingTaskId
+        if (id != null) {
+            TaskRepository.updateTask(this, Task(id = id, title = title, done = false))
+        } else {
+            TaskRepository.addTask(this, title)
+        }
+        finish()
     }
 }

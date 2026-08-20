@@ -26,7 +26,8 @@ class NoteRemoteViewsFactory(private val context: Context) : RemoteViewsFactory 
     override fun getViewAt(position: Int): RemoteViews {
         val note = notes[position]
         val views = RemoteViews(context.packageName, R.layout.widget_note_item)
-        views.setTextViewText(R.id.note_item_text, note.text)
+        val display = if (note.title.isNotBlank()) note.title else note.text
+        views.setTextViewText(R.id.note_item_text, display)
 
         val fillInIntent = Intent().apply {
             putExtra(AddEditNoteActivity.EXTRA_NOTE_ID, note.id)

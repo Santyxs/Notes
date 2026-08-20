@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -21,6 +22,9 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final ImageView backButton;
+
+  @NonNull
   public final TextView cancelButton;
 
   @NonNull
@@ -29,9 +33,10 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
   @NonNull
   public final EditText taskInput;
 
-  private ActivityAddEditTaskBinding(@NonNull LinearLayout rootView, @NonNull TextView cancelButton,
-      @NonNull TextView saveButton, @NonNull EditText taskInput) {
+  private ActivityAddEditTaskBinding(@NonNull LinearLayout rootView, @NonNull ImageView backButton,
+      @NonNull TextView cancelButton, @NonNull TextView saveButton, @NonNull EditText taskInput) {
     this.rootView = rootView;
+    this.backButton = backButton;
     this.cancelButton = cancelButton;
     this.saveButton = saveButton;
     this.taskInput = taskInput;
@@ -64,6 +69,12 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.backButton;
+      ImageView backButton = ViewBindings.findChildViewById(rootView, id);
+      if (backButton == null) {
+        break missingId;
+      }
+
       id = R.id.cancelButton;
       TextView cancelButton = ViewBindings.findChildViewById(rootView, id);
       if (cancelButton == null) {
@@ -82,8 +93,8 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityAddEditTaskBinding((LinearLayout) rootView, cancelButton, saveButton,
-          taskInput);
+      return new ActivityAddEditTaskBinding((LinearLayout) rootView, backButton, cancelButton,
+          saveButton, taskInput);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

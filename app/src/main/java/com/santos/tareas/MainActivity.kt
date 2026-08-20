@@ -2,23 +2,165 @@ package com.santos.tareas
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.Gravity
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.santos.tareas.databinding.ActivityMainBinding
+
+enum class ViewMode { LIST, CARD, GRID }
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var noteAdapter: NoteAdapter
+    private lateinit var taskAdapter: TaskAdapter
+
+    private var showingNotes = true
+    private var searchQuery = ""
+    private var viewMode = ViewMode.CARD
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.notesCard.setOnClickListener {
-            startActivity(Intent(this, NotesActivity::class.java))
+        noteAdapter = NoteAdapter(
+            onClick = { note ->
+                val intent = Intent(this, AddEditNoteActivity::class.java)
+                intent.putExtra(AddEditNoteActivity.EXTRA_NOTE_ID, note.id)
+                startActivity(intent)
+            },
+            onDelete = { note ->
+                NoteRepository.deleteNote(this, note.id)
+                refresh()
+            }
+        )
+
+        taskAdapter = TaskAdapter(
+            onToggle = { task ->
+                TaskRepository.toggleDone(this, task.id)
+                refresh()
+            },
+            onClick = { task ->
+                val intent = Intent(this, AddEditTaskActivity::class.java)
+                intent.putExtra(AddEditTaskActivity.EXTRA_TASK_ID, task.id)
+                startActivity(intent)
+            },
+            onDelete = { task ->
+                TaskRepository.deleteTask(this, task.id)
+                refresh()
+            }
+        )
+
+        binding.tabNotas.setOnClickListener { selectTab(notes = true) }
+        binding.tabTareas.setOnClickListener { selectTab(notes = false) }
+
+        binding.fabAdd.setOnClickListener {
+            if (showingNotes) {
+                startActivity(Intent(this, AddEditNoteActivity::class.java))
+            } else {
+                startActivity(Intent(this, AddEditTaskActivity::class.java))
+            }
         }
-        binding.tasksCard.setOnClickListener {
-            startActivity(Intent(this, TasksActivity::class.java))
+
+        binding.menuButton.setOnClickListener { showViewModeMenu() }
+
+        binding.sidebarButton.setOnClickListener {
+            binding.drawerLayout.openDrawer(Gravity.START)
+        }
+        binding.drawerAllNotes.setOnClickListener {
+            binding.drawerLayout.closeDrawer(Gravity.START)
+        }
+        binding.drawerTrash.setOnClickListener {
+            binding.drawerLayout.closeDrawer(Gravity.START)
+            startActivity(Intent(this, TrashActivity::class.java))
+        }
+        binding.drawerSettings.setOnClickListener {
+            binding.drawerLayout.closeDrawer(Gravity.START)
+            startActivity(Intent(this, SettingsActivity::class.java))
+        }
+
+        binding.searchInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchQuery = s?.toString().orEmpty()
+                refresh()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
+        applyViewMode()
+        selectTab(notes = true)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh()
+    }
+
+    private fun showViewModeMenu() {
+        val popup = PopupMenu(this, binding.menuButton)
+        popup.menu.add(0, 0, 0, getString(R.string.vista_lista))
+        popup.menu.add(0, 1, 1, getString(R.string.vista_tarjeta))
+        popup.menu.add(0, 2, 2, getString(R.string.vista_cuadricula))
+        popup.setOnMenuItemClickListener { item ->
+            viewMode = when (item.itemId) {
+                0 -> ViewMode.LIST
+                2 -> ViewMode.GRID
+                else -> ViewMode.CARD
+            }
+            applyViewMode()
+            true
+        }
+        popup.show()
+    }
+
+    private fun applyViewMode() {
+        binding.recyclerView.layoutManager = when (viewMode) {
+            ViewMode.GRID -> GridLayoutManager(this, 2)
+            else -> LinearLayoutManager(this)
+        }
+        val flat = viewMode == ViewMode.LIST
+        noteAdapter.flatStyle = flat
+        taskAdapter.flatStyle = flat
+        refresh()
+    }
+
+    private fun selectTab(notes: Boolean) {
+        showingNotes = notes
+        binding.tabNotas.setBackgroundResource(if (notes) R.drawable.pill_selected_background else 0)
+        binding.tabTareas.setBackgroundResource(if (!notes) R.drawable.pill_selected_background else 0)
+        binding.tabNotas.setTextColor(
+            resources.getColor(if (notes) R.color.accent_yellow else R.color.white, theme)
+        )
+        binding.tabTareas.setTextColor(
+            resources.getColor(if (!notes) R.color.accent_yellow else R.color.white, theme)
+        )
+        binding.recyclerView.adapter = if (notes) noteAdapter else taskAdapter
+        binding.emptyText.text = getString(if (notes) R.string.sin_notas else R.string.sin_tareas)
+        binding.drawerAllNotesLabel.text = getString(if (notes) R.string.todas_las_notas else R.string.todas_las_tareas)
+        refresh()
+    }
+
+    private fun refresh() {
+        if (showingNotes) {
+            val notes = NoteRepository.getNotes(this).filter {
+                searchQuery.isBlank() ||
+                    it.title.contains(searchQuery, ignoreCase = true) ||
+                    it.text.contains(searchQuery, ignoreCase = true)
+            }
+            noteAdapter.submitList(notes)
+            binding.emptyView.visibility = if (notes.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
+        } else {
+            val tasks = TaskRepository.getTasks(this).filter {
+                searchQuery.isBlank() || it.title.contains(searchQuery, ignoreCase = true)
+            }
+            taskAdapter.submitList(tasks)
+            binding.emptyView.visibility = if (tasks.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         }
     }
 }

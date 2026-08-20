@@ -1,6 +1,7 @@
 package com.santos.tareas
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.santos.tareas.databinding.ItemNoteRowBinding
@@ -11,6 +12,7 @@ class NoteAdapter(
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private var items: List<Note> = emptyList()
+    var flatStyle: Boolean = false
 
     fun submitList(newItems: List<Note>) {
         items = newItems
@@ -32,6 +34,15 @@ class NoteAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(note: Note) {
+            binding.root.setBackgroundResource(
+                if (flatStyle) R.drawable.dark_row_flat_background else R.drawable.dark_row_background
+            )
+            if (note.title.isNotBlank()) {
+                binding.noteTitle.visibility = View.VISIBLE
+                binding.noteTitle.text = note.title
+            } else {
+                binding.noteTitle.visibility = View.GONE
+            }
             binding.text.text = note.text
             binding.root.setOnClickListener { onClick(note) }
             binding.deleteButton.setOnClickListener { onDelete(note) }

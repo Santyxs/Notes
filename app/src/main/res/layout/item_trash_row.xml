@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/dark_row_background"
+    android:layout_marginBottom="8dp"
+    android:padding="14dp">
+
+    <TextView
+        android:id="@+id/itemText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/restoreButton"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/ic_restore"
+        android:contentDescription="@string/restaurar" />
+
+    <ImageView
+        android:id="@+id/deleteForeverButton"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="14dp"
+        android:src="@drawable/ic_trash"
+        android:contentDescription="@string/eliminar_definitivamente" />
+
+</LinearLayout>

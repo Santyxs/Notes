@@ -30,6 +30,18 @@
             android:label="@string/notas" />
 
         <activity
+            android:name=".TrashActivity"
+            android:exported="false"
+            android:label="@string/papelera"
+            android:theme="@style/Theme.Tareas.Dialog" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/ajustes"
+            android:theme="@style/Theme.Tareas.Dialog" />
+
+        <activity
             android:name=".AddEditTaskActivity"
             android:exported="false"
             android:label="@string/tareas"

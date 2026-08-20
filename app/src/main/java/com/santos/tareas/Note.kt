@@ -2,5 +2,7 @@ package com.santos.tareas
 
 data class Note(
     val id: Long,
-    var text: String
+    var title: String = "",
+    var text: String,
+    var deleted: Boolean = false
 )

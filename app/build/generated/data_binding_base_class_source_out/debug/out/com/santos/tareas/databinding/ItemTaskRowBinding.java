@@ -4,7 +4,6 @@ package com.santos.tareas.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +21,7 @@ public final class ItemTaskRowBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final CheckBox checkbox;
+  public final ImageView checkbox;
 
   @NonNull
   public final ImageView deleteButton;
@@ -30,7 +29,7 @@ public final class ItemTaskRowBinding implements ViewBinding {
   @NonNull
   public final TextView title;
 
-  private ItemTaskRowBinding(@NonNull LinearLayout rootView, @NonNull CheckBox checkbox,
+  private ItemTaskRowBinding(@NonNull LinearLayout rootView, @NonNull ImageView checkbox,
       @NonNull ImageView deleteButton, @NonNull TextView title) {
     this.rootView = rootView;
     this.checkbox = checkbox;
@@ -66,7 +65,7 @@ public final class ItemTaskRowBinding implements ViewBinding {
     int id;
     missingId: {
       id = R.id.checkbox;
-      CheckBox checkbox = ViewBindings.findChildViewById(rootView, id);
+      ImageView checkbox = ViewBindings.findChildViewById(rootView, id);
       if (checkbox == null) {
         break missingId;
       }

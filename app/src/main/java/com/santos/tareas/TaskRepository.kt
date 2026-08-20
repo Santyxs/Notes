@@ -9,6 +9,9 @@ import org.json.JSONObject
  * Es la única fuente de datos: la usan tanto MainActivity/AddEditTaskActivity
  * como el widget (TaskWidgetService), así que cualquier cambio se refleja
  * en ambos sitios en cuanto se notifica la actualización del widget.
+ *
+ * "Eliminar" no borra al momento: marca la tarea como `deleted` para que
+ * pase a la papelera, igual que las notas.
  */
 object TaskRepository {
 
@@ -16,9 +19,18 @@ object TaskRepository {
     private const val KEY_TASKS = "tasks_json"
     private const val KEY_NEXT_ID = "next_id"
 
-    fun getTasks(context: Context): MutableList<Task> {
+    private fun getAllRaw(context: Context): MutableList<Task> {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        val json = prefs.getString(KEY_TASKS, null) ?: return mutableListOf()
+        val json = prefs.getString(KEY_TASKS, null)
+        if (json == null) {
+            val seed = mutableListOf(
+                Task(id = nextId(context), title = "Bienvenido a Tareas", done = false),
+                Task(id = nextId(context), title = "Crear una tarea", done = false),
+                Task(id = nextId(context), title = "Tocar para editar", done = false)
+            )
+            saveTasks(context, seed)
+            return seed
+        }
         val array = JSONArray(json)
         val list = mutableListOf<Task>()
         for (i in 0 until array.length()) {
@@ -27,12 +39,21 @@ object TaskRepository {
                 Task(
                     id = o.getLong("id"),
                     title = o.getString("title"),
-                    done = o.getBoolean("done")
+                    done = o.getBoolean("done"),
+                    deleted = if (o.has("deleted")) o.getBoolean("deleted") else false
                 )
             )
         }
         return list
     }
+
+    /** Tareas activas (no eliminadas) — lo que se muestra normalmente. */
+    fun getTasks(context: Context): MutableList<Task> =
+        getAllRaw(context).filter { !it.deleted }.toMutableList()
+
+    /** Tareas en la papelera. */
+    fun getDeletedTasks(context: Context): MutableList<Task> =
+        getAllRaw(context).filter { it.deleted }.toMutableList()
 
     private fun saveTasks(context: Context, tasks: List<Task>) {
         val array = JSONArray()
@@ -41,6 +62,7 @@ object TaskRepository {
             o.put("id", t.id)
             o.put("title", t.title)
             o.put("done", t.done)
+            o.put("deleted", t.deleted)
             array.put(o)
         }
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -57,14 +79,14 @@ object TaskRepository {
     }
 
     fun addTask(context: Context, title: String) {
-        val tasks = getTasks(context)
+        val tasks = getAllRaw(context)
         tasks.add(Task(id = nextId(context), title = title, done = false))
         saveTasks(context, tasks)
         WidgetUpdater.updateAll(context)
     }
 
     fun updateTask(context: Context, task: Task) {
-        val tasks = getTasks(context)
+        val tasks = getAllRaw(context)
         val idx = tasks.indexOfFirst { it.id == task.id }
         if (idx >= 0) {
             tasks[idx] = task
@@ -74,7 +96,7 @@ object TaskRepository {
     }
 
     fun toggleDone(context: Context, id: Long) {
-        val tasks = getTasks(context)
+        val tasks = getAllRaw(context)
         val idx = tasks.indexOfFirst { it.id == id }
         if (idx >= 0) {
             tasks[idx] = tasks[idx].copy(done = !tasks[idx].done)
@@ -83,9 +105,38 @@ object TaskRepository {
         }
     }
 
+    /** Mueve la tarea a la papelera (no la borra todavía). */
     fun deleteTask(context: Context, id: Long) {
-        val tasks = getTasks(context)
+        val tasks = getAllRaw(context)
+        val idx = tasks.indexOfFirst { it.id == id }
+        if (idx >= 0) {
+            tasks[idx] = tasks[idx].copy(deleted = true)
+            saveTasks(context, tasks)
+            WidgetUpdater.updateAll(context)
+        }
+    }
+
+    fun restoreTask(context: Context, id: Long) {
+        val tasks = getAllRaw(context)
+        val idx = tasks.indexOfFirst { it.id == id }
+        if (idx >= 0) {
+            tasks[idx] = tasks[idx].copy(deleted = false)
+            saveTasks(context, tasks)
+            WidgetUpdater.updateAll(context)
+        }
+    }
+
+    /** Borra definitivamente una tarea de la papelera. */
+    fun permanentlyDeleteTask(context: Context, id: Long) {
+        val tasks = getAllRaw(context)
         tasks.removeAll { it.id == id }
+        saveTasks(context, tasks)
+        WidgetUpdater.updateAll(context)
+    }
+
+    fun emptyTrash(context: Context) {
+        val tasks = getAllRaw(context)
+        tasks.removeAll { it.deleted }
         saveTasks(context, tasks)
         WidgetUpdater.updateAll(context)
     }

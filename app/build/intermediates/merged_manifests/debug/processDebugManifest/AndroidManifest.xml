@@ -43,6 +43,16 @@
             android:exported="false"
             android:label="@string/notas" />
         <activity
+            android:name="com.santos.tareas.TrashActivity"
+            android:exported="false"
+            android:label="@string/papelera"
+            android:theme="@style/Theme.Tareas.Dialog" />
+        <activity
+            android:name="com.santos.tareas.SettingsActivity"
+            android:exported="false"
+            android:label="@string/ajustes"
+            android:theme="@style/Theme.Tareas.Dialog" />
+        <activity
             android:name="com.santos.tareas.AddEditTaskActivity"
             android:exported="false"
             android:label="@string/tareas"
