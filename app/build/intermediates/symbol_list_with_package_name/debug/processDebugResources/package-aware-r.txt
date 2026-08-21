@@ -3270,6 +3270,7 @@ id currentState
 id custom
 id customPanel
 id cut
+id dateLabel
 id date_picker_actions
 id decelerate
 id decelerateAndComplete
@@ -3467,6 +3468,7 @@ id noState
 id none
 id normal
 id north
+id noteDate
 id noteTitle
 id note_item_row
 id note_item_text
@@ -3659,11 +3661,15 @@ id visible
 id visible_removing_fragment_view_tag
 id west
 id widget_add_button
+id widget_add_button_small
 id widget_empty
 id widget_list
 id widget_note_add_button
+id widget_note_add_button_small
 id widget_note_empty
 id widget_note_list
+id widget_note_small_summary
+id widget_small_summary
 id widget_title
 id withText
 id with_icon
@@ -3878,8 +3884,10 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout widget_note
 layout widget_note_item
+layout widget_note_small
 layout widget_task
 layout widget_task_item
+layout widget_task_small
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description

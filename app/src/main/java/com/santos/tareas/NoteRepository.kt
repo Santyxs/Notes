@@ -19,9 +19,10 @@ object NoteRepository {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val json = prefs.getString(KEY_NOTES, null)
         if (json == null) {
+            val now = System.currentTimeMillis()
             val seed = mutableListOf(
-                Note(id = nextId(context), title = "Bienvenido a Notas", text = ""),
-                Note(id = nextId(context), title = "", text = "Toca + para crear una nota nueva")
+                Note(id = nextId(context), title = "Bienvenido a Notas", text = "", createdAt = now),
+                Note(id = nextId(context), title = "", text = "Toca + para crear una nota nueva", createdAt = now)
             )
             saveNotes(context, seed)
             return seed
@@ -35,7 +36,8 @@ object NoteRepository {
                     id = o.getLong("id"),
                     title = if (o.has("title")) o.getString("title") else "",
                     text = o.getString("text"),
-                    deleted = if (o.has("deleted")) o.getBoolean("deleted") else false
+                    deleted = if (o.has("deleted")) o.getBoolean("deleted") else false,
+                    createdAt = if (o.has("createdAt")) o.getLong("createdAt") else 0L
                 )
             )
         }
@@ -58,6 +60,7 @@ object NoteRepository {
             o.put("title", n.title)
             o.put("text", n.text)
             o.put("deleted", n.deleted)
+            o.put("createdAt", n.createdAt)
             array.put(o)
         }
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -75,7 +78,7 @@ object NoteRepository {
 
     fun addNote(context: Context, title: String, text: String) {
         val notes = getAllRaw(context)
-        notes.add(0, Note(id = nextId(context), title = title, text = text))
+        notes.add(0, Note(id = nextId(context), title = title, text = text, createdAt = System.currentTimeMillis()))
         saveNotes(context, notes)
         WidgetUpdater.updateAll(context)
     }
@@ -84,7 +87,8 @@ object NoteRepository {
         val notes = getAllRaw(context)
         val idx = notes.indexOfFirst { it.id == note.id }
         if (idx >= 0) {
-            notes[idx] = note
+            // Se conserva la fecha de creación original al editar.
+            notes[idx] = note.copy(createdAt = notes[idx].createdAt)
             saveNotes(context, notes)
             WidgetUpdater.updateAll(context)
         }

@@ -24,15 +24,19 @@ public final class ItemNoteRowBinding implements ViewBinding {
   public final ImageView deleteButton;
 
   @NonNull
+  public final TextView noteDate;
+
+  @NonNull
   public final TextView noteTitle;
 
   @NonNull
   public final TextView text;
 
   private ItemNoteRowBinding(@NonNull LinearLayout rootView, @NonNull ImageView deleteButton,
-      @NonNull TextView noteTitle, @NonNull TextView text) {
+      @NonNull TextView noteDate, @NonNull TextView noteTitle, @NonNull TextView text) {
     this.rootView = rootView;
     this.deleteButton = deleteButton;
+    this.noteDate = noteDate;
     this.noteTitle = noteTitle;
     this.text = text;
   }
@@ -70,6 +74,12 @@ public final class ItemNoteRowBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.noteDate;
+      TextView noteDate = ViewBindings.findChildViewById(rootView, id);
+      if (noteDate == null) {
+        break missingId;
+      }
+
       id = R.id.noteTitle;
       TextView noteTitle = ViewBindings.findChildViewById(rootView, id);
       if (noteTitle == null) {
@@ -82,7 +92,8 @@ public final class ItemNoteRowBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemNoteRowBinding((LinearLayout) rootView, deleteButton, noteTitle, text);
+      return new ItemNoteRowBinding((LinearLayout) rootView, deleteButton, noteDate, noteTitle,
+          text);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

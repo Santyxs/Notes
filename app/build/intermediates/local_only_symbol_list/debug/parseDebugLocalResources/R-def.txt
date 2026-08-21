@@ -42,6 +42,7 @@ id bodyInput
 id bottomBar
 id cancelButton
 id checkbox
+id dateLabel
 id deleteButton
 id deleteForeverButton
 id drawerAllNotes
@@ -59,6 +60,7 @@ id item_checkbox
 id item_row
 id item_title
 id menuButton
+id noteDate
 id noteTitle
 id note_item_row
 id note_item_text
@@ -76,11 +78,15 @@ id title
 id titleInput
 id topBar
 id widget_add_button
+id widget_add_button_small
 id widget_empty
 id widget_list
 id widget_note_add_button
+id widget_note_add_button_small
 id widget_note_empty
 id widget_note_list
+id widget_note_small_summary
+id widget_small_summary
 id widget_title
 layout activity_add_edit_note
 layout activity_add_edit_task
@@ -94,8 +100,10 @@ layout item_task_row
 layout item_trash_row
 layout widget_note
 layout widget_note_item
+layout widget_note_small
 layout widget_task
 layout widget_task_item
+layout widget_task_small
 mipmap ic_launcher
 mipmap ic_launcher_round
 string acerca_de

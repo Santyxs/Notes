@@ -24,6 +24,10 @@ class AddEditNoteActivity : AppCompatActivity() {
             val note = NoteRepository.getNotes(this).find { it.id == noteId }
             binding.titleInput.setText(note?.title ?: "")
             binding.bodyInput.setText(note?.text ?: "")
+            if (note != null) {
+                binding.dateLabel.visibility = android.view.View.VISIBLE
+                binding.dateLabel.text = DateUtils.format(note.createdAt)
+            }
         }
 
         binding.backButton.setOnClickListener { saveAndFinish() }

@@ -44,6 +44,7 @@ class NoteAdapter(
                 binding.noteTitle.visibility = View.GONE
             }
             binding.text.text = note.text
+            binding.noteDate.text = DateUtils.format(note.createdAt)
             binding.root.setOnClickListener { onClick(note) }
             binding.deleteButton.setOnClickListener { onDelete(note) }
         }

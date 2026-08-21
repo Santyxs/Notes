@@ -31,18 +31,22 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   public final TextView cancelButton;
 
   @NonNull
+  public final TextView dateLabel;
+
+  @NonNull
   public final TextView saveButton;
 
   @NonNull
   public final EditText titleInput;
 
   private ActivityAddEditNoteBinding(@NonNull LinearLayout rootView, @NonNull ImageView backButton,
-      @NonNull EditText bodyInput, @NonNull TextView cancelButton, @NonNull TextView saveButton,
-      @NonNull EditText titleInput) {
+      @NonNull EditText bodyInput, @NonNull TextView cancelButton, @NonNull TextView dateLabel,
+      @NonNull TextView saveButton, @NonNull EditText titleInput) {
     this.rootView = rootView;
     this.backButton = backButton;
     this.bodyInput = bodyInput;
     this.cancelButton = cancelButton;
+    this.dateLabel = dateLabel;
     this.saveButton = saveButton;
     this.titleInput = titleInput;
   }
@@ -92,6 +96,12 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.dateLabel;
+      TextView dateLabel = ViewBindings.findChildViewById(rootView, id);
+      if (dateLabel == null) {
+        break missingId;
+      }
+
       id = R.id.saveButton;
       TextView saveButton = ViewBindings.findChildViewById(rootView, id);
       if (saveButton == null) {
@@ -105,7 +115,7 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
       }
 
       return new ActivityAddEditNoteBinding((LinearLayout) rootView, backButton, bodyInput,
-          cancelButton, saveButton, titleInput);
+          cancelButton, dateLabel, saveButton, titleInput);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
