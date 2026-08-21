@@ -17,6 +17,7 @@ drawable dark_row_flat_background
 drawable ic_back
 drawable ic_check_circle_filled
 drawable ic_check_circle_outline
+drawable ic_chevron_down
 drawable ic_edit
 drawable ic_empty_document
 drawable ic_folder
@@ -77,6 +78,9 @@ id restoreButton
 id rootLayout
 id saveButton
 id searchInput
+id sectionHeaderChevron
+id sectionHeaderRow
+id sectionHeaderTitle
 id sidebarButton
 id tabNotas
 id tabPill
@@ -105,6 +109,7 @@ layout activity_settings
 layout activity_tasks
 layout activity_trash
 layout item_note_row
+layout item_section_header
 layout item_task_row
 layout item_trash_row
 layout widget_note
@@ -128,6 +133,7 @@ string buscar
 string cancelar
 string color_de_fondo
 string compartir
+string completado
 string desanclar
 string desbloquear
 string desbloquear_nota
@@ -140,6 +146,7 @@ string nota_bloqueada
 string notas
 string papelera
 string papelera_vacia
+string pendiente_de_completar
 string restaurar
 string sin_notas
 string sin_tareas

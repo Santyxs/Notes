@@ -3031,6 +3031,7 @@ drawable ic_call_decline
 drawable ic_call_decline_low
 drawable ic_check_circle_filled
 drawable ic_check_circle_outline
+drawable ic_chevron_down
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_edit
@@ -3570,6 +3571,9 @@ id search_mag_icon
 id search_plate
 id search_src_text
 id search_voice_btn
+id sectionHeaderChevron
+id sectionHeaderRow
+id sectionHeaderTitle
 id select_dialog_listview
 id selected
 id selection_type
@@ -3842,6 +3846,7 @@ layout fingerprint_dialog_layout
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_note_row
+layout item_section_header
 layout item_task_row
 layout item_trash_row
 layout m3_alert_dialog
@@ -3973,6 +3978,7 @@ string character_counter_pattern
 string clear_text_end_icon_content_description
 string color_de_fondo
 string compartir
+string completado
 string confirm_device_credential_password
 string default_error_msg
 string desanclar
@@ -4110,6 +4116,7 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string pendiente_de_completar
 string restaurar
 string search_menu_title
 string searchbar_scrolling_view_behavior

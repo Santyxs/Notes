@@ -37,4 +37,6 @@
     <string name="compartir">Compartir</string>
     <string name="color_de_fondo">Color de fondo</string>
     <string name="desbloquear_nota">Desbloquea la nota para continuar</string>
+    <string name="pendiente_de_completar">Pendiente de completar</string>
+    <string name="completado">Completado</string>
 </resources>

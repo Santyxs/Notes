@@ -10,11 +10,11 @@ class TaskRemoteViewsFactory(private val context: Context) : RemoteViewsFactory 
     private var tasks: List<Task> = emptyList()
 
     override fun onCreate() {
-        tasks = TaskRepository.getTasks(context)
+        tasks = TaskRepository.getTasks(context).filter { !it.done }
     }
 
     override fun onDataSetChanged() {
-        tasks = TaskRepository.getTasks(context)
+        tasks = TaskRepository.getTasks(context).filter { !it.done }
     }
 
     override fun onDestroy() {

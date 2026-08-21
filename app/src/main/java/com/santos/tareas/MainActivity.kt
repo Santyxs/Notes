@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var showingNotes = true
     private var searchQuery = ""
     private var viewMode = ViewMode.CARD
+    private var completedExpanded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
             },
             onDelete = { task ->
                 TaskRepository.deleteTask(this, task.id)
+                refresh()
+            },
+            onHeaderToggle = {
+                completedExpanded = !completedExpanded
                 refresh()
             }
         )
@@ -120,9 +125,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun applyViewMode() {
-        binding.recyclerView.layoutManager = when (viewMode) {
-            ViewMode.GRID -> GridLayoutManager(this, 2)
-            else -> LinearLayoutManager(this)
+        if (viewMode == ViewMode.GRID) {
+            val gridManager = GridLayoutManager(this, 2)
+            gridManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (!showingNotes && taskAdapter.isHeaderAt(position)) 2 else 1
+                }
+            }
+            binding.recyclerView.layoutManager = gridManager
+        } else {
+            binding.recyclerView.layoutManager = LinearLayoutManager(this)
         }
         val flat = viewMode == ViewMode.LIST
         noteAdapter.flatStyle = flat
@@ -143,7 +155,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = if (notes) noteAdapter else taskAdapter
         binding.emptyText.text = getString(if (notes) R.string.sin_notas else R.string.sin_tareas)
         binding.drawerAllNotesLabel.text = getString(if (notes) R.string.todas_las_notas else R.string.todas_las_tareas)
-        refresh()
+        applyViewMode()
     }
 
     private fun refresh() {
@@ -156,11 +168,25 @@ class MainActivity : AppCompatActivity() {
             noteAdapter.submitList(notes)
             binding.emptyView.visibility = if (notes.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         } else {
-            val tasks = TaskRepository.getTasks(this).filter {
+            val allTasks = TaskRepository.getTasks(this).filter {
                 searchQuery.isBlank() || it.title.contains(searchQuery, ignoreCase = true)
             }
-            taskAdapter.submitList(tasks)
-            binding.emptyView.visibility = if (tasks.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
+            val pending = allTasks.filter { !it.done }
+            val completed = allTasks.filter { it.done }
+
+            val sections = mutableListOf<TaskListItem>()
+            if (pending.isNotEmpty()) {
+                sections.add(TaskListItem.Header(getString(R.string.pendiente_de_completar), collapsible = false, expanded = true))
+                sections.addAll(pending.map { TaskListItem.Row(it) })
+            }
+            if (completed.isNotEmpty()) {
+                sections.add(TaskListItem.Header(getString(R.string.completado), collapsible = true, expanded = completedExpanded))
+                if (completedExpanded) {
+                    sections.addAll(completed.map { TaskListItem.Row(it) })
+                }
+            }
+            taskAdapter.submitSections(sections)
+            binding.emptyView.visibility = if (allTasks.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         }
     }
 }

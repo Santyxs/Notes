@@ -4,32 +4,76 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.santos.tareas.databinding.ItemSectionHeaderBinding
 import com.santos.tareas.databinding.ItemTaskRowBinding
+
+sealed class TaskListItem {
+    data class Header(val title: String, val collapsible: Boolean, val expanded: Boolean) : TaskListItem()
+    data class Row(val task: Task) : TaskListItem()
+}
+
+private const val VIEW_TYPE_HEADER = 0
+private const val VIEW_TYPE_ROW = 1
 
 class TaskAdapter(
     private val onToggle: (Task) -> Unit,
     private val onClick: (Task) -> Unit,
-    private val onDelete: (Task) -> Unit
-) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+    private val onDelete: (Task) -> Unit,
+    private val onHeaderToggle: () -> Unit = {}
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var items: List<Task> = emptyList()
+    private var items: List<TaskListItem> = emptyList()
     var flatStyle: Boolean = false
 
-    fun submitList(newItems: List<Task>) {
+    /** Mantiene compatibilidad con el código que llamaba submitList(List<Task>) sin secciones. */
+    fun submitList(tasks: List<Task>) {
+        items = tasks.map { TaskListItem.Row(it) }
+        notifyDataSetChanged()
+    }
+
+    fun submitSections(newItems: List<TaskListItem>) {
         items = newItems
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val binding = ItemTaskRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TaskViewHolder(binding)
+    fun isHeaderAt(position: Int): Boolean = items.getOrNull(position) is TaskListItem.Header
+
+    override fun getItemViewType(position: Int): Int =
+        if (items[position] is TaskListItem.Header) VIEW_TYPE_HEADER else VIEW_TYPE_ROW
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == VIEW_TYPE_HEADER) {
+            val binding = ItemSectionHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            HeaderViewHolder(binding)
+        } else {
+            val binding = ItemTaskRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            TaskViewHolder(binding)
+        }
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(items[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (val item = items[position]) {
+            is TaskListItem.Header -> (holder as HeaderViewHolder).bind(item)
+            is TaskListItem.Row -> (holder as TaskViewHolder).bind(item.task)
+        }
     }
 
     override fun getItemCount(): Int = items.size
+
+    inner class HeaderViewHolder(private val binding: ItemSectionHeaderBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(header: TaskListItem.Header) {
+            binding.sectionHeaderTitle.text = header.title
+            if (header.collapsible) {
+                binding.sectionHeaderChevron.visibility = android.view.View.VISIBLE
+                binding.sectionHeaderChevron.rotation = if (header.expanded) 180f else 0f
+                binding.sectionHeaderRow.setOnClickListener { onHeaderToggle() }
+            } else {
+                binding.sectionHeaderChevron.visibility = android.view.View.GONE
+                binding.sectionHeaderRow.setOnClickListener(null)
+            }
+        }
+    }
 
     inner class TaskViewHolder(private val binding: ItemTaskRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
