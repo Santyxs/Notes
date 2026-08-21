@@ -29,4 +29,12 @@
     <string name="restaurar">Restaurar</string>
     <string name="eliminar_definitivamente">Eliminar definitivamente</string>
     <string name="acerca_de">Acerca de</string>
+    <string name="nota_bloqueada">Nota bloqueada</string>
+    <string name="anclar">Anclar</string>
+    <string name="desanclar">Desanclar</string>
+    <string name="bloquear">Bloquear</string>
+    <string name="desbloquear">Desbloquear</string>
+    <string name="compartir">Compartir</string>
+    <string name="color_de_fondo">Color de fondo</string>
+    <string name="desbloquear_nota">Desbloquea la nota para continuar</string>
 </resources>

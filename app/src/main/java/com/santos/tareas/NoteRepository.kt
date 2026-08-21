@@ -4,11 +4,6 @@ import android.content.Context
 import org.json.JSONArray
 import org.json.JSONObject
 
-/**
- * Almacena las notas en SharedPreferences como JSON, igual que TaskRepository
- * pero en un almacén separado. "Eliminar" mueve la nota a la papelera en vez
- * de borrarla directamente.
- */
 object NoteRepository {
 
     private const val PREFS = "notas_prefs"
@@ -37,18 +32,22 @@ object NoteRepository {
                     title = if (o.has("title")) o.getString("title") else "",
                     text = o.getString("text"),
                     deleted = if (o.has("deleted")) o.getBoolean("deleted") else false,
-                    createdAt = if (o.has("createdAt")) o.getLong("createdAt") else 0L
+                    createdAt = if (o.has("createdAt")) o.getLong("createdAt") else 0L,
+                    pinned = if (o.has("pinned")) o.getBoolean("pinned") else false,
+                    locked = if (o.has("locked")) o.getBoolean("locked") else false,
+                    color = if (o.has("color") && !o.isNull("color")) o.getString("color") else null
                 )
             )
         }
         return list
     }
 
-    /** Notas activas (no eliminadas) — lo que se muestra normalmente. */
+    /** Notas activas (no eliminadas), ancladas primero. */
     fun getNotes(context: Context): MutableList<Note> =
-        getAllRaw(context).filter { !it.deleted }.toMutableList()
+        getAllRaw(context).filter { !it.deleted }
+            .sortedByDescending { it.pinned }
+            .toMutableList()
 
-    /** Notas en la papelera. */
     fun getDeletedNotes(context: Context): MutableList<Note> =
         getAllRaw(context).filter { it.deleted }.toMutableList()
 
@@ -61,6 +60,9 @@ object NoteRepository {
             o.put("text", n.text)
             o.put("deleted", n.deleted)
             o.put("createdAt", n.createdAt)
+            o.put("pinned", n.pinned)
+            o.put("locked", n.locked)
+            o.put("color", n.color)
             array.put(o)
         }
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -87,14 +89,18 @@ object NoteRepository {
         val notes = getAllRaw(context)
         val idx = notes.indexOfFirst { it.id == note.id }
         if (idx >= 0) {
-            // Se conserva la fecha de creación original al editar.
-            notes[idx] = note.copy(createdAt = notes[idx].createdAt)
+            // Preserva metadatos que esta pantalla no gestiona directamente
+            notes[idx] = note.copy(
+                createdAt = notes[idx].createdAt,
+                pinned = notes[idx].pinned,
+                locked = notes[idx].locked,
+                color = notes[idx].color
+            )
             saveNotes(context, notes)
             WidgetUpdater.updateAll(context)
         }
     }
 
-    /** Mueve la nota a la papelera (no la borra todavía). */
     fun deleteNote(context: Context, id: Long) {
         val notes = getAllRaw(context)
         val idx = notes.indexOfFirst { it.id == id }
@@ -115,7 +121,6 @@ object NoteRepository {
         }
     }
 
-    /** Borra definitivamente una nota de la papelera. */
     fun permanentlyDeleteNote(context: Context, id: Long) {
         val notes = getAllRaw(context)
         notes.removeAll { it.id == id }
@@ -129,4 +134,37 @@ object NoteRepository {
         saveNotes(context, notes)
         WidgetUpdater.updateAll(context)
     }
+
+    fun setPinned(context: Context, id: Long, pinned: Boolean) {
+        val notes = getAllRaw(context)
+        val idx = notes.indexOfFirst { it.id == id }
+        if (idx >= 0) {
+            notes[idx] = notes[idx].copy(pinned = pinned)
+            saveNotes(context, notes)
+            WidgetUpdater.updateAll(context)
+        }
+    }
+
+    fun setLocked(context: Context, id: Long, locked: Boolean) {
+        val notes = getAllRaw(context)
+        val idx = notes.indexOfFirst { it.id == id }
+        if (idx >= 0) {
+            notes[idx] = notes[idx].copy(locked = locked)
+            saveNotes(context, notes)
+            WidgetUpdater.updateAll(context)
+        }
+    }
+
+    fun setColor(context: Context, id: Long, color: String?) {
+        val notes = getAllRaw(context)
+        val idx = notes.indexOfFirst { it.id == id }
+        if (idx >= 0) {
+            notes[idx] = notes[idx].copy(color = color)
+            saveNotes(context, notes)
+            WidgetUpdater.updateAll(context)
+        }
+    }
+
+    fun getNote(context: Context, id: Long): Note? =
+        getAllRaw(context).find { it.id == id }
 }

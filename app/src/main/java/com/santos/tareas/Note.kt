@@ -5,5 +5,8 @@ data class Note(
     var title: String = "",
     var text: String,
     var deleted: Boolean = false,
-    var createdAt: Long = System.currentTimeMillis()
+    var createdAt: Long = System.currentTimeMillis(),
+    var pinned: Boolean = false,
+    var locked: Boolean = false,
+    var color: String? = null
 )
