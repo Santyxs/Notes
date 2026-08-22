@@ -27,13 +27,17 @@ public final class ItemTaskRowBinding implements ViewBinding {
   public final ImageView deleteButton;
 
   @NonNull
+  public final View strikeLine;
+
+  @NonNull
   public final TextView title;
 
   private ItemTaskRowBinding(@NonNull LinearLayout rootView, @NonNull ImageView checkbox,
-      @NonNull ImageView deleteButton, @NonNull TextView title) {
+      @NonNull ImageView deleteButton, @NonNull View strikeLine, @NonNull TextView title) {
     this.rootView = rootView;
     this.checkbox = checkbox;
     this.deleteButton = deleteButton;
+    this.strikeLine = strikeLine;
     this.title = title;
   }
 
@@ -76,13 +80,20 @@ public final class ItemTaskRowBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.strikeLine;
+      View strikeLine = ViewBindings.findChildViewById(rootView, id);
+      if (strikeLine == null) {
+        break missingId;
+      }
+
       id = R.id.title;
       TextView title = ViewBindings.findChildViewById(rootView, id);
       if (title == null) {
         break missingId;
       }
 
-      return new ItemTaskRowBinding((LinearLayout) rootView, checkbox, deleteButton, title);
+      return new ItemTaskRowBinding((LinearLayout) rootView, checkbox, deleteButton, strikeLine,
+          title);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

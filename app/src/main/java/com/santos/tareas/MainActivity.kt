@@ -47,8 +47,20 @@ class MainActivity : AppCompatActivity() {
 
         taskAdapter = TaskAdapter(
             onToggle = { task ->
-                TaskRepository.toggleDone(this, task.id)
-                refresh()
+                if (!task.done) {
+                    // Marcamos hecha en su sitio y esperamos a que termine de tacharse
+                    // antes de reordenar en secciones (para que se vea la animación).
+                    TaskRepository.toggleDone(this, task.id)
+                    taskAdapter.onAnimationEnd = {
+                        completedExpanded = true
+                        refresh()
+                        taskAdapter.onAnimationEnd = null
+                    }
+                    taskAdapter.markDoneInPlace(task.id)
+                } else {
+                    TaskRepository.toggleDone(this, task.id)
+                    refresh()
+                }
             },
             onClick = { task ->
                 val intent = Intent(this, AddEditTaskActivity::class.java)

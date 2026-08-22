@@ -113,6 +113,7 @@ id sectionHeaderChevron
 id sectionHeaderRow
 id sectionHeaderTitle
 id sidebarButton
+id strikeLine
 id tabNotas
 id tabPill
 id tabTareas

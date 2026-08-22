@@ -1,8 +1,10 @@
 package com.santos.tareas
 
-import android.graphics.Paint
+import android.animation.ValueAnimator
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import com.santos.tareas.databinding.ItemSectionHeaderBinding
 import com.santos.tareas.databinding.ItemTaskRowBinding
@@ -24,6 +26,28 @@ class TaskAdapter(
 
     private var items: List<TaskListItem> = emptyList()
     var flatStyle: Boolean = false
+
+    /** Id de la tarea recién marcada como hecha: solo esa fila anima la tachadura. */
+    var justToggledId: Long? = null
+
+    /** Se llama cuando termina la animación de tachado, para entonces sí reordenar en secciones. */
+    var onAnimationEnd: (() -> Unit)? = null
+
+    /**
+     * Actualiza visualmente una tarea a "hecha" en su posición actual (sin moverla
+     * todavía a la sección Completado), para poder reproducir la animación de tachado
+     * en el sitio donde el usuario la tocó.
+     */
+    fun markDoneInPlace(taskId: Long) {
+        val index = items.indexOfFirst { it is TaskListItem.Row && it.task.id == taskId }
+        if (index == -1) return
+        val row = items[index] as TaskListItem.Row
+        val updatedItems = items.toMutableList()
+        updatedItems[index] = TaskListItem.Row(row.task.copy(done = true))
+        items = updatedItems
+        justToggledId = taskId
+        notifyItemChanged(index)
+    }
 
     /** Mantiene compatibilidad con el código que llamaba submitList(List<Task>) sin secciones. */
     fun submitList(tasks: List<Task>) {
@@ -86,11 +110,45 @@ class TaskAdapter(
             binding.checkbox.setImageResource(
                 if (task.done) R.drawable.ic_check_circle_filled else R.drawable.ic_check_circle_outline
             )
-            binding.title.paintFlags = if (task.done) {
-                binding.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+            binding.strikeLine.animate().cancel()
+
+            if (task.done) {
+                val shouldAnimate = task.id == justToggledId
+                // Esperamos a que el título tenga su ancho real medido
+                binding.title.post {
+                    val textWidth = binding.title.width
+                    if (textWidth <= 0) return@post
+                    val params = binding.strikeLine.layoutParams
+                    binding.strikeLine.visibility = View.VISIBLE
+
+                    if (shouldAnimate) {
+                        params.width = 1
+                        binding.strikeLine.layoutParams = params
+                        val animator = ValueAnimator.ofInt(1, textWidth)
+                        animator.duration = 550
+                        animator.interpolator = DecelerateInterpolator()
+                        animator.addUpdateListener { anim ->
+                            val p = binding.strikeLine.layoutParams
+                            p.width = anim.animatedValue as Int
+                            binding.strikeLine.layoutParams = p
+                        }
+                        animator.addListener(object : android.animation.AnimatorListenerAdapter() {
+                            override fun onAnimationEnd(animation: android.animation.Animator) {
+                                onAnimationEnd?.invoke()
+                            }
+                        })
+                        animator.start()
+                        justToggledId = null
+                    } else {
+                        params.width = textWidth
+                        binding.strikeLine.layoutParams = params
+                    }
+                }
             } else {
-                binding.title.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                binding.strikeLine.visibility = View.INVISIBLE
             }
+
             binding.checkbox.setOnClickListener { onToggle(task) }
             binding.root.setOnClickListener { onClick(task) }
             binding.deleteButton.setOnClickListener { onDelete(task) }
