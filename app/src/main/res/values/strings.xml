@@ -39,4 +39,21 @@
     <string name="desbloquear_nota">Desbloquea la nota para continuar</string>
     <string name="pendiente_de_completar">Pendiente de completar</string>
     <string name="completado">Completado</string>
+    <string name="todo_completado">Sin tareas</string>
+    <string name="deshacer">Deshacer</string>
+    <string name="rehacer">Rehacer</string>
+    <string name="tipografia">Tipografía</string>
+    <string name="dibujar">Dibujar</string>
+    <string name="insertar_imagen">Insertar imagen</string>
+    <string name="insertar_tabla">Insertar tabla</string>
+    <string name="guardar_dibujo">Guardar dibujo</string>
+    <string name="borrar_todo">Borrar todo</string>
+    <string name="filas">Filas</string>
+    <string name="columnas">Columnas</string>
+    <string name="crear_tabla">Crear tabla</string>
+    <string name="eliminar_adjunto">Eliminar adjunto</string>
+    <string name="predeterminada">Predeterminada</string>
+    <string name="sans_serif">Sans-serif</string>
+    <string name="serif">Serif</string>
+    <string name="monoespaciada">Monoespaciada</string>
 </resources>

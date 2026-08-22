@@ -2032,6 +2032,7 @@
     <string name="app_name">Notas</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="bloquear">Bloquear</string>
+    <string name="borrar_todo">Borrar todo</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
     <string description="A description of an accessibility action to collapse the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_collapse">Collapse the bottom sheet</string>
     <string description="A description of an accessibility action to expand the bottom sheet [CHAR LIMIT=NONE]" name="bottomsheet_action_expand">Expand the bottom sheet</string>
@@ -2052,13 +2053,18 @@
     <string name="character_counter_pattern" translatable="false">%1$d/%2$d</string>
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="color_de_fondo">Color de fondo</string>
+    <string name="columnas">Columnas</string>
     <string name="compartir">Compartir</string>
     <string name="completado">Completado</string>
     <string name="confirm_device_credential_password">Use password</string>
+    <string name="crear_tabla">Crear tabla</string>
     <string name="default_error_msg">Unknown error</string>
     <string name="desanclar">Desanclar</string>
     <string name="desbloquear">Desbloquear</string>
     <string name="desbloquear_nota">Desbloquea la nota para continuar</string>
+    <string name="deshacer">Deshacer</string>
+    <string name="dibujar">Dibujar</string>
+    <string name="eliminar_adjunto">Eliminar adjunto</string>
     <string name="eliminar_definitivamente">Eliminar definitivamente</string>
     <string name="eliminar_nota">Eliminar nota</string>
     <string name="eliminar_tarea">Eliminar tarea</string>
@@ -2069,6 +2075,7 @@
     <string name="exposed_dropdown_menu_content_description">Show dropdown menu</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
+    <string name="filas">Filas</string>
     <string name="fingerprint_dialog_touch_sensor">Touch the fingerprint sensor</string>
     <string name="fingerprint_error_hw_not_available">Fingerprint hardware not available.</string>
     <string name="fingerprint_error_hw_not_present">This device does not have a fingerprint sensor</string>
@@ -2080,8 +2087,11 @@
     <string name="generic_error_no_keyguard">This device does not support PIN, pattern, or password.</string>
     <string name="generic_error_user_canceled">Authentication canceled by user.</string>
     <string name="guardar">Guardar</string>
+    <string name="guardar_dibujo">Guardar dibujo</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
+    <string name="insertar_imagen">Insertar imagen</string>
+    <string name="insertar_tabla">Insertar tabla</string>
     <string name="item_view_role_description">Tab</string>
     <string name="m3_exceed_max_badge_text_suffix" translatable="false"><ns2:g example="Some te" id="part of a long text">%1$s</ns2:g><ns2:g example="…" id="suffix">%2$s</ns2:g></string>
     <string name="m3_ref_typeface_brand_medium" translatable="false">sans-serif-medium</string>
@@ -2122,6 +2132,7 @@
     <string description="Suffix for time in 12-hour standard, after noon. [CHAR_LIMIT=2]" name="material_timepicker_pm">PM</string>
     <string description="Title for the dialog with a time picker. [CHAR_LIMIT=32]" name="material_timepicker_select_time">Select time</string>
     <string name="material_timepicker_text_input_mode_description">Switch to text input mode for the time input.</string>
+    <string name="monoespaciada">Monoespaciada</string>
     <string description="Content description for new notification (no number count) [CHAR_LIMIT=NONE]" name="mtrl_badge_numberless_content_description">New notification</string>
     <string name="mtrl_checkbox_button_icon_path_checked" translatable="false">M14,18.2 11.4,15.6 10,17 14,21 22,13 20.6,11.6z</string>
     <string name="mtrl_checkbox_button_icon_path_group_name" translatable="false">icon</string>
@@ -2200,23 +2211,29 @@
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
     <string name="pendiente_de_completar">Pendiente de completar</string>
+    <string name="predeterminada">Predeterminada</string>
+    <string name="rehacer">Rehacer</string>
     <string name="restaurar">Restaurar</string>
+    <string name="sans_serif">Sans-serif</string>
     <string name="search_menu_title">Search</string>
     <string name="searchbar_scrolling_view_behavior" translatable="false">
     com.google.android.material.search.SearchBar$ScrollingViewBehavior
   </string>
     <string description="Content description for the X button to clear text [CHAR_LIMIT=NONE]" name="searchview_clear_text_content_description">Clear text</string>
     <string description="Content description for the navigation button to return to the previous screen [CHAR_LIMIT=NONE]" name="searchview_navigation_content_description">Back</string>
+    <string name="serif">Serif</string>
     <string description="Title of the side sheet&apos;s accessibility pane that is spoken by TalkBack when the side sheet appears on screen. [CHAR_LIMIT=NONE]" name="side_sheet_accessibility_pane_title">Side Sheet</string>
     <string name="side_sheet_behavior" translatable="false">com.google.android.material.sidesheet.SideSheetBehavior</string>
     <string name="sin_notas">No hay notas todavía</string>
     <string name="sin_tareas">No hay tareas todavía</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="tareas">Tareas</string>
+    <string name="tipografia">Tipografía</string>
     <string name="titulo">Título</string>
     <string name="tocar_para_editar">Tocar para crear una tarea</string>
     <string name="todas_las_notas">Todas las notas</string>
     <string name="todas_las_tareas">Todas las tareas</string>
+    <string name="todo_completado">Sin tareas</string>
     <string name="vaciar_papelera">Vaciar papelera</string>
     <string name="vista_cuadricula">Vista de cuadrícula</string>
     <string name="vista_lista">Vista de lista</string>

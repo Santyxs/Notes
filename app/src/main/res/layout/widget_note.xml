@@ -6,6 +6,7 @@
     android:background="@drawable/widget_card_background">
 
     <RelativeLayout
+        android:id="@+id/widget_note_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/widget_header_background"

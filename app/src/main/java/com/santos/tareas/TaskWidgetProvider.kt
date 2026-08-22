@@ -16,7 +16,7 @@ class TaskWidgetProvider : AppWidgetProvider() {
         const val EXTRA_TASK_ID = "extra_task_id"
 
         // Umbral de altura por debajo del cual usamos el layout compacto (sin lista)
-        private const val COMPACT_HEIGHT_DP = 130
+        private const val COMPACT_HEIGHT_DP = 200
     }
 
     override fun onUpdate(
@@ -63,31 +63,34 @@ class TaskWidgetProvider : AppWidgetProvider() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
+        val openIntent = Intent(context, MainActivity::class.java).apply {
+            putExtra(MainActivity.EXTRA_SHOW_NOTES, false)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        val openPendingIntent = PendingIntent.getActivity(
+            context, 2, openIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         if (compact) {
             val views = RemoteViews(context.packageName, R.layout.widget_task_small)
             views.setOnClickPendingIntent(R.id.widget_add_button_small, addPendingIntent)
 
             val tasks = TaskRepository.getTasks(context)
             val pending = tasks.count { !it.done }
-            val summary = if (tasks.isEmpty()) {
-                context.getString(R.string.sin_tareas)
-            } else {
-                context.resources.getQuantityStringOrFallback(pending, tasks.size)
+            val summary = when {
+                tasks.isEmpty() -> context.getString(R.string.sin_tareas)
+                pending == 0 -> context.getString(R.string.todo_completado)
+                else -> context.resources.getQuantityStringOrFallback(pending, tasks.size)
             }
             views.setTextViewText(R.id.widget_small_summary, summary)
-
-            // Tocar el resumen abre la app
-            val openIntent = Intent(context, MainActivity::class.java)
-            val openPendingIntent = PendingIntent.getActivity(
-                context, 2, openIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
             views.setOnClickPendingIntent(R.id.widget_small_summary, openPendingIntent)
 
             appWidgetManager.updateAppWidget(widgetId, views)
         } else {
             val views = RemoteViews(context.packageName, R.layout.widget_task)
             views.setOnClickPendingIntent(R.id.widget_add_button, addPendingIntent)
+            views.setOnClickPendingIntent(R.id.widget_header, openPendingIntent)
 
             val serviceIntent = Intent(context, TaskWidgetService::class.java).apply {
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)

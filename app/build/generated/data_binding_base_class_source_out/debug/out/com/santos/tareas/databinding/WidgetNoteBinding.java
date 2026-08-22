@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,13 +29,18 @@ public final class WidgetNoteBinding implements ViewBinding {
   public final TextView widgetNoteEmpty;
 
   @NonNull
+  public final RelativeLayout widgetNoteHeader;
+
+  @NonNull
   public final ListView widgetNoteList;
 
   private WidgetNoteBinding(@NonNull LinearLayout rootView, @NonNull ImageView widgetNoteAddButton,
-      @NonNull TextView widgetNoteEmpty, @NonNull ListView widgetNoteList) {
+      @NonNull TextView widgetNoteEmpty, @NonNull RelativeLayout widgetNoteHeader,
+      @NonNull ListView widgetNoteList) {
     this.rootView = rootView;
     this.widgetNoteAddButton = widgetNoteAddButton;
     this.widgetNoteEmpty = widgetNoteEmpty;
+    this.widgetNoteHeader = widgetNoteHeader;
     this.widgetNoteList = widgetNoteList;
   }
 
@@ -77,6 +83,12 @@ public final class WidgetNoteBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.widget_note_header;
+      RelativeLayout widgetNoteHeader = ViewBindings.findChildViewById(rootView, id);
+      if (widgetNoteHeader == null) {
+        break missingId;
+      }
+
       id = R.id.widget_note_list;
       ListView widgetNoteList = ViewBindings.findChildViewById(rootView, id);
       if (widgetNoteList == null) {
@@ -84,7 +96,7 @@ public final class WidgetNoteBinding implements ViewBinding {
       }
 
       return new WidgetNoteBinding((LinearLayout) rootView, widgetNoteAddButton, widgetNoteEmpty,
-          widgetNoteList);
+          widgetNoteHeader, widgetNoteList);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

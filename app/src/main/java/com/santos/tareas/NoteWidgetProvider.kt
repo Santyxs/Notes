@@ -12,7 +12,7 @@ import android.widget.RemoteViews
 class NoteWidgetProvider : AppWidgetProvider() {
 
     companion object {
-        private const val COMPACT_HEIGHT_DP = 130
+        private const val COMPACT_HEIGHT_DP = 200
     }
 
     override fun onUpdate(
@@ -62,7 +62,10 @@ class NoteWidgetProvider : AppWidgetProvider() {
             }
             views.setTextViewText(R.id.widget_note_small_summary, summary)
 
-            val openIntent = Intent(context, MainActivity::class.java)
+            val openIntent = Intent(context, MainActivity::class.java).apply {
+                putExtra(MainActivity.EXTRA_SHOW_NOTES, true)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
             val openPendingIntent = PendingIntent.getActivity(
                 context, 3, openIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
@@ -74,6 +77,16 @@ class NoteWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_note)
             views.setOnClickPendingIntent(R.id.widget_note_add_button, addPendingIntent)
 
+            val openIntent = Intent(context, MainActivity::class.java).apply {
+                putExtra(MainActivity.EXTRA_SHOW_NOTES, true)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            val openPendingIntent = PendingIntent.getActivity(
+                context, 4, openIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            views.setOnClickPendingIntent(R.id.widget_note_header, openPendingIntent)
+
             val serviceIntent = Intent(context, NoteWidgetService::class.java).apply {
                 putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId)
                 data = Uri.parse(toUri(Intent.URI_INTENT_SCHEME))
@@ -81,12 +94,12 @@ class NoteWidgetProvider : AppWidgetProvider() {
             views.setRemoteAdapter(R.id.widget_note_list, serviceIntent)
             views.setEmptyView(R.id.widget_note_list, R.id.widget_note_empty)
 
-            val openIntent = Intent(context, AddEditNoteActivity::class.java)
-            val openPendingIntent = PendingIntent.getActivity(
-                context, 1, openIntent,
+            val itemOpenIntent = Intent(context, AddEditNoteActivity::class.java)
+            val itemOpenPendingIntent = PendingIntent.getActivity(
+                context, 1, itemOpenIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
             )
-            views.setPendingIntentTemplate(R.id.widget_note_list, openPendingIntent)
+            views.setPendingIntentTemplate(R.id.widget_note_list, itemOpenPendingIntent)
 
             appWidgetManager.updateAppWidget(widgetId, views)
             appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.widget_note_list)

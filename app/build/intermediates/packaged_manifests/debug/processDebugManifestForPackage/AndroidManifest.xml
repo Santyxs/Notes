@@ -32,7 +32,8 @@
         <activity
             android:name="com.santos.tareas.MainActivity"
             android:exported="true"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,6 +67,11 @@
             android:name="com.santos.tareas.AddEditNoteActivity"
             android:exported="false"
             android:label="@string/notas"
+            android:theme="@style/Theme.Tareas.Dialog" />
+        <activity
+            android:name="com.santos.tareas.DrawingActivity"
+            android:exported="false"
+            android:label="@string/dibujar"
             android:theme="@style/Theme.Tareas.Dialog" />
 
         <receiver

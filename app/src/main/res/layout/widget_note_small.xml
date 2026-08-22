@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/widget_card_background"
-    android:padding="14dp"
-    android:gravity="center_vertical">
+    android:background="@drawable/widget_card_background">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/widget_header_background"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,12 +24,12 @@
 
         <ImageView
             android:id="@+id/widget_note_add_button_small"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@drawable/widget_add_button_background"
-            android:padding="5dp"
+            android:padding="6dp"
             android:src="@drawable/ic_plus"
             android:contentDescription="@string/anadir_nota" />
     </RelativeLayout>
@@ -36,9 +37,11 @@
     <TextView
         android:id="@+id/widget_note_small_summary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:maxLines="2"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="14dp"
+        android:maxLines="3"
         android:ellipsize="end"
         android:textColor="@color/text_brown_light"
         android:textSize="13sp"

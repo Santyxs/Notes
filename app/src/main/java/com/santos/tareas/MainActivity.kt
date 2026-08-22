@@ -15,6 +15,10 @@ enum class ViewMode { LIST, CARD, GRID }
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        const val EXTRA_SHOW_NOTES = "extra_show_notes"
+    }
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var taskAdapter: TaskAdapter
@@ -99,7 +103,16 @@ class MainActivity : AppCompatActivity() {
         })
 
         applyViewMode()
-        selectTab(notes = true)
+        val showNotes = intent.getBooleanExtra(EXTRA_SHOW_NOTES, true)
+        selectTab(notes = showNotes)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        if (intent.hasExtra(EXTRA_SHOW_NOTES)) {
+            selectTab(notes = intent.getBooleanExtra(EXTRA_SHOW_NOTES, true))
+        }
     }
 
     override fun onResume() {
@@ -109,9 +122,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun showViewModeMenu() {
         val popup = PopupMenu(this, binding.menuButton)
-        popup.menu.add(0, 0, 0, getString(R.string.vista_lista))
-        popup.menu.add(0, 1, 1, getString(R.string.vista_tarjeta))
-        popup.menu.add(0, 2, 2, getString(R.string.vista_cuadricula))
+        popup.menu.add(0, 0, 0, getString(R.string.vista_lista)).setIcon(R.drawable.ic_view_list)
+        popup.menu.add(0, 1, 1, getString(R.string.vista_tarjeta)).setIcon(R.drawable.ic_view_card)
+        popup.menu.add(0, 2, 2, getString(R.string.vista_cuadricula)).setIcon(R.drawable.ic_view_grid)
+        MenuIconHelper.forceShowIcons(popup)
         popup.setOnMenuItemClickListener { item ->
             viewMode = when (item.itemId) {
                 0 -> ViewMode.LIST
