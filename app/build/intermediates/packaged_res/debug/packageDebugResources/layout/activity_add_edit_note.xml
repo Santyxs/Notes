@@ -76,9 +76,101 @@
                 android:gravity="top"
                 android:background="@android:color/transparent" />
 
+            <HorizontalScrollView
+                android:id="@+id/attachmentsScroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/attachmentsContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+
+            </HorizontalScrollView>
+
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:background="@color/dark_surface">
+
+        <ImageView
+            android:id="@+id/undoButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_undo"
+            android:contentDescription="@string/deshacer" />
+
+        <ImageView
+            android:id="@+id/redoButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_redo"
+            android:contentDescription="@string/rehacer" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/fontButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_font"
+            android:contentDescription="@string/tipografia" />
+
+        <ImageView
+            android:id="@+id/drawButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_draw"
+            android:contentDescription="@string/dibujar" />
+
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_image"
+            android:contentDescription="@string/insertar_imagen" />
+
+        <ImageView
+            android:id="@+id/tableButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_table"
+            android:contentDescription="@string/insertar_tabla" />
+
+        <ImageView
+            android:id="@+id/micButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_mic"
+            android:contentDescription="@string/dictar_voz" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

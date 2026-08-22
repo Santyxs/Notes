@@ -56,4 +56,6 @@
     <string name="sans_serif">Sans-serif</string>
     <string name="serif">Serif</string>
     <string name="monoespaciada">Monoespaciada</string>
+    <string name="dictar_voz">Dictar por voz</string>
+    <string name="di_algo">Di algo...</string>
 </resources>

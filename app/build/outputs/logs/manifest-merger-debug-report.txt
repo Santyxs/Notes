@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-101:12
-INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-101:12
-INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-101:12
-INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-101:12
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-102:12
+INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-102:12
+INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-102:12
+INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:2:1-102:12
 MERGED from [androidx.databinding:viewbinding:8.5.2] /home/codespace/.gradle/caches/transforms-4/c55ba565e7002d28baa4a5bbef2c5721/transformed/viewbinding-8.5.2/AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] /home/codespace/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/codespace/.gradle/caches/transforms-4/269c9730016da6647904e71bb7dfb67f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
@@ -62,9 +62,13 @@ MERGED from [androidx.biometric:biometric:1.1.0] /home/codespace/.gradle/caches/
 MERGED from [androidx.biometric:biometric:1.1.0] /home/codespace/.gradle/caches/transforms-4/d123fd00cd646fdd9369ace0c89263a5/transformed/biometric-1.1.0/AndroidManifest.xml:24:5-72
 	android:name
 		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:4:22-69
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:5:5-71
+	android:name
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:5:22-68
 application
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:6:5-99:19
-INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:6:5-99:19
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:7:5-100:19
+INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:7:5-100:19
 MERGED from [com.google.android.material:material:1.12.0] /home/codespace/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /home/codespace/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/codespace/.gradle/caches/transforms-4/269c9730016da6647904e71bb7dfb67f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -86,147 +90,147 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /home/codespace/.gradle/cac
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:11:9-35
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:9:9-41
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:10:9-41
 	android:roundIcon
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:10:9-54
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:11:9-54
 	android:icon
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:8:9-43
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:9:9-43
 	android:allowBackup
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:7:9-35
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:8:9-35
 	android:theme
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:12:9-44
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:13:9-44
 activity#com.santos.tareas.MainActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:14:9-23:20
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:15:9-24:20
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:18:13-45
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:19:13-45
 	android:launchMode
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:16:13-43
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:17:13-43
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:17:13-36
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:18:13-36
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:15:13-41
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:16:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:19:13-22:29
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:20:17-69
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:20:25-66
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:17-77
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:27-74
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:22:27-74
 activity#com.santos.tareas.TasksActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:25:9-28:46
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:26:9-29:46
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:28:13-43
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:29:13-43
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:27:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:26:13-42
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:27:13-42
 activity#com.santos.tareas.NotesActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:30:9-33:45
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:31:9-34:45
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:33:13-42
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:34:13-42
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:32:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:33:13-37
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:31:13-42
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:32:13-42
 activity#com.santos.tareas.TrashActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:35:9-39:58
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:36:9-40:58
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:38:13-45
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:39:13-45
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:37:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:38:13-37
 	android:theme
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:39:13-55
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:40:13-55
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:36:13-42
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:37:13-42
 activity#com.santos.tareas.SettingsActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:41:9-45:58
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:42:9-46:58
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:44:13-44
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:45:13-44
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:43:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:44:13-37
 	android:theme
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:45:13-55
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:46:13-55
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:42:13-45
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:43:13-45
 activity#com.santos.tareas.AddEditTaskActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:47:9-51:58
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:48:9-52:58
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:50:13-43
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:51:13-43
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:49:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:50:13-37
 	android:theme
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:51:13-55
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:52:13-55
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:48:13-48
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:49:13-48
 activity#com.santos.tareas.AddEditNoteActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:53:9-57:58
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:54:9-58:58
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:56:13-42
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:57:13-42
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:55:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:56:13-37
 	android:theme
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:57:13-55
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:58:13-55
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:54:13-48
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:55:13-48
 activity#com.santos.tareas.DrawingActivity
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:59:9-63:58
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:60:9-64:58
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:62:13-44
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:63:13-44
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:61:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:62:13-37
 	android:theme
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:63:13-55
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:64:13-55
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:60:13-44
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:61:13-44
 receiver#com.santos.tareas.TaskWidgetProvider
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:65:9-75:20
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:66:9-76:20
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:68:13-29
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:69:13-29
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:67:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:68:13-37
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:66:13-47
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:67:13-47
 intent-filter#action:name:android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:69:13-71:29
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:70:13-72:29
 action#android.appwidget.action.APPWIDGET_UPDATE
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:70:17-84
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:17-84
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:70:25-81
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:25-81
 meta-data#android.appwidget.provider
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:72:13-74:60
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:73:13-75:60
 	android:resource
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:17-57
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-57
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:73:17-58
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:17-58
 receiver#com.santos.tareas.NoteWidgetProvider
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:77:9-87:20
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:9-88:20
 	android:label
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:80:13-29
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:81:13-29
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:80:13-37
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:13-47
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:13-47
 service#com.santos.tareas.TaskWidgetService
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:89:9-92:72
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:90:9-93:72
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:91:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:92:13-37
 	android:permission
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:92:13-69
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:93:13-69
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:90:13-46
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:91:13-46
 service#com.santos.tareas.NoteWidgetService
-ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:94:9-97:72
+ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:95:9-98:72
 	android:exported
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:96:13-37
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:97:13-37
 	android:permission
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:97:13-69
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:98:13-69
 	android:name
-		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:95:13-46
+		ADDED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml:96:13-46
 uses-sdk
 INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /workspaces/Notes-app/app/src/main/AndroidManifest.xml

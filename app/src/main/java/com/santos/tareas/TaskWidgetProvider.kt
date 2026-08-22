@@ -16,7 +16,7 @@ class TaskWidgetProvider : AppWidgetProvider() {
         const val EXTRA_TASK_ID = "extra_task_id"
 
         // Umbral de altura por debajo del cual usamos el layout compacto (sin lista)
-        private const val COMPACT_HEIGHT_DP = 200
+        private const val COMPACT_HEIGHT_DP = 100
     }
 
     override fun onUpdate(

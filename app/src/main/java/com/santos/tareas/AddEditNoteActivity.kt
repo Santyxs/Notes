@@ -1,13 +1,16 @@
 package com.santos.tareas
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
@@ -20,13 +23,16 @@ import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TableLayout
 import android.widget.TableRow
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.santos.tareas.databinding.ActivityAddEditNoteBinding
 import java.io.File
 import java.io.FileOutputStream
+import java.util.Locale
 import java.util.UUID
 
 class AddEditNoteActivity : AppCompatActivity() {
@@ -35,6 +41,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         const val EXTRA_NOTE_ID = "extra_note_id"
         private const val REQUEST_IMAGE_PICK = 100
         private const val REQUEST_DRAWING = 101
+        private const val REQUEST_SPEECH = 102
+        private const val REQUEST_RECORD_AUDIO_PERMISSION = 200
 
         val NOTE_COLORS: List<String?> = listOf(
             null, "#3A3A3E", "#2D4B73", "#2F5D50", "#6B3350", "#7A5A24"
@@ -81,6 +89,7 @@ class AddEditNoteActivity : AppCompatActivity() {
             startActivityForResult(intent, REQUEST_IMAGE_PICK)
         }
         binding.tableButton.setOnClickListener { showTableSizeDialog() }
+        binding.micButton.setOnClickListener { startVoiceRecognition() }
 
         undoStack.add("")
         binding.bodyInput.addTextChangedListener(object : TextWatcher {
@@ -187,6 +196,53 @@ class AddEditNoteActivity : AppCompatActivity() {
         popup.show()
     }
 
+    // ---------- Dictado por voz ----------
+
+    private fun startVoiceRecognition() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.RECORD_AUDIO), REQUEST_RECORD_AUDIO_PERMISSION
+            )
+            return
+        }
+        launchSpeechRecognizer()
+    }
+
+    private fun launchSpeechRecognizer() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale("es", "ES"))
+            putExtra(RecognizerIntent.EXTRA_PROMPT, getString(R.string.di_algo))
+        }
+        try {
+            startActivityForResult(intent, REQUEST_SPEECH)
+        } catch (e: Exception) {
+            Toast.makeText(this, R.string.dictar_voz, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_RECORD_AUDIO_PERMISSION &&
+            grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED
+        ) {
+            launchSpeechRecognizer()
+        }
+    }
+
+    private fun insertRecognizedText(text: String) {
+        val current = binding.bodyInput.text
+        val cursor = binding.bodyInput.selectionStart.coerceAtLeast(0)
+        val prefix = if (current.isNotEmpty() && cursor > 0 && current[cursor - 1] != ' ' && current[cursor - 1] != '\n') " " else ""
+        current.insert(cursor, "$prefix$text")
+    }
+
     // ---------- Bloqueo ----------
 
     private fun requestUnlock(onSuccess: () -> Unit, onFail: () -> Unit) {
@@ -232,6 +288,7 @@ class AddEditNoteActivity : AppCompatActivity() {
             .setIcon(R.drawable.ic_lock)
         popup.menu.add(0, 2, 2, getString(R.string.compartir)).setIcon(R.drawable.ic_share)
         popup.menu.add(0, 3, 3, getString(R.string.color_de_fondo)).setIcon(R.drawable.ic_palette)
+        popup.menu.add(0, 4, 4, getString(R.string.eliminar_nota)).setIcon(R.drawable.ic_trash)
         MenuIconHelper.forceShowIcons(popup)
         popup.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -239,10 +296,17 @@ class AddEditNoteActivity : AppCompatActivity() {
                 1 -> toggleLocked()
                 2 -> shareNote()
                 3 -> showColorPicker()
+                4 -> deleteNote()
             }
             true
         }
         popup.show()
+    }
+
+    private fun deleteNote() {
+        val note = currentNote ?: return
+        NoteRepository.deleteNote(this, note.id)
+        finish()
     }
 
     private fun togglePinned() {
@@ -393,6 +457,13 @@ class AddEditNoteActivity : AppCompatActivity() {
                     addAttachment(outFile.absolutePath)
                 } catch (e: Exception) {
                     // si falla la copia, simplemente no se añade el adjunto
+                }
+            }
+            REQUEST_SPEECH -> {
+                val results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                val recognized = results?.firstOrNull()
+                if (!recognized.isNullOrBlank()) {
+                    insertRecognizedText(recognized)
                 }
             }
         }

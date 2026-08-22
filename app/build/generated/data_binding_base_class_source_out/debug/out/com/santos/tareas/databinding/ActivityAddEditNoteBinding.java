@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,12 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
+  public final LinearLayout attachmentsContainer;
+
+  @NonNull
+  public final HorizontalScrollView attachmentsScroll;
+
+  @NonNull
   public final ImageView backButton;
 
   @NonNull
@@ -34,7 +41,22 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   public final TextView dateLabel;
 
   @NonNull
+  public final ImageView drawButton;
+
+  @NonNull
+  public final ImageView fontButton;
+
+  @NonNull
+  public final ImageView imageButton;
+
+  @NonNull
   public final ImageView menuButton;
+
+  @NonNull
+  public final ImageView micButton;
+
+  @NonNull
+  public final ImageView redoButton;
 
   @NonNull
   public final LinearLayout rootLayout;
@@ -43,21 +65,39 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   public final TextView saveButton;
 
   @NonNull
+  public final ImageView tableButton;
+
+  @NonNull
   public final EditText titleInput;
 
-  private ActivityAddEditNoteBinding(@NonNull LinearLayout rootView, @NonNull ImageView backButton,
-      @NonNull EditText bodyInput, @NonNull TextView cancelButton, @NonNull TextView dateLabel,
-      @NonNull ImageView menuButton, @NonNull LinearLayout rootLayout, @NonNull TextView saveButton,
-      @NonNull EditText titleInput) {
+  @NonNull
+  public final ImageView undoButton;
+
+  private ActivityAddEditNoteBinding(@NonNull LinearLayout rootView,
+      @NonNull LinearLayout attachmentsContainer, @NonNull HorizontalScrollView attachmentsScroll,
+      @NonNull ImageView backButton, @NonNull EditText bodyInput, @NonNull TextView cancelButton,
+      @NonNull TextView dateLabel, @NonNull ImageView drawButton, @NonNull ImageView fontButton,
+      @NonNull ImageView imageButton, @NonNull ImageView menuButton, @NonNull ImageView micButton,
+      @NonNull ImageView redoButton, @NonNull LinearLayout rootLayout, @NonNull TextView saveButton,
+      @NonNull ImageView tableButton, @NonNull EditText titleInput, @NonNull ImageView undoButton) {
     this.rootView = rootView;
+    this.attachmentsContainer = attachmentsContainer;
+    this.attachmentsScroll = attachmentsScroll;
     this.backButton = backButton;
     this.bodyInput = bodyInput;
     this.cancelButton = cancelButton;
     this.dateLabel = dateLabel;
+    this.drawButton = drawButton;
+    this.fontButton = fontButton;
+    this.imageButton = imageButton;
     this.menuButton = menuButton;
+    this.micButton = micButton;
+    this.redoButton = redoButton;
     this.rootLayout = rootLayout;
     this.saveButton = saveButton;
+    this.tableButton = tableButton;
     this.titleInput = titleInput;
+    this.undoButton = undoButton;
   }
 
   @Override
@@ -87,6 +127,18 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.attachmentsContainer;
+      LinearLayout attachmentsContainer = ViewBindings.findChildViewById(rootView, id);
+      if (attachmentsContainer == null) {
+        break missingId;
+      }
+
+      id = R.id.attachmentsScroll;
+      HorizontalScrollView attachmentsScroll = ViewBindings.findChildViewById(rootView, id);
+      if (attachmentsScroll == null) {
+        break missingId;
+      }
+
       id = R.id.backButton;
       ImageView backButton = ViewBindings.findChildViewById(rootView, id);
       if (backButton == null) {
@@ -111,9 +163,39 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.drawButton;
+      ImageView drawButton = ViewBindings.findChildViewById(rootView, id);
+      if (drawButton == null) {
+        break missingId;
+      }
+
+      id = R.id.fontButton;
+      ImageView fontButton = ViewBindings.findChildViewById(rootView, id);
+      if (fontButton == null) {
+        break missingId;
+      }
+
+      id = R.id.imageButton;
+      ImageView imageButton = ViewBindings.findChildViewById(rootView, id);
+      if (imageButton == null) {
+        break missingId;
+      }
+
       id = R.id.menuButton;
       ImageView menuButton = ViewBindings.findChildViewById(rootView, id);
       if (menuButton == null) {
+        break missingId;
+      }
+
+      id = R.id.micButton;
+      ImageView micButton = ViewBindings.findChildViewById(rootView, id);
+      if (micButton == null) {
+        break missingId;
+      }
+
+      id = R.id.redoButton;
+      ImageView redoButton = ViewBindings.findChildViewById(rootView, id);
+      if (redoButton == null) {
         break missingId;
       }
 
@@ -125,14 +207,28 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tableButton;
+      ImageView tableButton = ViewBindings.findChildViewById(rootView, id);
+      if (tableButton == null) {
+        break missingId;
+      }
+
       id = R.id.titleInput;
       EditText titleInput = ViewBindings.findChildViewById(rootView, id);
       if (titleInput == null) {
         break missingId;
       }
 
-      return new ActivityAddEditNoteBinding((LinearLayout) rootView, backButton, bodyInput,
-          cancelButton, dateLabel, menuButton, rootLayout, saveButton, titleInput);
+      id = R.id.undoButton;
+      ImageView undoButton = ViewBindings.findChildViewById(rootView, id);
+      if (undoButton == null) {
+        break missingId;
+      }
+
+      return new ActivityAddEditNoteBinding((LinearLayout) rootView, attachmentsContainer,
+          attachmentsScroll, backButton, bodyInput, cancelButton, dateLabel, drawButton, fontButton,
+          imageButton, menuButton, micButton, redoButton, rootLayout, saveButton, tableButton,
+          titleInput, undoButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

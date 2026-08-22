@@ -8,5 +8,7 @@ data class Note(
     var createdAt: Long = System.currentTimeMillis(),
     var pinned: Boolean = false,
     var locked: Boolean = false,
-    var color: String? = null
+    var color: String? = null,
+    var fontFamily: String? = null,
+    var attachments: MutableList<String> = mutableListOf()
 )

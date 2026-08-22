@@ -3035,9 +3035,12 @@ drawable ic_chevron_down
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
 drawable ic_close_circle
+drawable ic_draw
 drawable ic_edit
 drawable ic_empty_document
 drawable ic_folder
+drawable ic_font
+drawable ic_image
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -3046,6 +3049,7 @@ drawable ic_lock
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_mic
 drawable ic_more_vert
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
@@ -3055,14 +3059,17 @@ drawable ic_note
 drawable ic_palette
 drawable ic_pin
 drawable ic_plus
+drawable ic_redo
 drawable ic_restore
 drawable ic_search
 drawable ic_search_black_24
 drawable ic_settings
 drawable ic_share
 drawable ic_sidebar
+drawable ic_table
 drawable ic_trash
 drawable ic_trash_outline
+drawable ic_undo
 drawable ic_view_card
 drawable ic_view_grid
 drawable ic_view_list
@@ -3237,6 +3244,8 @@ id anticipate
 id arc
 id asConfigured
 id async
+id attachmentsContainer
+id attachmentsScroll
 id auto
 id autoComplete
 id autoCompleteToEnd
@@ -3332,6 +3341,7 @@ id dragLeft
 id dragRight
 id dragStart
 id dragUp
+id drawButton
 id drawerAllNotes
 id drawerAllNotesLabel
 id drawerLayout
@@ -3378,6 +3388,7 @@ id fitXY
 id fixed
 id flip
 id floating
+id fontButton
 id forever
 id fragment_container_view_tag
 id frost
@@ -3403,6 +3414,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageButton
 id immediateStop
 id included
 id indeterminate
@@ -3457,6 +3469,7 @@ id material_value_index
 id matrix
 id menuButton
 id message
+id micButton
 id middle
 id mini
 id month_grid
@@ -3555,6 +3568,7 @@ id radio
 id ratio
 id rectangles
 id recyclerView
+id redoButton
 id report_drawn
 id restoreButton
 id reverseSawtooth
@@ -3637,6 +3651,7 @@ id tabMode
 id tabNotas
 id tabPill
 id tabTareas
+id tableButton
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -3689,6 +3704,7 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id unchecked
+id undoButton
 id uniform
 id unlabeled
 id up
@@ -4008,7 +4024,9 @@ string desanclar
 string desbloquear
 string desbloquear_nota
 string deshacer
+string di_algo
 string dibujar
+string dictar_voz
 string eliminar_adjunto
 string eliminar_definitivamente
 string eliminar_nota

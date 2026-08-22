@@ -12,7 +12,7 @@ import android.widget.RemoteViews
 class NoteWidgetProvider : AppWidgetProvider() {
 
     companion object {
-        private const val COMPACT_HEIGHT_DP = 200
+        private const val COMPACT_HEIGHT_DP = 100
     }
 
     override fun onUpdate(

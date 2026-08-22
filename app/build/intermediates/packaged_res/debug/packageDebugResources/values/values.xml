@@ -32,7 +32,9 @@
     <string name="desbloquear">Desbloquear</string>
     <string name="desbloquear_nota">Desbloquea la nota para continuar</string>
     <string name="deshacer">Deshacer</string>
+    <string name="di_algo">Di algo...</string>
     <string name="dibujar">Dibujar</string>
+    <string name="dictar_voz">Dictar por voz</string>
     <string name="eliminar_adjunto">Eliminar adjunto</string>
     <string name="eliminar_definitivamente">Eliminar definitivamente</string>
     <string name="eliminar_nota">Eliminar nota</string>
