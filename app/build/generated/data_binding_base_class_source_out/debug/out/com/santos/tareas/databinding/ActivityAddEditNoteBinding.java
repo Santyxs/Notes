@@ -47,6 +47,12 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   public final ImageView fontButton;
 
   @NonNull
+  public final TextView formatToggleButton;
+
+  @NonNull
+  public final FormattingToolbarBinding formattingPanelInclude;
+
+  @NonNull
   public final ImageView imageButton;
 
   @NonNull
@@ -77,8 +83,10 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
       @NonNull LinearLayout attachmentsContainer, @NonNull HorizontalScrollView attachmentsScroll,
       @NonNull ImageView backButton, @NonNull EditText bodyInput, @NonNull TextView cancelButton,
       @NonNull TextView dateLabel, @NonNull ImageView drawButton, @NonNull ImageView fontButton,
-      @NonNull ImageView imageButton, @NonNull ImageView menuButton, @NonNull ImageView micButton,
-      @NonNull ImageView redoButton, @NonNull LinearLayout rootLayout, @NonNull TextView saveButton,
+      @NonNull TextView formatToggleButton,
+      @NonNull FormattingToolbarBinding formattingPanelInclude, @NonNull ImageView imageButton,
+      @NonNull ImageView menuButton, @NonNull ImageView micButton, @NonNull ImageView redoButton,
+      @NonNull LinearLayout rootLayout, @NonNull TextView saveButton,
       @NonNull ImageView tableButton, @NonNull EditText titleInput, @NonNull ImageView undoButton) {
     this.rootView = rootView;
     this.attachmentsContainer = attachmentsContainer;
@@ -89,6 +97,8 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
     this.dateLabel = dateLabel;
     this.drawButton = drawButton;
     this.fontButton = fontButton;
+    this.formatToggleButton = formatToggleButton;
+    this.formattingPanelInclude = formattingPanelInclude;
     this.imageButton = imageButton;
     this.menuButton = menuButton;
     this.micButton = micButton;
@@ -175,6 +185,19 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.formatToggleButton;
+      TextView formatToggleButton = ViewBindings.findChildViewById(rootView, id);
+      if (formatToggleButton == null) {
+        break missingId;
+      }
+
+      id = R.id.formattingPanelInclude;
+      View formattingPanelInclude = ViewBindings.findChildViewById(rootView, id);
+      if (formattingPanelInclude == null) {
+        break missingId;
+      }
+      FormattingToolbarBinding binding_formattingPanelInclude = FormattingToolbarBinding.bind(formattingPanelInclude);
+
       id = R.id.imageButton;
       ImageView imageButton = ViewBindings.findChildViewById(rootView, id);
       if (imageButton == null) {
@@ -227,8 +250,8 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
 
       return new ActivityAddEditNoteBinding((LinearLayout) rootView, attachmentsContainer,
           attachmentsScroll, backButton, bodyInput, cancelButton, dateLabel, drawButton, fontButton,
-          imageButton, menuButton, micButton, redoButton, rootLayout, saveButton, tableButton,
-          titleInput, undoButton);
+          formatToggleButton, binding_formattingPanelInclude, imageButton, menuButton, micButton,
+          redoButton, rootLayout, saveButton, tableButton, titleInput, undoButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

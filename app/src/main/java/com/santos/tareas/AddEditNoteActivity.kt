@@ -91,6 +91,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.tableButton.setOnClickListener { showTableSizeDialog() }
         binding.micButton.setOnClickListener { startVoiceRecognition() }
 
+        setupFormattingToolbar()
+
         undoStack.add("")
         binding.bodyInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -129,7 +131,7 @@ class AddEditNoteActivity : AppCompatActivity() {
     private fun loadNote(note: Note) {
         currentNote = note
         binding.titleInput.setText(note.title)
-        binding.bodyInput.setText(note.text)
+        binding.bodyInput.setText(HtmlUtils.fromHtml(note.text))
         binding.dateLabel.visibility = View.VISIBLE
         binding.dateLabel.text = DateUtils.format(note.createdAt)
         applyColor(note.color)
@@ -137,7 +139,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         attachments = note.attachments.toMutableList()
         renderAttachments()
         undoStack.clear()
-        undoStack.add(note.text)
+        undoStack.add(binding.bodyInput.text.toString())
     }
 
     private fun applyColor(color: String?) {
@@ -243,6 +245,79 @@ class AddEditNoteActivity : AppCompatActivity() {
         current.insert(cursor, "$prefix$text")
     }
 
+    // ---------- Barra de formato de texto ----------
+
+    private fun setupFormattingToolbar() {
+        val panel = binding.formattingPanelInclude
+        binding.formatToggleButton.setOnClickListener {
+            panel.formattingPanel.visibility =
+                if (panel.formattingPanel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
+
+        panel.btnH1.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.8f) }
+        panel.btnH2.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.5f) }
+        panel.btnH3.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.3f) }
+        panel.btnH4.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.15f) }
+        panel.btnBody.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, null) }
+
+        panel.btnBold.setOnClickListener { TextFormatter.toggleBold(binding.bodyInput) }
+        panel.btnItalic.setOnClickListener { TextFormatter.toggleItalic(binding.bodyInput) }
+        panel.btnUnderline.setOnClickListener { TextFormatter.toggleUnderline(binding.bodyInput) }
+        panel.btnStrike.setOnClickListener { TextFormatter.toggleStrikethrough(binding.bodyInput) }
+        panel.btnIndentInc.setOnClickListener { TextFormatter.increaseIndent(binding.bodyInput) }
+        panel.btnIndentDec.setOnClickListener { TextFormatter.decreaseIndent(binding.bodyInput) }
+
+        panel.btnListNumbered.setOnClickListener {
+            TextFormatter.toggleLinePrefix(binding.bodyInput, "", numbered = true)
+        }
+        panel.btnListBullet.setOnClickListener {
+            TextFormatter.toggleLinePrefix(binding.bodyInput, "• ")
+        }
+        panel.btnChecklist.setOnClickListener {
+            TextFormatter.toggleLinePrefix(binding.bodyInput, "☐ ")
+        }
+        panel.btnAlignLeft.setOnClickListener {
+            TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_NORMAL)
+        }
+        panel.btnAlignCenter.setOnClickListener {
+            TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_CENTER)
+        }
+        panel.btnAlignRight.setOnClickListener {
+            TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_OPPOSITE)
+        }
+        panel.btnTextColor.setOnClickListener { showTextColorPicker() }
+    }
+
+    private fun showTextColorPicker() {
+        val colors = listOf(
+            "#FFFFFF", "#F5A623", "#E5484D", "#4A9EFF", "#4CC38A", "#B784E0"
+        )
+        val row = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(32, 32, 32, 32)
+        }
+        for (colorHex in colors) {
+            val swatch = View(this)
+            val size = 120
+            val params = LinearLayout.LayoutParams(size, size).apply { setMargins(10, 0, 10, 0) }
+            swatch.layoutParams = params
+            val drawable = android.graphics.drawable.GradientDrawable()
+            drawable.shape = android.graphics.drawable.GradientDrawable.OVAL
+            drawable.setColor(Color.parseColor(colorHex))
+            drawable.setStroke(2, ContextCompat.getColor(this, R.color.dark_text_secondary))
+            swatch.background = drawable
+            row.addView(swatch)
+            swatch.setOnClickListener {
+                TextFormatter.applyTextColor(binding.bodyInput, Color.parseColor(colorHex))
+            }
+        }
+        AlertDialog.Builder(this)
+            .setTitle(R.string.color_de_texto)
+            .setView(row)
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
+    }
+
     // ---------- Bloqueo ----------
 
     private fun requestUnlock(onSuccess: () -> Unit, onFail: () -> Unit) {
@@ -341,7 +416,8 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private fun shareNote() {
         val note = currentNote ?: return
-        val shareText = if (note.title.isNotBlank()) "${note.title}\n\n${note.text}" else note.text
+        val plainText = HtmlUtils.toPlainText(note.text)
+        val shareText = if (note.title.isNotBlank()) "${note.title}\n\n$plainText" else plainText
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareText)
@@ -581,21 +657,22 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     private fun saveAndFinish() {
         val title = binding.titleInput.text.toString().trim()
-        val body = binding.bodyInput.text.toString().trim()
+        val bodyPlain = binding.bodyInput.text.toString().trim()
+        val bodyHtml = HtmlUtils.toHtml(binding.bodyInput.text)
 
-        if (title.isEmpty() && body.isEmpty() && attachments.isEmpty()) {
+        if (title.isEmpty() && bodyPlain.isEmpty() && attachments.isEmpty()) {
             finish()
             return
         }
 
         val existing = currentNote
         if (existing != null) {
-            NoteRepository.updateNote(this, existing.copy(title = title, text = body, attachments = attachments))
+            NoteRepository.updateNote(this, existing.copy(title = title, text = bodyHtml, attachments = attachments))
         } else {
-            NoteRepository.addNote(this, title, body)
+            NoteRepository.addNote(this, title, bodyHtml)
             // Si se añadieron adjuntos antes de guardar por primera vez, los enlazamos ahora
             if (attachments.isNotEmpty()) {
-                val created = NoteRepository.getNotes(this).firstOrNull { it.title == title && it.text == body }
+                val created = NoteRepository.getNotes(this).firstOrNull { it.title == title && it.text == bodyHtml }
                 created?.let { note ->
                     NoteRepository.updateNote(this, note.copy(attachments = attachments))
                 }

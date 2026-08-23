@@ -52,9 +52,10 @@ class MainActivity : AppCompatActivity() {
                     // antes de reordenar en secciones (para que se vea la animación).
                     TaskRepository.toggleDone(this, task.id)
                     taskAdapter.onAnimationEnd = {
-                        completedExpanded = true
-                        refresh()
-                        taskAdapter.onAnimationEnd = null
+                        binding.recyclerView.postDelayed({
+                            refresh()
+                            taskAdapter.onAnimationEnd = null
+                        }, 900)
                     }
                     taskAdapter.markDoneInPlace(task.id)
                 } else {
@@ -189,7 +190,7 @@ class MainActivity : AppCompatActivity() {
             val notes = NoteRepository.getNotes(this).filter {
                 searchQuery.isBlank() ||
                     it.title.contains(searchQuery, ignoreCase = true) ||
-                    it.text.contains(searchQuery, ignoreCase = true)
+                    HtmlUtils.toPlainText(it.text).contains(searchQuery, ignoreCase = true)
             }
             noteAdapter.submitList(notes)
             binding.emptyView.visibility = if (notes.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE

@@ -96,6 +96,8 @@
 
     </ScrollView>
 
+    <include layout="@layout/formatting_toolbar" android:id="@+id/formattingPanelInclude" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -126,10 +128,21 @@
             android:layout_height="1dp"
             android:layout_weight="1" />
 
+        <TextView
+            android:id="@+id/formatToggleButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/aa_boton"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:contentDescription="@string/formato_texto" />
+
         <ImageView
             android:id="@+id/fontButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginStart="4dp"
             android:padding="9dp"
             android:src="@drawable/ic_font"
             android:contentDescription="@string/tipografia" />

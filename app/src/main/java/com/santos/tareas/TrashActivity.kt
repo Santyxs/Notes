@@ -52,7 +52,7 @@ class TrashActivity : AppCompatActivity() {
 
     private fun load() {
         val notes = NoteRepository.getDeletedNotes(this).map {
-            TrashItem(it.id, it.title.ifBlank { it.text }.ifBlank { getString(R.string.notas) }, true)
+            TrashItem(it.id, it.title.ifBlank { HtmlUtils.toPlainText(it.text) }.ifBlank { getString(R.string.notas) }, true)
         }
         val tasks = TaskRepository.getDeletedTasks(this).map {
             TrashItem(it.id, it.title, false)

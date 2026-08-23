@@ -61,10 +61,10 @@ class NoteAdapter(
             } else if (note.title.isNotBlank()) {
                 binding.noteTitle.visibility = View.VISIBLE
                 binding.noteTitle.text = note.title
-                binding.text.text = note.text
+                binding.text.text = HtmlUtils.toPlainText(note.text)
             } else {
                 binding.noteTitle.visibility = View.GONE
-                binding.text.text = note.text
+                binding.text.text = HtmlUtils.toPlainText(note.text)
             }
 
             binding.noteDate.text = DateUtils.format(note.createdAt)

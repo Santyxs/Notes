@@ -126,7 +126,7 @@ class TaskAdapter(
                         params.width = 1
                         binding.strikeLine.layoutParams = params
                         val animator = ValueAnimator.ofInt(1, textWidth)
-                        animator.duration = 550
+                        animator.duration = 1800
                         animator.interpolator = DecelerateInterpolator()
                         animator.addUpdateListener { anim ->
                             val p = binding.strikeLine.layoutParams

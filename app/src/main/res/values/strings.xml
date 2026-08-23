@@ -58,4 +58,8 @@
     <string name="monoespaciada">Monoespaciada</string>
     <string name="dictar_voz">Dictar por voz</string>
     <string name="di_algo">Di algo...</string>
+    <string name="cuerpo">Cuerpo</string>
+    <string name="formato_texto">Formato de texto</string>
+    <string name="color_de_texto">Color de texto</string>
+    <string name="aa_boton">Aa</string>
 </resources>
