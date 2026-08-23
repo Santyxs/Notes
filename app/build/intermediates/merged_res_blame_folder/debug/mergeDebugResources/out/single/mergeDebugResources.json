@@ -1,35 +1,19 @@
 [
     {
-        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_view_card.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_view_card.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_activity_settings.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/activity_settings.xml"
     },
     {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_format_button_bg.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/format_button_bg.xml"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_list_bullet.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_list_bullet.xml"
-    },
-    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_dark_row_background.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/dark_row_background.xml"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_align_left.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_align_left.xml"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_checklist.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_checklist.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_widget_task.xml.flat",
@@ -76,12 +60,16 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_align_right.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_align_right.xml"
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_dropdown.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_dropdown.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_widget_add_button_background.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/widget_add_button_background.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_list_bullet.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_list_bullet.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_check_circle_outline.xml.flat",
@@ -90,6 +78,10 @@
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_activity_notes.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/activity_notes.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_list_numbered.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_list_numbered.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_item_task_row.xml.flat",
@@ -120,6 +112,10 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/swatch_green.xml"
     },
     {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_checklist.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_checklist.xml"
+    },
+    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_image.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_image.xml"
     },
@@ -134,6 +130,14 @@
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_widget_header_background.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/widget_header_background.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_formatting_toolbar.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/formatting_toolbar.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_indent_decrease.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_indent_decrease.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_widget_note_item.xml.flat",
@@ -184,6 +188,10 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_font.xml"
     },
     {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_indent_increase.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_indent_increase.xml"
+    },
+    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/mipmap-hdpi_ic_launcher_round.png.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-hdpi/ic_launcher_round.png"
     },
@@ -192,24 +200,12 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/item_section_header.xml"
     },
     {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_align_center.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_align_center.xml"
-    },
-    {
         "merged": "com.santos.tareas.app-debug-33:/layout_activity_add_edit_note.xml.flat",
         "source": "com.santos.tareas.app-main-35:/layout/activity_add_edit_note.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_widget_task_small.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/widget_task_small.xml"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_text_color.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_text_color.xml"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_format_button_bg_selected.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/format_button_bg_selected.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_circle_button_dark.xml.flat",
@@ -264,6 +260,10 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/pill_container_background.xml"
     },
     {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_text_color.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_text_color.xml"
+    },
+    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_table.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_table.xml"
     },
@@ -304,20 +304,16 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/swatch_yellow.xml"
     },
     {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_list_numbered.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_list_numbered.xml"
-    },
-    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_widget_note_small.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/widget_note_small.xml"
     },
     {
-        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_sidebar.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_sidebar.xml"
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_format_button_bg_selected.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/format_button_bg_selected.xml"
     },
     {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_indent_increase.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_indent_increase.xml"
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_sidebar.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_sidebar.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_dark_row_flat_background.xml.flat",
@@ -328,16 +324,16 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/search_bar_background.xml"
     },
     {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_align_right.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_align_right.xml"
+    },
+    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_activity_add_edit_task.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/activity_add_edit_task.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_chevron_down.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_chevron_down.xml"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_dropdown.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_dropdown.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_pill_selected_background.xml.flat",
@@ -348,8 +344,16 @@
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_align_left.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_align_left.xml"
+    },
+    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_view_grid.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_view_grid.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_align_center.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_align_center.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_plus.xml.flat",
@@ -360,16 +364,16 @@
         "source": "com.santos.tareas.app-main-35:/layout/formatting_toolbar.xml"
     },
     {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_format_button_bg.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/format_button_bg.xml"
+    },
+    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_activity_tasks.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/layout/activity_tasks.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-xhdpi/ic_launcher_round.png"
-    },
-    {
-        "merged": "com.santos.tareas.app-debug-33:/drawable_ic_indent_decrease.xml.flat",
-        "source": "com.santos.tareas.app-main-35:/drawable/ic_indent_decrease.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_draw.xml.flat",

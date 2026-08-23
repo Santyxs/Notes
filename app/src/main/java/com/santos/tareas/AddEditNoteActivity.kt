@@ -81,6 +81,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         binding.undoButton.setOnClickListener { performUndo() }
         binding.redoButton.setOnClickListener { performRedo() }
         binding.fontButton.setOnClickListener { showFontMenu() }
+        binding.textColorButton.setOnClickListener { showTextColorPicker() }
         binding.drawButton.setOnClickListener {
             startActivityForResult(Intent(this, DrawingActivity::class.java), REQUEST_DRAWING)
         }
@@ -285,7 +286,6 @@ class AddEditNoteActivity : AppCompatActivity() {
         panel.btnAlignRight.setOnClickListener {
             TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_OPPOSITE)
         }
-        panel.btnTextColor.setOnClickListener { showTextColorPicker() }
     }
 
     private fun showTextColorPicker() {

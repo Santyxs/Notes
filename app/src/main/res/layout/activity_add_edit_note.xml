@@ -148,6 +148,15 @@
             android:contentDescription="@string/tipografia" />
 
         <ImageView
+            android:id="@+id/textColorButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:padding="9dp"
+            android:src="@drawable/ic_text_color"
+            android:contentDescription="@string/color_de_texto" />
+
+        <ImageView
             android:id="@+id/drawButton"
             android:layout_width="40dp"
             android:layout_height="40dp"

@@ -3292,7 +3292,6 @@ id btnItalic
 id btnListBullet
 id btnListNumbered
 id btnStrike
-id btnTextColor
 id btnUnderline
 id buttonPanel
 id cache_measures
@@ -3702,6 +3701,7 @@ id tag_window_insets_animation_callback
 id taskInput
 id text
 id text2
+id textColorButton
 id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle

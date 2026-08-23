@@ -69,9 +69,6 @@ public final class FormattingToolbarBinding implements ViewBinding {
   public final TextView btnStrike;
 
   @NonNull
-  public final LinearLayout btnTextColor;
-
-  @NonNull
   public final TextView btnUnderline;
 
   @NonNull
@@ -84,8 +81,8 @@ public final class FormattingToolbarBinding implements ViewBinding {
       @NonNull TextView btnH3, @NonNull TextView btnH4, @NonNull ImageView btnIndentDec,
       @NonNull ImageView btnIndentInc, @NonNull TextView btnItalic,
       @NonNull ImageView btnListBullet, @NonNull ImageView btnListNumbered,
-      @NonNull TextView btnStrike, @NonNull LinearLayout btnTextColor,
-      @NonNull TextView btnUnderline, @NonNull LinearLayout formattingPanel) {
+      @NonNull TextView btnStrike, @NonNull TextView btnUnderline,
+      @NonNull LinearLayout formattingPanel) {
     this.rootView = rootView;
     this.btnAlignCenter = btnAlignCenter;
     this.btnAlignLeft = btnAlignLeft;
@@ -103,7 +100,6 @@ public final class FormattingToolbarBinding implements ViewBinding {
     this.btnListBullet = btnListBullet;
     this.btnListNumbered = btnListNumbered;
     this.btnStrike = btnStrike;
-    this.btnTextColor = btnTextColor;
     this.btnUnderline = btnUnderline;
     this.formattingPanel = formattingPanel;
   }
@@ -231,12 +227,6 @@ public final class FormattingToolbarBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnTextColor;
-      LinearLayout btnTextColor = ViewBindings.findChildViewById(rootView, id);
-      if (btnTextColor == null) {
-        break missingId;
-      }
-
       id = R.id.btnUnderline;
       TextView btnUnderline = ViewBindings.findChildViewById(rootView, id);
       if (btnUnderline == null) {
@@ -247,8 +237,8 @@ public final class FormattingToolbarBinding implements ViewBinding {
 
       return new FormattingToolbarBinding((LinearLayout) rootView, btnAlignCenter, btnAlignLeft,
           btnAlignRight, btnBody, btnBold, btnChecklist, btnH1, btnH2, btnH3, btnH4, btnIndentDec,
-          btnIndentInc, btnItalic, btnListBullet, btnListNumbered, btnStrike, btnTextColor,
-          btnUnderline, formattingPanel);
+          btnIndentInc, btnItalic, btnListBullet, btnListNumbered, btnStrike, btnUnderline,
+          formattingPanel);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

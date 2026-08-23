@@ -74,6 +74,9 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
   public final ImageView tableButton;
 
   @NonNull
+  public final ImageView textColorButton;
+
+  @NonNull
   public final EditText titleInput;
 
   @NonNull
@@ -87,7 +90,8 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
       @NonNull FormattingToolbarBinding formattingPanelInclude, @NonNull ImageView imageButton,
       @NonNull ImageView menuButton, @NonNull ImageView micButton, @NonNull ImageView redoButton,
       @NonNull LinearLayout rootLayout, @NonNull TextView saveButton,
-      @NonNull ImageView tableButton, @NonNull EditText titleInput, @NonNull ImageView undoButton) {
+      @NonNull ImageView tableButton, @NonNull ImageView textColorButton,
+      @NonNull EditText titleInput, @NonNull ImageView undoButton) {
     this.rootView = rootView;
     this.attachmentsContainer = attachmentsContainer;
     this.attachmentsScroll = attachmentsScroll;
@@ -106,6 +110,7 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
     this.rootLayout = rootLayout;
     this.saveButton = saveButton;
     this.tableButton = tableButton;
+    this.textColorButton = textColorButton;
     this.titleInput = titleInput;
     this.undoButton = undoButton;
   }
@@ -236,6 +241,12 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textColorButton;
+      ImageView textColorButton = ViewBindings.findChildViewById(rootView, id);
+      if (textColorButton == null) {
+        break missingId;
+      }
+
       id = R.id.titleInput;
       EditText titleInput = ViewBindings.findChildViewById(rootView, id);
       if (titleInput == null) {
@@ -251,7 +262,7 @@ public final class ActivityAddEditNoteBinding implements ViewBinding {
       return new ActivityAddEditNoteBinding((LinearLayout) rootView, attachmentsContainer,
           attachmentsScroll, backButton, bodyInput, cancelButton, dateLabel, drawButton, fontButton,
           formatToggleButton, binding_formattingPanelInclude, imageButton, menuButton, micButton,
-          redoButton, rootLayout, saveButton, tableButton, titleInput, undoButton);
+          redoButton, rootLayout, saveButton, tableButton, textColorButton, titleInput, undoButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

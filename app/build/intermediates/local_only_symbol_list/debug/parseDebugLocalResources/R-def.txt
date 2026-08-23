@@ -93,7 +93,6 @@ id btnItalic
 id btnListBullet
 id btnListNumbered
 id btnStrike
-id btnTextColor
 id btnUnderline
 id cancelButton
 id checkbox
@@ -153,6 +152,7 @@ id tabTareas
 id tableButton
 id taskInput
 id text
+id textColorButton
 id title
 id titleInput
 id topBar

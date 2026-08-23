@@ -55,7 +55,7 @@ object TextFormatter {
     fun toggleItalic(editText: EditText) = toggleStyle(editText, Typeface.ITALIC)
 
     private fun toggleStyle(editText: EditText, style: Int) {
-        val (start, end) = selectionRange(editText)
+        val (start, end) = effectiveRange(editText)
         if (start == end) return
         val editable = editText.text
         val spans = editable.getSpans(start, end, StyleSpan::class.java).filter { it.style == style }
@@ -68,7 +68,7 @@ object TextFormatter {
     }
 
     fun toggleUnderline(editText: EditText) {
-        val (start, end) = selectionRange(editText)
+        val (start, end) = effectiveRange(editText)
         if (start == end) return
         val editable = editText.text
         val spans = editable.getSpans(start, end, UnderlineSpan::class.java)
@@ -81,7 +81,7 @@ object TextFormatter {
     }
 
     fun toggleStrikethrough(editText: EditText) {
-        val (start, end) = selectionRange(editText)
+        val (start, end) = effectiveRange(editText)
         if (start == end) return
         val editable = editText.text
         val spans = editable.getSpans(start, end, StrikethroughSpan::class.java)
@@ -104,15 +104,14 @@ object TextFormatter {
     }
 
     fun applyAlignment(editText: EditText, alignment: Layout.Alignment) {
-        for ((start, end) in listOf(effectiveRange(editText))) {
-            val editable = editText.text
-            editable.getSpans(start, end, AlignmentSpan::class.java).forEach { editable.removeSpan(it) }
-            editable.setSpan(AlignmentSpan.Standard(alignment), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        }
+        val (start, end) = effectiveRange(editText)
+        val editable = editText.text
+        editable.getSpans(start, end, AlignmentSpan::class.java).forEach { editable.removeSpan(it) }
+        editable.setSpan(AlignmentSpan.Standard(alignment), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
     }
 
     fun applyTextColor(editText: EditText, color: Int) {
-        val (start, end) = selectionRange(editText)
+        val (start, end) = effectiveRange(editText)
         if (start == end) return
         val editable = editText.text
         editable.getSpans(start, end, ForegroundColorSpan::class.java).forEach { editable.removeSpan(it) }
@@ -122,9 +121,15 @@ object TextFormatter {
     fun toggleLinePrefix(editText: EditText, prefix: String, numbered: Boolean = false) {
         val editable = editText.text
         val ranges = lineRanges(editText)
-        val alreadyAllPrefixed = ranges.all { (s, _) ->
-            val lineText = editable.substring(s, minOf(s + prefix.length, editable.length))
-            lineText == prefix || (numbered && Regex("^\\d+\\. ").containsMatchIn(editable.substring(s, minOf(s + 4, editable.length))))
+
+        val alreadyAllPrefixed = if (numbered) {
+            ranges.all { (s, _) ->
+                Regex("^\\d+\\. ").containsMatchIn(editable.substring(s, minOf(s + 6, editable.length)))
+            }
+        } else {
+            ranges.all { (s, _) ->
+                editable.substring(s, minOf(s + prefix.length, editable.length)) == prefix
+            }
         }
 
         // Aplicamos de atrás hacia adelante para no desajustar los índices
