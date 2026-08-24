@@ -16,9 +16,16 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.backButton.setOnClickListener { finish() }
         binding.emptyTrashRow.setOnClickListener {
-            NoteRepository.emptyTrash(this)
-            TaskRepository.emptyTrash(this)
-            Toast.makeText(this, R.string.papelera, Toast.LENGTH_SHORT).show()
+            android.app.AlertDialog.Builder(this)
+                .setTitle(R.string.vaciar_papelera)
+                .setMessage(R.string.confirmar_vaciar_papelera)
+                .setPositiveButton(R.string.eliminar_definitivamente) { _, _ ->
+                    NoteRepository.emptyTrash(this)
+                    TaskRepository.emptyTrash(this)
+                    Toast.makeText(this, R.string.papelera, Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
     }
 }

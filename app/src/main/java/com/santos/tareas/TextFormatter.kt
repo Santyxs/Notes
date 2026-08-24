@@ -153,19 +153,26 @@ object TextFormatter {
 
     fun increaseIndent(editText: EditText) {
         val editable = editText.text
-        for ((s, _) in lineRanges(editText).reversed()) {
-            editable.insert(s, "    ")
+        for ((s, e) in lineRanges(editText)) {
+            val currentLevel = editable.getSpans(s, s + 1, IndentSpan::class.java)
+                .maxOfOrNull { it.level } ?: 0
+            editable.getSpans(s, e, IndentSpan::class.java).forEach { editable.removeSpan(it) }
+            val newLevel = (currentLevel + 1).coerceAtMost(6)
+            val spanEnd = if (e < editable.length) e + 1 else e
+            editable.setSpan(IndentSpan(newLevel), s, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
 
     fun decreaseIndent(editText: EditText) {
         val editable = editText.text
-        for ((s, _) in lineRanges(editText).reversed()) {
-            val end = minOf(s + 4, editable.length)
-            if (editable.substring(s, end) == "    ") {
-                editable.delete(s, end)
-            } else if (s < editable.length && editable[s] == '\t') {
-                editable.delete(s, s + 1)
+        for ((s, e) in lineRanges(editText)) {
+            val currentLevel = editable.getSpans(s, s + 1, IndentSpan::class.java)
+                .maxOfOrNull { it.level } ?: 0
+            editable.getSpans(s, e, IndentSpan::class.java).forEach { editable.removeSpan(it) }
+            val newLevel = (currentLevel - 1).coerceAtLeast(0)
+            if (newLevel > 0) {
+                val spanEnd = if (e < editable.length) e + 1 else e
+                editable.setSpan(IndentSpan(newLevel), s, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
     }

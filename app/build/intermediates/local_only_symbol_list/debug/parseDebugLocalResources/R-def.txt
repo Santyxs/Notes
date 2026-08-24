@@ -83,6 +83,7 @@ id btnAlignRight
 id btnBody
 id btnBold
 id btnChecklist
+id btnFontFamily
 id btnH1
 id btnH2
 id btnH3
@@ -93,6 +94,7 @@ id btnItalic
 id btnListBullet
 id btnListNumbered
 id btnStrike
+id btnTextColor
 id btnUnderline
 id cancelButton
 id checkbox
@@ -117,7 +119,6 @@ id emptyTrashButton
 id emptyTrashRow
 id emptyView
 id fabAdd
-id fontButton
 id formatToggleButton
 id formattingPanel
 id formattingPanelInclude
@@ -152,7 +153,6 @@ id tabTareas
 id tableButton
 id taskInput
 id text
-id textColorButton
 id title
 id titleInput
 id topBar
@@ -209,6 +209,8 @@ string color_de_texto
 string columnas
 string compartir
 string completado
+string confirmar_eliminar_definitivamente
+string confirmar_vaciar_papelera
 string crear_tabla
 string cuerpo
 string desanclar

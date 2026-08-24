@@ -62,4 +62,6 @@
     <string name="formato_texto">Formato de texto</string>
     <string name="color_de_texto">Color de texto</string>
     <string name="aa_boton">Aa</string>
+    <string name="confirmar_vaciar_papelera">Se eliminarán para siempre todas las notas y tareas de la papelera. Esta acción no se puede deshacer.</string>
+    <string name="confirmar_eliminar_definitivamente">Se eliminará para siempre. Esta acción no se puede deshacer.</string>
 </resources>

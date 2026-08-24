@@ -3282,6 +3282,7 @@ id btnAlignRight
 id btnBody
 id btnBold
 id btnChecklist
+id btnFontFamily
 id btnH1
 id btnH2
 id btnH3
@@ -3292,6 +3293,7 @@ id btnItalic
 id btnListBullet
 id btnListNumbered
 id btnStrike
+id btnTextColor
 id btnUnderline
 id buttonPanel
 id cache_measures
@@ -3417,7 +3419,6 @@ id fitXY
 id fixed
 id flip
 id floating
-id fontButton
 id forever
 id formatToggleButton
 id formattingPanel
@@ -3701,7 +3702,6 @@ id tag_window_insets_animation_callback
 id taskInput
 id text
 id text2
-id textColorButton
 id textEnd
 id textSpacerNoButtons
 id textSpacerNoTitle
@@ -4055,6 +4055,8 @@ string columnas
 string compartir
 string completado
 string confirm_device_credential_password
+string confirmar_eliminar_definitivamente
+string confirmar_vaciar_papelera
 string crear_tabla
 string cuerpo
 string default_error_msg

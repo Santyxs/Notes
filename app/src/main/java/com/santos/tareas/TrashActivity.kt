@@ -29,9 +29,16 @@ class TrashActivity : AppCompatActivity() {
                 load()
             },
             onDeleteForever = { item ->
-                if (item.isNote) NoteRepository.permanentlyDeleteNote(this, item.id)
-                else TaskRepository.permanentlyDeleteTask(this, item.id)
-                load()
+                android.app.AlertDialog.Builder(this)
+                    .setTitle(R.string.eliminar_definitivamente)
+                    .setMessage(R.string.confirmar_eliminar_definitivamente)
+                    .setPositiveButton(R.string.eliminar_definitivamente) { _, _ ->
+                        if (item.isNote) NoteRepository.permanentlyDeleteNote(this, item.id)
+                        else TaskRepository.permanentlyDeleteTask(this, item.id)
+                        load()
+                    }
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .show()
             }
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -39,9 +46,16 @@ class TrashActivity : AppCompatActivity() {
 
         binding.backButton.setOnClickListener { finish() }
         binding.emptyTrashButton.setOnClickListener {
-            NoteRepository.emptyTrash(this)
-            TaskRepository.emptyTrash(this)
-            load()
+            android.app.AlertDialog.Builder(this)
+                .setTitle(R.string.vaciar_papelera)
+                .setMessage(R.string.confirmar_vaciar_papelera)
+                .setPositiveButton(R.string.eliminar_definitivamente) { _, _ ->
+                    NoteRepository.emptyTrash(this)
+                    TaskRepository.emptyTrash(this)
+                    load()
+                }
+                .setNegativeButton(android.R.string.cancel, null)
+                .show()
         }
     }
 

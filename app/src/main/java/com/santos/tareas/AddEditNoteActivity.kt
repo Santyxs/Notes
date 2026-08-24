@@ -61,9 +61,9 @@ class AddEditNoteActivity : AppCompatActivity() {
     private var currentNote: Note? = null
     private var attachments: MutableList<String> = mutableListOf()
 
-    // Deshacer / rehacer del cuerpo de texto
-    private val undoStack = mutableListOf<String>()
-    private val redoStack = mutableListOf<String>()
+    // Deshacer / rehacer del cuerpo de texto (con formato incluido)
+    private val undoStack = mutableListOf<android.text.Spanned>()
+    private val redoStack = mutableListOf<android.text.Spanned>()
     private var suppressWatcher = false
     private val debounceHandler = android.os.Handler(android.os.Looper.getMainLooper())
     private var debounceRunnable: Runnable? = null
@@ -80,8 +80,6 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         binding.undoButton.setOnClickListener { performUndo() }
         binding.redoButton.setOnClickListener { performRedo() }
-        binding.fontButton.setOnClickListener { showFontMenu() }
-        binding.textColorButton.setOnClickListener { showTextColorPicker() }
         binding.drawButton.setOnClickListener {
             startActivityForResult(Intent(this, DrawingActivity::class.java), REQUEST_DRAWING)
         }
@@ -94,17 +92,18 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         setupFormattingToolbar()
 
-        undoStack.add("")
+        undoStack.add(android.text.SpannableString(""))
         binding.bodyInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
                 if (suppressWatcher) return
+                renumberListsIfNeeded()
                 debounceRunnable?.let { debounceHandler.removeCallbacks(it) }
                 debounceRunnable = Runnable {
-                    val text = s.toString()
-                    if (undoStack.lastOrNull() != text) {
-                        undoStack.add(text)
+                    val snapshot = android.text.SpannableString(s)
+                    if (undoStack.lastOrNull()?.toString() != snapshot.toString()) {
+                        undoStack.add(snapshot)
                         redoStack.clear()
                     }
                 }
@@ -140,7 +139,7 @@ class AddEditNoteActivity : AppCompatActivity() {
         attachments = note.attachments.toMutableList()
         renderAttachments()
         undoStack.clear()
-        undoStack.add(binding.bodyInput.text.toString())
+        undoStack.add(android.text.SpannableString(binding.bodyInput.text))
     }
 
     private fun applyColor(color: String?) {
@@ -170,17 +169,79 @@ class AddEditNoteActivity : AppCompatActivity() {
         setBodyTextSilently(next)
     }
 
-    private fun setBodyTextSilently(text: String) {
+    private fun setBodyTextSilently(spanned: android.text.Spanned) {
         suppressWatcher = true
-        binding.bodyInput.setText(text)
-        binding.bodyInput.setSelection(text.length)
+        binding.bodyInput.text.clear()
+        binding.bodyInput.text.append(spanned)
+        binding.bodyInput.setSelection(spanned.length)
         suppressWatcher = false
+    }
+
+    /** Se llama antes de aplicar un cambio de formato (negrita, color, lista, etc.)
+     * para poder deshacerlo también, no solo los cambios de texto escrito. */
+    private fun snapshotForUndo() {
+        debounceRunnable?.let { debounceHandler.removeCallbacks(it) }
+        val snapshot = android.text.SpannableString(binding.bodyInput.text)
+        if (undoStack.lastOrNull()?.toString() != snapshot.toString() ||
+            undoStack.lastOrNull() != snapshot
+        ) {
+            undoStack.add(snapshot)
+            redoStack.clear()
+        }
+    }
+
+    /** Se llama tras cada cambio de texto: renumera listas numeradas consecutivas
+     * sin tocar el resto del contenido (para no perder negrita/color/etc). */
+    private fun renumberListsIfNeeded() {
+        val editable = binding.bodyInput.text
+        val text = editable.toString()
+        val regex = Regex("^(\\d+)\\. ")
+
+        val lineStarts = mutableListOf(0)
+        for (i in text.indices) {
+            if (text[i] == '\n') lineStarts.add(i + 1)
+        }
+
+        var expected = 1
+        var inBlock = false
+        var offset = 0
+        var didChange = false
+
+        for (lineStart in lineStarts) {
+            val adjStart = lineStart + offset
+            if (adjStart > editable.length) break
+            var lineEnd = adjStart
+            while (lineEnd < editable.length && editable[lineEnd] != '\n') lineEnd++
+            val lineText = editable.substring(adjStart, lineEnd)
+            val match = regex.find(lineText)
+            if (match != null) {
+                if (!inBlock) {
+                    expected = 1
+                    inBlock = true
+                }
+                val oldNum = match.groupValues[1]
+                val newNum = expected.toString()
+                if (oldNum != newNum) {
+                    if (!didChange) {
+                        suppressWatcher = true
+                        didChange = true
+                    }
+                    editable.replace(adjStart, adjStart + oldNum.length, newNum)
+                    offset += newNum.length - oldNum.length
+                }
+                expected++
+            } else {
+                inBlock = false
+            }
+        }
+
+        if (didChange) suppressWatcher = false
     }
 
     // ---------- Tipografía ----------
 
     private fun showFontMenu() {
-        val popup = PopupMenu(this, binding.fontButton)
+        val popup = PopupMenu(this, binding.formattingPanelInclude.btnFontFamily)
         popup.menu.add(0, 0, 0, getString(R.string.predeterminada))
         popup.menu.add(0, 1, 1, getString(R.string.sans_serif))
         popup.menu.add(0, 2, 2, getString(R.string.serif))
@@ -255,37 +316,45 @@ class AddEditNoteActivity : AppCompatActivity() {
                 if (panel.formattingPanel.visibility == View.VISIBLE) View.GONE else View.VISIBLE
         }
 
-        panel.btnH1.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.8f) }
-        panel.btnH2.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.5f) }
-        panel.btnH3.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.3f) }
-        panel.btnH4.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, 1.15f) }
-        panel.btnBody.setOnClickListener { TextFormatter.applyHeading(binding.bodyInput, null) }
+        panel.btnH1.setOnClickListener { snapshotForUndo(); TextFormatter.applyHeading(binding.bodyInput, 1.8f) }
+        panel.btnH2.setOnClickListener { snapshotForUndo(); TextFormatter.applyHeading(binding.bodyInput, 1.5f) }
+        panel.btnH3.setOnClickListener { snapshotForUndo(); TextFormatter.applyHeading(binding.bodyInput, 1.3f) }
+        panel.btnH4.setOnClickListener { snapshotForUndo(); TextFormatter.applyHeading(binding.bodyInput, 1.15f) }
+        panel.btnBody.setOnClickListener { snapshotForUndo(); TextFormatter.applyHeading(binding.bodyInput, null) }
 
-        panel.btnBold.setOnClickListener { TextFormatter.toggleBold(binding.bodyInput) }
-        panel.btnItalic.setOnClickListener { TextFormatter.toggleItalic(binding.bodyInput) }
-        panel.btnUnderline.setOnClickListener { TextFormatter.toggleUnderline(binding.bodyInput) }
-        panel.btnStrike.setOnClickListener { TextFormatter.toggleStrikethrough(binding.bodyInput) }
-        panel.btnIndentInc.setOnClickListener { TextFormatter.increaseIndent(binding.bodyInput) }
-        panel.btnIndentDec.setOnClickListener { TextFormatter.decreaseIndent(binding.bodyInput) }
+        panel.btnBold.setOnClickListener { snapshotForUndo(); TextFormatter.toggleBold(binding.bodyInput) }
+        panel.btnItalic.setOnClickListener { snapshotForUndo(); TextFormatter.toggleItalic(binding.bodyInput) }
+        panel.btnUnderline.setOnClickListener { snapshotForUndo(); TextFormatter.toggleUnderline(binding.bodyInput) }
+        panel.btnStrike.setOnClickListener { snapshotForUndo(); TextFormatter.toggleStrikethrough(binding.bodyInput) }
+        panel.btnIndentInc.setOnClickListener { snapshotForUndo(); TextFormatter.increaseIndent(binding.bodyInput) }
+        panel.btnIndentDec.setOnClickListener { snapshotForUndo(); TextFormatter.decreaseIndent(binding.bodyInput) }
 
         panel.btnListNumbered.setOnClickListener {
+            snapshotForUndo()
             TextFormatter.toggleLinePrefix(binding.bodyInput, "", numbered = true)
         }
         panel.btnListBullet.setOnClickListener {
+            snapshotForUndo()
             TextFormatter.toggleLinePrefix(binding.bodyInput, "• ")
         }
         panel.btnChecklist.setOnClickListener {
+            snapshotForUndo()
             TextFormatter.toggleLinePrefix(binding.bodyInput, "☐ ")
         }
         panel.btnAlignLeft.setOnClickListener {
+            snapshotForUndo()
             TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_NORMAL)
         }
         panel.btnAlignCenter.setOnClickListener {
+            snapshotForUndo()
             TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_CENTER)
         }
         panel.btnAlignRight.setOnClickListener {
+            snapshotForUndo()
             TextFormatter.applyAlignment(binding.bodyInput, android.text.Layout.Alignment.ALIGN_OPPOSITE)
         }
+        panel.btnFontFamily.setOnClickListener { showFontMenu() }
+        panel.btnTextColor.setOnClickListener { showTextColorPicker() }
     }
 
     private fun showTextColorPicker() {
@@ -308,6 +377,7 @@ class AddEditNoteActivity : AppCompatActivity() {
             swatch.background = drawable
             row.addView(swatch)
             swatch.setOnClickListener {
+                snapshotForUndo()
                 TextFormatter.applyTextColor(binding.bodyInput, Color.parseColor(colorHex))
             }
         }
@@ -481,6 +551,13 @@ class AddEditNoteActivity : AppCompatActivity() {
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
             val bitmap = android.graphics.BitmapFactory.decodeFile(path)
             if (bitmap != null) imageView.setImageBitmap(bitmap)
+
+            val tableData = loadTableData(path)
+            if (tableData != null) {
+                imageView.setOnClickListener {
+                    showTableEditorDialog(tableData.first, tableData.second, tableData.third, existingPath = path)
+                }
+            }
             frame.addView(imageView)
 
             val deleteButton = ImageView(this)
@@ -495,6 +572,7 @@ class AddEditNoteActivity : AppCompatActivity() {
             deleteButton.setOnClickListener {
                 attachments.remove(path)
                 currentNote?.let { NoteRepository.removeAttachment(this, it.id, path) }
+                File(jsonPathFor(path)).let { if (it.exists()) it.delete() }
                 renderAttachments()
             }
             frame.addView(deleteButton)
@@ -547,6 +625,40 @@ class AddEditNoteActivity : AppCompatActivity() {
 
     // ---------- Tablas ----------
 
+    private fun jsonPathFor(pngPath: String): String = pngPath.removeSuffix(".png") + ".json"
+
+    private fun loadTableData(path: String): Triple<Int, Int, Array<Array<String>>>? {
+        val jsonFile = File(jsonPathFor(path))
+        if (!jsonFile.exists()) return null
+        return try {
+            val json = org.json.JSONObject(jsonFile.readText())
+            val rows = json.getInt("rows")
+            val cols = json.getInt("cols")
+            val cellsArray = json.getJSONArray("cells")
+            val texts = Array(rows) { r ->
+                val rowArray = cellsArray.getJSONArray(r)
+                Array(cols) { c -> rowArray.getString(c) }
+            }
+            Triple(rows, cols, texts)
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private fun saveTableData(pngPath: String, rows: Int, cols: Int, texts: Array<Array<String>>) {
+        val json = org.json.JSONObject()
+        json.put("rows", rows)
+        json.put("cols", cols)
+        val cellsArray = org.json.JSONArray()
+        for (r in 0 until rows) {
+            val rowArray = org.json.JSONArray()
+            for (c in 0 until cols) rowArray.put(texts[r][c])
+            cellsArray.put(rowArray)
+        }
+        json.put("cells", cellsArray)
+        File(jsonPathFor(pngPath)).writeText(json.toString())
+    }
+
     private fun showTableSizeDialog() {
         val container = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -571,13 +683,18 @@ class AddEditNoteActivity : AppCompatActivity() {
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 val rows = (rowsInput.text.toString().toIntOrNull() ?: 3).coerceIn(1, 8)
                 val cols = (colsInput.text.toString().toIntOrNull() ?: 3).coerceIn(1, 8)
-                showTableEditorDialog(rows, cols)
+                showTableEditorDialog(rows, cols, null, null)
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()
     }
 
-    private fun showTableEditorDialog(rows: Int, cols: Int) {
+    private fun showTableEditorDialog(
+        rows: Int,
+        cols: Int,
+        prefill: Array<Array<String>>?,
+        existingPath: String?
+    ) {
         val table = TableLayout(this).apply {
             setPadding(24, 24, 24, 24)
         }
@@ -590,6 +707,7 @@ class AddEditNoteActivity : AppCompatActivity() {
                 cell.layoutParams = TableRow.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
                 cell.setPadding(12, 12, 12, 12)
                 cell.textSize = 13f
+                prefill?.getOrNull(r)?.getOrNull(c)?.let { cell.setText(it) }
                 row.addView(cell)
                 cellInputs[r][c] = cell
             }
@@ -599,19 +717,35 @@ class AddEditNoteActivity : AppCompatActivity() {
         val scroll = android.widget.ScrollView(this)
         scroll.addView(table)
 
-        AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this)
             .setTitle(R.string.crear_tabla)
             .setView(scroll)
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 val texts = Array(rows) { r -> Array(cols) { c -> cellInputs[r][c]?.text?.toString().orEmpty() } }
                 val bitmap = renderTableBitmap(rows, cols, texts)
-                val dir = File(filesDir, "tables").apply { mkdirs() }
-                val file = File(dir, "${UUID.randomUUID()}.png")
-                FileOutputStream(file).use { out -> bitmap.compress(Bitmap.CompressFormat.PNG, 100, out) }
-                addAttachment(file.absolutePath)
+                if (existingPath != null) {
+                    // Editamos la tabla existente en el mismo archivo (misma miniatura)
+                    FileOutputStream(existingPath).use { out -> bitmap.compress(Bitmap.CompressFormat.PNG, 100, out) }
+                    saveTableData(existingPath, rows, cols, texts)
+                    renderAttachments()
+                } else {
+                    val dir = File(filesDir, "tables").apply { mkdirs() }
+                    val file = File(dir, "${UUID.randomUUID()}.png")
+                    FileOutputStream(file).use { out -> bitmap.compress(Bitmap.CompressFormat.PNG, 100, out) }
+                    saveTableData(file.absolutePath, rows, cols, texts)
+                    addAttachment(file.absolutePath)
+                }
             }
             .setNegativeButton(android.R.string.cancel, null)
-            .show()
+        if (existingPath != null) {
+            builder.setNeutralButton(R.string.eliminar_adjunto) { _, _ ->
+                attachments.remove(existingPath)
+                currentNote?.let { NoteRepository.removeAttachment(this, it.id, existingPath) }
+                File(jsonPathFor(existingPath)).let { if (it.exists()) it.delete() }
+                renderAttachments()
+            }
+        }
+        builder.show()
     }
 
     private fun renderTableBitmap(rows: Int, cols: Int, texts: Array<Array<String>>): Bitmap {

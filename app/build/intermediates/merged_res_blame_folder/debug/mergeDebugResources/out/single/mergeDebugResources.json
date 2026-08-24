@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_view_card.xml.flat",
-        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_view_card.xml"
-    },
-    {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/drawable_ic_view_card.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-main-35:/drawable/ic_view_card.xml"
     },
     {
         "merged": "/home/codespace/.gradle/daemon/8.7/com.santos.tareas.app-debug-33:/layout_activity_settings.xml.flat",
