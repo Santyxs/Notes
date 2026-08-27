@@ -139,6 +139,14 @@ object NoteRepository {
         WidgetUpdater.updateAll(context)
     }
 
+    /** Todas las notas, incluidas las de la papelera (para copia de seguridad). */
+    fun getAllIncludingDeleted(context: Context): List<Note> = getAllRaw(context)
+
+    /** Sustituye todos los datos por una lista importada (copia de seguridad). */
+    fun replaceAll(context: Context, notes: List<Note>) {
+        saveNotes(context, notes)
+    }
+
     fun emptyTrash(context: Context) {
         val notes = getAllRaw(context)
         notes.removeAll { it.deleted }

@@ -40,7 +40,8 @@ object TaskRepository {
                     id = o.getLong("id"),
                     title = o.getString("title"),
                     done = o.getBoolean("done"),
-                    deleted = if (o.has("deleted")) o.getBoolean("deleted") else false
+                    deleted = if (o.has("deleted")) o.getBoolean("deleted") else false,
+                    createdAt = if (o.has("createdAt")) o.getLong("createdAt") else o.getLong("id")
                 )
             )
         }
@@ -63,6 +64,7 @@ object TaskRepository {
             o.put("title", t.title)
             o.put("done", t.done)
             o.put("deleted", t.deleted)
+            o.put("createdAt", t.createdAt)
             array.put(o)
         }
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -80,7 +82,7 @@ object TaskRepository {
 
     fun addTask(context: Context, title: String) {
         val tasks = getAllRaw(context)
-        tasks.add(Task(id = nextId(context), title = title, done = false))
+        tasks.add(Task(id = nextId(context), title = title, done = false, createdAt = System.currentTimeMillis()))
         saveTasks(context, tasks)
         WidgetUpdater.updateAll(context)
     }
@@ -132,6 +134,14 @@ object TaskRepository {
         tasks.removeAll { it.id == id }
         saveTasks(context, tasks)
         WidgetUpdater.updateAll(context)
+    }
+
+    /** Todas las tareas, incluidas las de la papelera (para copia de seguridad). */
+    fun getAllIncludingDeleted(context: Context): List<Task> = getAllRaw(context)
+
+    /** Sustituye todos los datos por una lista importada (copia de seguridad). */
+    fun replaceAll(context: Context, tasks: List<Task>) {
+        saveTasks(context, tasks)
     }
 
     fun emptyTrash(context: Context) {

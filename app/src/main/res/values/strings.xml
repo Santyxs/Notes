@@ -64,4 +64,16 @@
     <string name="aa_boton">Aa</string>
     <string name="confirmar_vaciar_papelera">Se eliminarán para siempre todas las notas y tareas de la papelera. Esta acción no se puede deshacer.</string>
     <string name="confirmar_eliminar_definitivamente">Se eliminará para siempre. Esta acción no se puede deshacer.</string>
+    <string name="ordenar_por">Ordenar por</string>
+    <string name="fecha_reciente">Fecha (recientes primero)</string>
+    <string name="fecha_antigua">Fecha (antiguas primero)</string>
+    <string name="alfabetico_az">Alfabético (A-Z)</string>
+    <string name="alfabetico_za">Alfabético (Z-A)</string>
+    <string name="exportar_backup">Exportar copia de seguridad</string>
+    <string name="importar_backup">Importar copia de seguridad</string>
+    <string name="confirmar_importar_backup">Esto reemplazará todas tus notas y tareas actuales por las del archivo. ¿Continuar?</string>
+    <string name="backup_exportado">Copia de seguridad lista para compartir</string>
+    <string name="backup_importado">Copia de seguridad importada correctamente</string>
+    <string name="backup_error">No se pudo leer el archivo de copia de seguridad</string>
+    <string name="sin_resultados">Sin resultados</string>
 </resources>

@@ -25,11 +25,20 @@ public final class ActivitySettingsBinding implements ViewBinding {
   @NonNull
   public final LinearLayout emptyTrashRow;
 
+  @NonNull
+  public final LinearLayout exportRow;
+
+  @NonNull
+  public final LinearLayout importRow;
+
   private ActivitySettingsBinding(@NonNull LinearLayout rootView, @NonNull ImageView backButton,
-      @NonNull LinearLayout emptyTrashRow) {
+      @NonNull LinearLayout emptyTrashRow, @NonNull LinearLayout exportRow,
+      @NonNull LinearLayout importRow) {
     this.rootView = rootView;
     this.backButton = backButton;
     this.emptyTrashRow = emptyTrashRow;
+    this.exportRow = exportRow;
+    this.importRow = importRow;
   }
 
   @Override
@@ -71,7 +80,20 @@ public final class ActivitySettingsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivitySettingsBinding((LinearLayout) rootView, backButton, emptyTrashRow);
+      id = R.id.exportRow;
+      LinearLayout exportRow = ViewBindings.findChildViewById(rootView, id);
+      if (exportRow == null) {
+        break missingId;
+      }
+
+      id = R.id.importRow;
+      LinearLayout importRow = ViewBindings.findChildViewById(rootView, id);
+      if (importRow == null) {
+        break missingId;
+      }
+
+      return new ActivitySettingsBinding((LinearLayout) rootView, backButton, emptyTrashRow,
+          exportRow, importRow);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

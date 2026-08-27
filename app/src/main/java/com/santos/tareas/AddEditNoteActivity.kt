@@ -488,9 +488,15 @@ class AddEditNoteActivity : AppCompatActivity() {
         val note = currentNote ?: return
         val plainText = HtmlUtils.toPlainText(note.text)
         val shareText = if (note.title.isNotBlank()) "${note.title}\n\n$plainText" else plainText
+        val shareHtml = if (note.title.isNotBlank()) {
+            "<b>${note.title}</b><br><br>${note.text}"
+        } else {
+            note.text
+        }
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"
             putExtra(Intent.EXTRA_TEXT, shareText)
+            putExtra(Intent.EXTRA_HTML_TEXT, shareHtml)
         }
         startActivity(Intent.createChooser(intent, getString(R.string.compartir)))
     }

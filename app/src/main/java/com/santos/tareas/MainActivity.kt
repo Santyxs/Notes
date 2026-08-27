@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var taskAdapter: TaskAdapter
+    private lateinit var searchResultAdapter: SearchResultAdapter
 
     private var showingNotes = true
     private var searchQuery = ""
@@ -75,6 +76,19 @@ class MainActivity : AppCompatActivity() {
             onHeaderToggle = {
                 completedExpanded = !completedExpanded
                 refresh()
+            }
+        )
+
+        searchResultAdapter = SearchResultAdapter(
+            onClickNote = { note ->
+                val intent = Intent(this, AddEditNoteActivity::class.java)
+                intent.putExtra(AddEditNoteActivity.EXTRA_NOTE_ID, note.id)
+                startActivity(intent)
+            },
+            onClickTask = { task ->
+                val intent = Intent(this, AddEditTaskActivity::class.java)
+                intent.putExtra(AddEditTaskActivity.EXTRA_TASK_ID, task.id)
+                startActivity(intent)
             }
         )
 
@@ -151,7 +165,11 @@ class MainActivity : AppCompatActivity() {
         popup.show()
     }
 
-    private fun applyViewMode() {
+    private fun configureLayoutManager() {
+        if (searchQuery.isNotBlank()) {
+            binding.recyclerView.layoutManager = LinearLayoutManager(this)
+            return
+        }
         if (viewMode == ViewMode.GRID) {
             val gridManager = GridLayoutManager(this, 2)
             gridManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -163,6 +181,10 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.recyclerView.layoutManager = LinearLayoutManager(this)
         }
+    }
+
+    private fun applyViewMode() {
+        configureLayoutManager()
         val flat = viewMode == ViewMode.LIST
         noteAdapter.flatStyle = flat
         taskAdapter.flatStyle = flat
@@ -186,18 +208,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refresh() {
+        configureLayoutManager()
+
+        if (searchQuery.isNotBlank()) {
+            showCombinedSearchResults()
+            return
+        }
+
+        binding.recyclerView.adapter = if (showingNotes) noteAdapter else taskAdapter
+        binding.emptyText.text = getString(if (showingNotes) R.string.sin_notas else R.string.sin_tareas)
+
         if (showingNotes) {
-            val notes = NoteRepository.getNotes(this).filter {
-                searchQuery.isBlank() ||
-                    it.title.contains(searchQuery, ignoreCase = true) ||
-                    HtmlUtils.toPlainText(it.text).contains(searchQuery, ignoreCase = true)
-            }
+            var notes: List<Note> = NoteRepository.getNotes(this)
+            // Las notas ancladas siempre van primero
+            notes = notes.sortedByDescending { it.pinned }
             noteAdapter.submitList(notes)
             binding.emptyView.visibility = if (notes.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         } else {
-            val allTasks = TaskRepository.getTasks(this).filter {
-                searchQuery.isBlank() || it.title.contains(searchQuery, ignoreCase = true)
-            }
+            val allTasks = TaskRepository.getTasks(this)
             val pending = allTasks.filter { !it.done }
             val completed = allTasks.filter { it.done }
 
@@ -215,5 +243,29 @@ class MainActivity : AppCompatActivity() {
             taskAdapter.submitSections(sections)
             binding.emptyView.visibility = if (allTasks.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         }
+    }
+
+    /** Con texto en el buscador, se muestran coincidencias de Notas y Tareas juntas,
+     * sin importar qué pestaña esté seleccionada. */
+    private fun showCombinedSearchResults() {
+        binding.recyclerView.adapter = searchResultAdapter
+
+        val matchingNotes = NoteRepository.getNotes(this).filter { note ->
+            !note.locked && (
+                note.title.contains(searchQuery, ignoreCase = true) ||
+                    HtmlUtils.toPlainText(note.text).contains(searchQuery, ignoreCase = true)
+                )
+        }
+        val matchingTasks = TaskRepository.getTasks(this).filter {
+            it.title.contains(searchQuery, ignoreCase = true)
+        }
+
+        val results = mutableListOf<SearchResult>()
+        results.addAll(matchingNotes.map { SearchResult.NoteResult(it) })
+        results.addAll(matchingTasks.map { SearchResult.TaskResult(it) })
+
+        searchResultAdapter.submitList(results)
+        binding.emptyView.visibility = if (results.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
+        binding.emptyText.text = getString(R.string.sin_resultados)
     }
 }

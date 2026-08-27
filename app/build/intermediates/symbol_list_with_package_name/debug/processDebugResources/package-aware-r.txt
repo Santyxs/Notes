@@ -3045,9 +3045,11 @@ drawable ic_draw
 drawable ic_dropdown
 drawable ic_edit
 drawable ic_empty_document
+drawable ic_export
 drawable ic_folder
 drawable ic_font
 drawable ic_image
+drawable ic_import
 drawable ic_indent_decrease
 drawable ic_indent_increase
 drawable ic_keyboard_black_24dp
@@ -3077,6 +3079,7 @@ drawable ic_search_black_24
 drawable ic_settings
 drawable ic_share
 drawable ic_sidebar
+drawable ic_sort
 drawable ic_table
 drawable ic_text_color
 drawable ic_trash
@@ -3401,6 +3404,7 @@ id escape
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id exportRow
 id fabAdd
 id fade
 id fill
@@ -3449,6 +3453,7 @@ id ignoreRequest
 id image
 id imageButton
 id immediateStop
+id importRow
 id included
 id indeterminate
 id info
@@ -3604,6 +3609,9 @@ id recyclerView
 id redoButton
 id report_drawn
 id restoreButton
+id resultIcon
+id resultTitle
+id resultType
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3917,6 +3925,7 @@ layout formatting_toolbar
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_note_row
+layout item_search_result_row
 layout item_section_header
 layout item_task_row
 layout item_trash_row
@@ -4020,6 +4029,8 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string acerca_de
 string ajustes
+string alfabetico_az
+string alfabetico_za
 string anadir
 string anadir_nota
 string anadir_tarea
@@ -4028,6 +4039,9 @@ string androidx_startup
 string anota_algo
 string app_name
 string appbar_scrolling_view_behavior
+string backup_error
+string backup_exportado
+string backup_importado
 string bloquear
 string borrar_todo
 string bottom_sheet_behavior
@@ -4056,6 +4070,7 @@ string compartir
 string completado
 string confirm_device_credential_password
 string confirmar_eliminar_definitivamente
+string confirmar_importar_backup
 string confirmar_vaciar_papelera
 string crear_tabla
 string cuerpo
@@ -4073,9 +4088,12 @@ string eliminar_nota
 string eliminar_tarea
 string error_a11y_label
 string error_icon_content_description
+string exportar_backup
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string fecha_antigua
+string fecha_reciente
 string filas
 string fingerprint_dialog_touch_sensor
 string fingerprint_error_hw_not_available
@@ -4092,6 +4110,7 @@ string guardar
 string guardar_dibujo
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
+string importar_backup
 string insertar_imagen
 string insertar_tabla
 string item_view_role_description
@@ -4199,6 +4218,7 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string nota_bloqueada
 string notas
+string ordenar_por
 string papelera
 string papelera_vacia
 string password_toggle_content_description
@@ -4219,6 +4239,7 @@ string serif
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string sin_notas
+string sin_resultados
 string sin_tareas
 string status_bar_notification_info_overflow
 string tareas
@@ -5515,5 +5536,6 @@ styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
+xml file_paths
 xml note_widget_info
 xml task_widget_info
