@@ -4,8 +4,8 @@ package com.santos.tareas.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,7 +20,7 @@ import java.lang.String;
 
 public final class WidgetTaskBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final ImageView widgetAddButton;
@@ -37,7 +37,7 @@ public final class WidgetTaskBinding implements ViewBinding {
   @NonNull
   public final TextView widgetTitle;
 
-  private WidgetTaskBinding(@NonNull LinearLayout rootView, @NonNull ImageView widgetAddButton,
+  private WidgetTaskBinding(@NonNull FrameLayout rootView, @NonNull ImageView widgetAddButton,
       @NonNull TextView widgetEmpty, @NonNull RelativeLayout widgetHeader,
       @NonNull ListView widgetList, @NonNull TextView widgetTitle) {
     this.rootView = rootView;
@@ -50,7 +50,7 @@ public final class WidgetTaskBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -105,7 +105,7 @@ public final class WidgetTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      return new WidgetTaskBinding((LinearLayout) rootView, widgetAddButton, widgetEmpty,
+      return new WidgetTaskBinding((FrameLayout) rootView, widgetAddButton, widgetEmpty,
           widgetHeader, widgetList, widgetTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);

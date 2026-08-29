@@ -14,272 +14,349 @@
 12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 12-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:5:5-71
 12-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:5:22-68
-13
-14    <!-- suppress DeprecatedClassUsageInspection -->
-15    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-15-->[androidx.biometric:biometric:1.1.0] /home/codespace/.gradle/caches/transforms-4/d123fd00cd646fdd9369ace0c89263a5/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
-15-->[androidx.biometric:biometric:1.1.0] /home/codespace/.gradle/caches/transforms-4/d123fd00cd646fdd9369ace0c89263a5/transformed/biometric-1.1.0/AndroidManifest.xml:27:22-71
-16
-17    <permission
-17-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
-18        android:name="com.santos.tareas.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-18-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
-19        android:protectionLevel="signature" />
-19-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+13    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+13-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:6:5-77
+13-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:6:22-74
+14    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+14-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:7:5-79
+14-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:7:22-76
+15    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+15-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:8:5-74
+15-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:8:22-71
+16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+16-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:9:5-81
+16-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:9:22-78
+17
+18    <!-- suppress DeprecatedClassUsageInspection -->
+19    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+19-->[androidx.biometric:biometric:1.1.0] /home/codespace/.gradle/caches/transforms-4/d123fd00cd646fdd9369ace0c89263a5/transformed/biometric-1.1.0/AndroidManifest.xml:27:5-74
+19-->[androidx.biometric:biometric:1.1.0] /home/codespace/.gradle/caches/transforms-4/d123fd00cd646fdd9369ace0c89263a5/transformed/biometric-1.1.0/AndroidManifest.xml:27:22-71
 20
-21    <uses-permission android:name="com.santos.tareas.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-21-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
-21-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
-22
-23    <application
-23-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:7:5-110:19
-24        android:allowBackup="true"
-24-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:8:9-35
-25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-25-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
-26        android:debuggable="true"
-27        android:extractNativeLibs="false"
-28        android:icon="@mipmap/ic_launcher"
-28-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:9:9-43
-29        android:label="@string/app_name"
-29-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:10:9-41
-30        android:roundIcon="@mipmap/ic_launcher_round"
-30-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:11:9-54
-31        android:supportsRtl="true"
-31-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:12:9-35
-32        android:theme="@style/Theme.Tareas" >
-32-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:13:9-44
-33        <activity
-33-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:15:9-24:20
-34            android:name="com.santos.tareas.MainActivity"
-34-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:16:13-41
-35            android:exported="true"
-35-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:18:13-36
-36            android:label="@string/app_name"
-36-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:19:13-45
-37            android:launchMode="singleTop" >
-37-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:17:13-43
-38            <intent-filter>
-38-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:20:13-23:29
-39                <action android:name="android.intent.action.MAIN" />
-39-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:17-69
-39-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:25-66
-40
-41                <category android:name="android.intent.category.LAUNCHER" />
-41-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:22:17-77
-41-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:22:27-74
-42            </intent-filter>
-43        </activity>
-44        <activity
-44-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:26:9-29:46
-45            android:name="com.santos.tareas.TasksActivity"
-45-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:27:13-42
-46            android:exported="false"
-46-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:28:13-37
-47            android:label="@string/tareas" />
-47-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:29:13-43
+21    <permission
+21-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+22        android:name="com.santos.tareas.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+22-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+23        android:protectionLevel="signature" />
+23-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+24
+25    <uses-permission android:name="com.santos.tareas.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+25-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+25-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+26
+27    <application
+27-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:11:5-150:19
+28        android:allowBackup="true"
+28-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:12:9-35
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.13.1] /home/codespace/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+30        android:debuggable="true"
+31        android:extractNativeLibs="false"
+32        android:icon="@mipmap/ic_launcher"
+32-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:13:9-43
+33        android:label="@string/app_name"
+33-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:14:9-41
+34        android:roundIcon="@mipmap/ic_launcher_round"
+34-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:15:9-54
+35        android:supportsRtl="true"
+35-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:16:9-35
+36        android:theme="@style/Theme.Tareas" >
+36-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:17:9-44
+37        <activity
+37-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:19:9-28:20
+38            android:name="com.santos.tareas.MainActivity"
+38-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:20:13-41
+39            android:exported="true"
+39-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:22:13-36
+40            android:label="@string/app_name"
+40-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:23:13-45
+41            android:launchMode="singleTop" >
+41-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:21:13-43
+42            <intent-filter>
+42-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:24:13-27:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:25:17-69
+43-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:25:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:26:17-77
+45-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:26:27-74
+46            </intent-filter>
+47        </activity>
 48        <activity
-48-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:31:9-34:45
-49            android:name="com.santos.tareas.NotesActivity"
-49-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:32:13-42
+48-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:30:9-33:46
+49            android:name="com.santos.tareas.TasksActivity"
+49-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:31:13-42
 50            android:exported="false"
-50-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:33:13-37
-51            android:label="@string/notas" />
-51-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:34:13-42
+50-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:32:13-37
+51            android:label="@string/tareas" />
+51-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:33:13-43
 52        <activity
-52-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:36:9-40:58
-53            android:name="com.santos.tareas.TrashActivity"
-53-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:37:13-42
+52-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:35:9-38:45
+53            android:name="com.santos.tareas.NotesActivity"
+53-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:36:13-42
 54            android:exported="false"
-54-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:38:13-37
-55            android:label="@string/papelera"
-55-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:39:13-45
-56            android:theme="@style/Theme.Tareas.Dialog" />
-56-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:40:13-55
-57        <activity
-57-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:42:9-46:58
-58            android:name="com.santos.tareas.SettingsActivity"
-58-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:43:13-45
-59            android:exported="false"
-59-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:44:13-37
-60            android:label="@string/ajustes"
-60-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:45:13-44
-61            android:theme="@style/Theme.Tareas.Dialog" />
-61-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:46:13-55
-62        <activity
-62-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:48:9-52:58
-63            android:name="com.santos.tareas.AddEditTaskActivity"
-63-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:49:13-48
-64            android:exported="false"
-64-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:50:13-37
-65            android:label="@string/tareas"
-65-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:51:13-43
-66            android:theme="@style/Theme.Tareas.Dialog" />
-66-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:52:13-55
-67        <activity
-67-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:54:9-58:58
-68            android:name="com.santos.tareas.AddEditNoteActivity"
-68-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:55:13-48
-69            android:exported="false"
-69-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:56:13-37
-70            android:label="@string/notas"
-70-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:57:13-42
-71            android:theme="@style/Theme.Tareas.Dialog" />
-71-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:58:13-55
-72        <activity
-72-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:60:9-64:58
-73            android:name="com.santos.tareas.DrawingActivity"
-73-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:61:13-44
-74            android:exported="false"
-74-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:62:13-37
-75            android:label="@string/dibujar"
-75-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:63:13-44
-76            android:theme="@style/Theme.Tareas.Dialog" />
-76-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:64:13-55
-77
-78        <receiver
-78-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:66:9-76:20
-79            android:name="com.santos.tareas.TaskWidgetProvider"
-79-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:67:13-47
-80            android:exported="false"
-80-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:68:13-37
-81            android:label="" >
-81-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:69:13-29
-82            <intent-filter>
-82-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:70:13-72:29
-83                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-83-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:17-84
-83-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:25-81
-84            </intent-filter>
-85
-86            <meta-data
-86-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:73:13-75:60
-87                android:name="android.appwidget.provider"
-87-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:17-58
-88                android:resource="@xml/task_widget_info" />
-88-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-57
-89        </receiver>
-90        <receiver
-90-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:9-88:20
-91            android:name="com.santos.tareas.NoteWidgetProvider"
-91-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:13-47
-92            android:exported="false"
-92-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:80:13-37
-93            android:label="" >
-93-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:81:13-29
-94            <intent-filter>
-94-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:70:13-72:29
-95                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-95-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:17-84
-95-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:25-81
-96            </intent-filter>
-97
-98            <meta-data
-98-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:73:13-75:60
-99                android:name="android.appwidget.provider"
-99-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:17-58
-100                android:resource="@xml/note_widget_info" />
-100-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-57
-101        </receiver>
-102
-103        <service
-103-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:90:9-93:72
-104            android:name="com.santos.tareas.TaskWidgetService"
-104-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:91:13-46
-105            android:exported="false"
-105-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:92:13-37
-106            android:permission="android.permission.BIND_REMOTEVIEWS" />
-106-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:93:13-69
-107        <service
-107-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:95:9-98:72
-108            android:name="com.santos.tareas.NoteWidgetService"
-108-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:96:13-46
-109            android:exported="false"
-109-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:97:13-37
-110            android:permission="android.permission.BIND_REMOTEVIEWS" />
-110-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:98:13-69
-111
-112        <provider
-113            android:name="androidx.core.content.FileProvider"
-113-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:101:13-62
-114            android:authorities="com.santos.tareas.fileprovider"
-114-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:102:13-64
-115            android:exported="false"
-115-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:103:13-37
-116            android:grantUriPermissions="true" >
-116-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:104:13-47
-117            <meta-data
-117-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:105:13-107:54
-118                android:name="android.support.FILE_PROVIDER_PATHS"
-118-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:106:17-67
-119                android:resource="@xml/file_paths" />
-119-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:107:17-51
-120        </provider>
-121        <provider
-121-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-122            android:name="androidx.startup.InitializationProvider"
-122-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
-123            android:authorities="com.santos.tareas.androidx-startup"
-123-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-124            android:exported="false" >
-124-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
-125            <meta-data
-125-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-126                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-126-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-127                android:value="androidx.startup" />
-127-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-128            <meta-data
-128-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/codespace/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-129                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-129-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/codespace/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-130                android:value="androidx.startup" />
-130-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/codespace/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-131            <meta-data
-131-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-132                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-133                android:value="androidx.startup" />
-133-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-134        </provider>
-135
-136        <receiver
-136-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-137            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-137-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-138            android:directBootAware="false"
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-139            android:enabled="true"
-139-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-140            android:exported="true"
-140-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-141            android:permission="android.permission.DUMP" >
-141-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-142            <intent-filter>
-142-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-143                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-143-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-143-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-144            </intent-filter>
-145            <intent-filter>
-145-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-146                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-146-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-146-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-147            </intent-filter>
-148            <intent-filter>
-148-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-149                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-149-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-149-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-150            </intent-filter>
-151            <intent-filter>
-151-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-152                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-152-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-152-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-153            </intent-filter>
-154        </receiver>
-155    </application>
-156
-157</manifest>
+54-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:37:13-37
+55            android:label="@string/notas" />
+55-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:38:13-42
+56        <activity
+56-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:40:9-44:58
+57            android:name="com.santos.tareas.TrashActivity"
+57-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:41:13-42
+58            android:exported="false"
+58-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:42:13-37
+59            android:label="@string/papelera"
+59-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:43:13-45
+60            android:theme="@style/Theme.Tareas.Dialog" />
+60-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:44:13-55
+61        <activity
+61-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:46:9-50:58
+62            android:name="com.santos.tareas.SettingsActivity"
+62-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:47:13-45
+63            android:exported="false"
+63-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:48:13-37
+64            android:label="@string/ajustes"
+64-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:49:13-44
+65            android:theme="@style/Theme.Tareas.Dialog" />
+65-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:50:13-55
+66        <activity
+66-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:52:9-56:58
+67            android:name="com.santos.tareas.AddEditTaskActivity"
+67-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:53:13-48
+68            android:exported="false"
+68-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:54:13-37
+69            android:label="@string/tareas"
+69-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:55:13-43
+70            android:theme="@style/Theme.Tareas.Dialog" />
+70-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:56:13-55
+71        <activity
+71-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:58:9-62:58
+72            android:name="com.santos.tareas.AddEditNoteActivity"
+72-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:59:13-48
+73            android:exported="false"
+73-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:60:13-37
+74            android:label="@string/notas"
+74-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:61:13-42
+75            android:theme="@style/Theme.Tareas.Dialog" />
+75-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:62:13-55
+76        <activity
+76-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:64:9-68:58
+77            android:name="com.santos.tareas.DrawingActivity"
+77-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:65:13-44
+78            android:exported="false"
+78-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:66:13-37
+79            android:label="@string/dibujar"
+79-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:67:13-44
+80            android:theme="@style/Theme.Tareas.Dialog" />
+80-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:68:13-55
+81
+82        <receiver
+82-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:70:9-80:20
+83            android:name="com.santos.tareas.TaskWidgetProvider"
+83-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:71:13-47
+84            android:exported="false"
+84-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:72:13-37
+85            android:label="" >
+85-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:73:13-29
+86            <intent-filter>
+86-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:13-76:29
+87                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+87-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-84
+87-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:25-81
+88            </intent-filter>
+89
+90            <meta-data
+90-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:77:13-79:60
+91                android:name="android.appwidget.provider"
+91-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:17-58
+92                android:resource="@xml/task_widget_info" />
+92-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:17-57
+93        </receiver>
+94        <receiver
+94-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:82:9-92:20
+95            android:name="com.santos.tareas.TaskWidgetProviderNoMargin"
+95-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:83:13-55
+96            android:exported="false"
+96-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:84:13-37
+97            android:label="" >
+97-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:85:13-29
+98            <intent-filter>
+98-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:13-76:29
+99                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+99-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-84
+99-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:25-81
+100            </intent-filter>
+101
+102            <meta-data
+102-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:77:13-79:60
+103                android:name="android.appwidget.provider"
+103-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:17-58
+104                android:resource="@xml/task_widget_info_full" />
+104-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:17-57
+105        </receiver>
+106        <receiver
+106-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:94:9-104:20
+107            android:name="com.santos.tareas.NoteWidgetProvider"
+107-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:95:13-47
+108            android:exported="false"
+108-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:96:13-37
+109            android:label="" >
+109-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:97:13-29
+110            <intent-filter>
+110-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:13-76:29
+111                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+111-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-84
+111-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:25-81
+112            </intent-filter>
+113
+114            <meta-data
+114-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:77:13-79:60
+115                android:name="android.appwidget.provider"
+115-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:17-58
+116                android:resource="@xml/note_widget_info" />
+116-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:17-57
+117        </receiver>
+118        <receiver
+118-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:106:9-116:20
+119            android:name="com.santos.tareas.NoteWidgetProviderNoMargin"
+119-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:107:13-55
+120            android:exported="false"
+120-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:108:13-37
+121            android:label="" >
+121-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:109:13-29
+122            <intent-filter>
+122-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:74:13-76:29
+123                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+123-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:17-84
+123-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:75:25-81
+124            </intent-filter>
+125
+126            <meta-data
+126-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:77:13-79:60
+127                android:name="android.appwidget.provider"
+127-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:78:17-58
+128                android:resource="@xml/note_widget_info_full" />
+128-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:79:17-57
+129        </receiver>
+130
+131        <service
+131-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:118:9-121:72
+132            android:name="com.santos.tareas.TaskWidgetService"
+132-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:119:13-46
+133            android:exported="false"
+133-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:120:13-37
+134            android:permission="android.permission.BIND_REMOTEVIEWS" />
+134-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:121:13-69
+135        <service
+135-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:123:9-126:72
+136            android:name="com.santos.tareas.NoteWidgetService"
+136-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:124:13-46
+137            android:exported="false"
+137-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:125:13-37
+138            android:permission="android.permission.BIND_REMOTEVIEWS" />
+138-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:126:13-69
+139
+140        <provider
+141            android:name="androidx.core.content.FileProvider"
+141-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:129:13-62
+142            android:authorities="com.santos.tareas.fileprovider"
+142-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:130:13-64
+143            android:exported="false"
+143-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:131:13-37
+144            android:grantUriPermissions="true" >
+144-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:132:13-47
+145            <meta-data
+145-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:133:13-135:54
+146                android:name="android.support.FILE_PROVIDER_PATHS"
+146-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:134:17-67
+147                android:resource="@xml/file_paths" />
+147-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:135:17-51
+148        </provider>
+149
+150        <receiver
+150-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:138:9-140:40
+151            android:name="com.santos.tareas.ReminderReceiver"
+151-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:139:13-45
+152            android:exported="false" />
+152-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:140:13-37
+153        <receiver
+153-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:142:9-148:20
+154            android:name="com.santos.tareas.BootReceiver"
+154-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:143:13-41
+155            android:exported="false" >
+155-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:144:13-37
+156            <intent-filter>
+156-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:145:13-147:29
+157                <action android:name="android.intent.action.BOOT_COMPLETED" />
+157-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:146:17-79
+157-->/workspaces/Notes-app/app/src/main/AndroidManifest.xml:146:25-76
+158            </intent-filter>
+159        </receiver>
+160
+161        <provider
+161-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+162            android:name="androidx.startup.InitializationProvider"
+162-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+163            android:authorities="com.santos.tareas.androidx-startup"
+163-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+164            android:exported="false" >
+164-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+165            <meta-data
+165-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+166                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+166-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+167                android:value="androidx.startup" />
+167-->[androidx.emoji2:emoji2:1.3.0] /home/codespace/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+168            <meta-data
+168-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/codespace/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+169                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+169-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/codespace/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+170                android:value="androidx.startup" />
+170-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/codespace/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+171            <meta-data
+171-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+172                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+172-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+173                android:value="androidx.startup" />
+173-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+174        </provider>
+175
+176        <receiver
+176-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+177            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+177-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+178            android:directBootAware="false"
+178-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+179            android:enabled="true"
+179-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+180            android:exported="true"
+180-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+181            android:permission="android.permission.DUMP" >
+181-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+182            <intent-filter>
+182-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+183                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+183-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+183-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+184            </intent-filter>
+185            <intent-filter>
+185-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+186                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+186-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+186-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+187            </intent-filter>
+188            <intent-filter>
+188-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+189                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+189-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+189-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+190            </intent-filter>
+191            <intent-filter>
+191-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+192                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+192-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+192-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/codespace/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+193            </intent-filter>
+194        </receiver>
+195    </application>
+196
+197</manifest>

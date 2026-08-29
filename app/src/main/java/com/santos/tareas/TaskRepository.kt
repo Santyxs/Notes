@@ -41,7 +41,9 @@ object TaskRepository {
                     title = o.getString("title"),
                     done = o.getBoolean("done"),
                     deleted = if (o.has("deleted")) o.getBoolean("deleted") else false,
-                    createdAt = if (o.has("createdAt")) o.getLong("createdAt") else o.getLong("id")
+                    createdAt = if (o.has("createdAt")) o.getLong("createdAt") else o.getLong("id"),
+                    priority = if (o.has("priority")) o.getInt("priority") else 0,
+                    reminderAt = if (o.has("reminderAt")) o.getLong("reminderAt") else 0L
                 )
             )
         }
@@ -65,6 +67,8 @@ object TaskRepository {
             o.put("done", t.done)
             o.put("deleted", t.deleted)
             o.put("createdAt", t.createdAt)
+            o.put("priority", t.priority)
+            o.put("reminderAt", t.reminderAt)
             array.put(o)
         }
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -101,8 +105,14 @@ object TaskRepository {
         val tasks = getAllRaw(context)
         val idx = tasks.indexOfFirst { it.id == id }
         if (idx >= 0) {
-            tasks[idx] = tasks[idx].copy(done = !tasks[idx].done)
+            val updated = tasks[idx].copy(done = !tasks[idx].done)
+            tasks[idx] = updated
             saveTasks(context, tasks)
+            if (updated.done) {
+                ReminderManager.cancel(context, id)
+            } else if (updated.reminderAt > System.currentTimeMillis()) {
+                ReminderManager.schedule(context, id, updated.reminderAt)
+            }
             WidgetUpdater.updateAll(context)
         }
     }
@@ -114,6 +124,7 @@ object TaskRepository {
         if (idx >= 0) {
             tasks[idx] = tasks[idx].copy(deleted = true)
             saveTasks(context, tasks)
+            ReminderManager.cancel(context, id)
             WidgetUpdater.updateAll(context)
         }
     }
@@ -133,6 +144,7 @@ object TaskRepository {
         val tasks = getAllRaw(context)
         tasks.removeAll { it.id == id }
         saveTasks(context, tasks)
+        ReminderManager.cancel(context, id)
         WidgetUpdater.updateAll(context)
     }
 

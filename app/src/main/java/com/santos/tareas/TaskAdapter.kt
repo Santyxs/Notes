@@ -111,6 +111,23 @@ class TaskAdapter(
                 if (task.done) R.drawable.ic_check_circle_filled else R.drawable.ic_check_circle_outline
             )
 
+            if (task.priority > 0) {
+                binding.priorityStripe.visibility = View.VISIBLE
+                val colorRes = when (task.priority) {
+                    1 -> R.color.priority_low
+                    2 -> R.color.priority_medium
+                    else -> R.color.priority_high
+                }
+                binding.priorityStripe.setBackgroundColor(
+                    binding.root.context.getColor(colorRes)
+                )
+            } else {
+                binding.priorityStripe.visibility = View.GONE
+            }
+
+            binding.reminderIndicator.visibility =
+                if (task.reminderAt > 0 && !task.done) View.VISIBLE else View.GONE
+
             binding.strikeLine.animate().cancel()
 
             if (task.done) {

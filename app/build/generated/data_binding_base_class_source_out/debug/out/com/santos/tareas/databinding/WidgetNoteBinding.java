@@ -4,8 +4,8 @@ package com.santos.tareas.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,7 +20,7 @@ import java.lang.String;
 
 public final class WidgetNoteBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final FrameLayout rootView;
 
   @NonNull
   public final ImageView widgetNoteAddButton;
@@ -34,7 +34,7 @@ public final class WidgetNoteBinding implements ViewBinding {
   @NonNull
   public final ListView widgetNoteList;
 
-  private WidgetNoteBinding(@NonNull LinearLayout rootView, @NonNull ImageView widgetNoteAddButton,
+  private WidgetNoteBinding(@NonNull FrameLayout rootView, @NonNull ImageView widgetNoteAddButton,
       @NonNull TextView widgetNoteEmpty, @NonNull RelativeLayout widgetNoteHeader,
       @NonNull ListView widgetNoteList) {
     this.rootView = rootView;
@@ -46,7 +46,7 @@ public final class WidgetNoteBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public FrameLayout getRoot() {
     return rootView;
   }
 
@@ -95,7 +95,7 @@ public final class WidgetNoteBinding implements ViewBinding {
         break missingId;
       }
 
-      return new WidgetNoteBinding((LinearLayout) rootView, widgetNoteAddButton, widgetNoteEmpty,
+      return new WidgetNoteBinding((FrameLayout) rootView, widgetNoteAddButton, widgetNoteEmpty,
           widgetNoteHeader, widgetNoteList);
     }
     String missingId = rootView.getResources().getResourceName(id);

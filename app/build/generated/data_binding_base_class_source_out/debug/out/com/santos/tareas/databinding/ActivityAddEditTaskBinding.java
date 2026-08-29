@@ -28,16 +28,39 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
   public final TextView cancelButton;
 
   @NonNull
+  public final ImageView priorityIcon;
+
+  @NonNull
+  public final LinearLayout priorityRow;
+
+  @NonNull
+  public final TextView priorityValueLabel;
+
+  @NonNull
+  public final LinearLayout reminderRow;
+
+  @NonNull
+  public final TextView reminderValueLabel;
+
+  @NonNull
   public final TextView saveButton;
 
   @NonNull
   public final EditText taskInput;
 
   private ActivityAddEditTaskBinding(@NonNull LinearLayout rootView, @NonNull ImageView backButton,
-      @NonNull TextView cancelButton, @NonNull TextView saveButton, @NonNull EditText taskInput) {
+      @NonNull TextView cancelButton, @NonNull ImageView priorityIcon,
+      @NonNull LinearLayout priorityRow, @NonNull TextView priorityValueLabel,
+      @NonNull LinearLayout reminderRow, @NonNull TextView reminderValueLabel,
+      @NonNull TextView saveButton, @NonNull EditText taskInput) {
     this.rootView = rootView;
     this.backButton = backButton;
     this.cancelButton = cancelButton;
+    this.priorityIcon = priorityIcon;
+    this.priorityRow = priorityRow;
+    this.priorityValueLabel = priorityValueLabel;
+    this.reminderRow = reminderRow;
+    this.reminderValueLabel = reminderValueLabel;
     this.saveButton = saveButton;
     this.taskInput = taskInput;
   }
@@ -81,6 +104,36 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.priorityIcon;
+      ImageView priorityIcon = ViewBindings.findChildViewById(rootView, id);
+      if (priorityIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.priorityRow;
+      LinearLayout priorityRow = ViewBindings.findChildViewById(rootView, id);
+      if (priorityRow == null) {
+        break missingId;
+      }
+
+      id = R.id.priorityValueLabel;
+      TextView priorityValueLabel = ViewBindings.findChildViewById(rootView, id);
+      if (priorityValueLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.reminderRow;
+      LinearLayout reminderRow = ViewBindings.findChildViewById(rootView, id);
+      if (reminderRow == null) {
+        break missingId;
+      }
+
+      id = R.id.reminderValueLabel;
+      TextView reminderValueLabel = ViewBindings.findChildViewById(rootView, id);
+      if (reminderValueLabel == null) {
+        break missingId;
+      }
+
       id = R.id.saveButton;
       TextView saveButton = ViewBindings.findChildViewById(rootView, id);
       if (saveButton == null) {
@@ -94,6 +147,7 @@ public final class ActivityAddEditTaskBinding implements ViewBinding {
       }
 
       return new ActivityAddEditTaskBinding((LinearLayout) rootView, backButton, cancelButton,
+          priorityIcon, priorityRow, priorityValueLabel, reminderRow, reminderValueLabel,
           saveButton, taskInput);
     }
     String missingId = rootView.getResources().getResourceName(id);

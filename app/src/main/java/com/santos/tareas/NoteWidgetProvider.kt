@@ -9,11 +9,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.RemoteViews
 
-class NoteWidgetProvider : AppWidgetProvider() {
+/** Versión con margen (tarjeta más pequeña que la celda que ocupa). */
+open class NoteWidgetProvider : AppWidgetProvider() {
 
     companion object {
         private const val COMPACT_HEIGHT_DP = 100
     }
+
+    protected open val fullLayoutRes: Int = R.layout.widget_note
 
     override fun onUpdate(
         context: Context,
@@ -74,7 +77,7 @@ class NoteWidgetProvider : AppWidgetProvider() {
 
             appWidgetManager.updateAppWidget(widgetId, views)
         } else {
-            val views = RemoteViews(context.packageName, R.layout.widget_note)
+            val views = RemoteViews(context.packageName, fullLayoutRes)
             views.setOnClickPendingIntent(R.id.widget_note_add_button, addPendingIntent)
 
             val openIntent = Intent(context, MainActivity::class.java).apply {
@@ -105,4 +108,9 @@ class NoteWidgetProvider : AppWidgetProvider() {
             appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.widget_note_list)
         }
     }
+}
+
+/** Versión sin margen: la tarjeta ocupa toda la celda que reserva. */
+class NoteWidgetProviderNoMargin : NoteWidgetProvider() {
+    override val fullLayoutRes: Int = R.layout.widget_note_full
 }

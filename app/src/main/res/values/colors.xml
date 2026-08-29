@@ -12,4 +12,8 @@
     <color name="dark_surface_light">#2E2E32</color>
     <color name="dark_text_secondary">#8A8A8E</color>
     <color name="accent_blue">#3E9EFF</color>
+    <color name="priority_high">#E5484D</color>
+    <color name="priority_medium">#F5A623</color>
+    <color name="priority_low">#4CC38A</color>
+    <color name="priority_none">#5A5A60</color>
 </resources>

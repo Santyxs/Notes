@@ -76,4 +76,19 @@
     <string name="backup_importado">Copia de seguridad importada correctamente</string>
     <string name="backup_error">No se pudo leer el archivo de copia de seguridad</string>
     <string name="sin_resultados">Sin resultados</string>
+    <string name="prioridad">Prioridad</string>
+    <string name="prioridad_ninguna">Ninguna</string>
+    <string name="prioridad_baja">Baja</string>
+    <string name="prioridad_media">Media</string>
+    <string name="prioridad_alta">Alta</string>
+    <string name="recordatorio">Recordatorio</string>
+    <string name="recordatorios">Recordatorios</string>
+    <string name="recordatorios_desc">Avisos de tareas con recordatorio</string>
+    <string name="recordatorio_titulo">Recordatorio de tarea</string>
+    <string name="sin_recordatorio">Sin recordatorio</string>
+    <string name="quitar_recordatorio">Quitar recordatorio</string>
+    <string name="tareas_con_margen">Tareas (con margen)</string>
+    <string name="tareas_sin_margen">Tareas (sin margen)</string>
+    <string name="notas_con_margen">Notas (con margen)</string>
+    <string name="notas_sin_margen">Notas (sin margen)</string>
 </resources>

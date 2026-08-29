@@ -27,16 +27,25 @@ public final class ItemTaskRowBinding implements ViewBinding {
   public final ImageView deleteButton;
 
   @NonNull
+  public final View priorityStripe;
+
+  @NonNull
+  public final ImageView reminderIndicator;
+
+  @NonNull
   public final View strikeLine;
 
   @NonNull
   public final TextView title;
 
   private ItemTaskRowBinding(@NonNull LinearLayout rootView, @NonNull ImageView checkbox,
-      @NonNull ImageView deleteButton, @NonNull View strikeLine, @NonNull TextView title) {
+      @NonNull ImageView deleteButton, @NonNull View priorityStripe,
+      @NonNull ImageView reminderIndicator, @NonNull View strikeLine, @NonNull TextView title) {
     this.rootView = rootView;
     this.checkbox = checkbox;
     this.deleteButton = deleteButton;
+    this.priorityStripe = priorityStripe;
+    this.reminderIndicator = reminderIndicator;
     this.strikeLine = strikeLine;
     this.title = title;
   }
@@ -80,6 +89,18 @@ public final class ItemTaskRowBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.priorityStripe;
+      View priorityStripe = ViewBindings.findChildViewById(rootView, id);
+      if (priorityStripe == null) {
+        break missingId;
+      }
+
+      id = R.id.reminderIndicator;
+      ImageView reminderIndicator = ViewBindings.findChildViewById(rootView, id);
+      if (reminderIndicator == null) {
+        break missingId;
+      }
+
       id = R.id.strikeLine;
       View strikeLine = ViewBindings.findChildViewById(rootView, id);
       if (strikeLine == null) {
@@ -92,8 +113,8 @@ public final class ItemTaskRowBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemTaskRowBinding((LinearLayout) rootView, checkbox, deleteButton, strikeLine,
-          title);
+      return new ItemTaskRowBinding((LinearLayout) rootView, checkbox, deleteButton, priorityStripe,
+          reminderIndicator, strikeLine, title);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

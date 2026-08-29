@@ -10,6 +10,10 @@
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- suppress DeprecatedClassUsageInspection -->
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
@@ -88,6 +92,18 @@
                 android:resource="@xml/task_widget_info" />
         </receiver>
         <receiver
+            android:name="com.santos.tareas.TaskWidgetProviderNoMargin"
+            android:exported="false"
+            android:label="" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/task_widget_info_full" />
+        </receiver>
+        <receiver
             android:name="com.santos.tareas.NoteWidgetProvider"
             android:exported="false"
             android:label="" >
@@ -98,6 +114,18 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/note_widget_info" />
+        </receiver>
+        <receiver
+            android:name="com.santos.tareas.NoteWidgetProviderNoMargin"
+            android:exported="false"
+            android:label="" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/note_widget_info_full" />
         </receiver>
 
         <service
@@ -118,6 +146,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <receiver
+            android:name="com.santos.tareas.ReminderReceiver"
+            android:exported="false" />
+        <receiver
+            android:name="com.santos.tareas.BootReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="com.santos.tareas.androidx-startup"

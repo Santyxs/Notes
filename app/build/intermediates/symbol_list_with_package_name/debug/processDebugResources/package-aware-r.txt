@@ -2101,6 +2101,10 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color priority_high
+color priority_low
+color priority_medium
+color priority_none
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -3072,7 +3076,9 @@ drawable ic_note
 drawable ic_palette
 drawable ic_pin
 drawable ic_plus
+drawable ic_priority_flag
 drawable ic_redo
+drawable ic_reminder
 drawable ic_restore
 drawable ic_search
 drawable ic_search_black_24
@@ -3600,6 +3606,10 @@ id pooling_container_listener_holder_tag
 id position
 id postLayout
 id pressed
+id priorityIcon
+id priorityRow
+id priorityStripe
+id priorityValueLabel
 id progress_circular
 id progress_horizontal
 id radio
@@ -3607,6 +3617,9 @@ id ratio
 id rectangles
 id recyclerView
 id redoButton
+id reminderIndicator
+id reminderRow
+id reminderValueLabel
 id report_drawn
 id restoreButton
 id resultIcon
@@ -3991,9 +4004,11 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout widget_note
+layout widget_note_full
 layout widget_note_item
 layout widget_note_small
 layout widget_task
+layout widget_task_full
 layout widget_task_item
 layout widget_task_small
 mipmap ic_launcher
@@ -4218,6 +4233,8 @@ string mtrl_timepicker_cancel
 string mtrl_timepicker_confirm
 string nota_bloqueada
 string notas
+string notas_con_margen
+string notas_sin_margen
 string ordenar_por
 string papelera
 string papelera_vacia
@@ -4228,6 +4245,16 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string pendiente_de_completar
 string predeterminada
+string prioridad
+string prioridad_alta
+string prioridad_baja
+string prioridad_media
+string prioridad_ninguna
+string quitar_recordatorio
+string recordatorio
+string recordatorio_titulo
+string recordatorios
+string recordatorios_desc
 string rehacer
 string restaurar
 string sans_serif
@@ -4239,10 +4266,13 @@ string serif
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string sin_notas
+string sin_recordatorio
 string sin_resultados
 string sin_tareas
 string status_bar_notification_info_overflow
 string tareas
+string tareas_con_margen
+string tareas_sin_margen
 string tipografia
 string titulo
 string tocar_para_editar
@@ -5538,4 +5568,6 @@ styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration
 styleable include constraintSet
 xml file_paths
 xml note_widget_info
+xml note_widget_info_full
 xml task_widget_info
+xml task_widget_info_full

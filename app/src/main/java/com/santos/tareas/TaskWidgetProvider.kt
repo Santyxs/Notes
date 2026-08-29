@@ -9,7 +9,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.RemoteViews
 
-class TaskWidgetProvider : AppWidgetProvider() {
+/** Versión con margen (tarjeta más pequeña que la celda que ocupa). */
+open class TaskWidgetProvider : AppWidgetProvider() {
 
     companion object {
         const val ACTION_TOGGLE = "com.santos.tareas.ACTION_TOGGLE"
@@ -18,6 +19,8 @@ class TaskWidgetProvider : AppWidgetProvider() {
         // Umbral de altura por debajo del cual usamos el layout compacto (sin lista)
         private const val COMPACT_HEIGHT_DP = 100
     }
+
+    protected open val fullLayoutRes: Int = R.layout.widget_task
 
     override fun onUpdate(
         context: Context,
@@ -88,7 +91,7 @@ class TaskWidgetProvider : AppWidgetProvider() {
 
             appWidgetManager.updateAppWidget(widgetId, views)
         } else {
-            val views = RemoteViews(context.packageName, R.layout.widget_task)
+            val views = RemoteViews(context.packageName, fullLayoutRes)
             views.setOnClickPendingIntent(R.id.widget_add_button, addPendingIntent)
             views.setOnClickPendingIntent(R.id.widget_header, openPendingIntent)
 
@@ -99,7 +102,7 @@ class TaskWidgetProvider : AppWidgetProvider() {
             views.setRemoteAdapter(R.id.widget_list, serviceIntent)
             views.setEmptyView(R.id.widget_list, R.id.widget_empty)
 
-            val toggleIntent = Intent(context, TaskWidgetProvider::class.java).apply {
+            val toggleIntent = Intent(context, javaClass).apply {
                 action = ACTION_TOGGLE
             }
             val togglePendingIntent = PendingIntent.getBroadcast(
@@ -112,6 +115,11 @@ class TaskWidgetProvider : AppWidgetProvider() {
             appWidgetManager.notifyAppWidgetViewDataChanged(widgetId, R.id.widget_list)
         }
     }
+}
+
+/** Versión sin margen: la tarjeta ocupa toda la celda que reserva. */
+class TaskWidgetProviderNoMargin : TaskWidgetProvider() {
+    override val fullLayoutRes: Int = R.layout.widget_task_full
 }
 
 private fun android.content.res.Resources.getQuantityStringOrFallback(pending: Int, total: Int): String {
