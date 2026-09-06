@@ -8,6 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-*.keystore
 *.jks
-release.keystore

@@ -19,27 +19,20 @@ android {
 
     signingConfigs {
         create("release") {
-            val keystorePath = project.findProperty("RELEASE_KEYSTORE_PATH") as String?
-            if (keystorePath != null) {
-                storeFile = file(keystorePath)
-                storePassword = project.findProperty("RELEASE_KEYSTORE_PASSWORD") as String?
-                keyAlias = project.findProperty("RELEASE_KEY_ALIAS") as String?
-                keyPassword = project.findProperty("RELEASE_KEY_PASSWORD") as String?
-            }
+            storeFile = file("keystore/release.keystore")
+            storePassword = "V9JuGvbEBuwdsAk6VJlFlNu8"
+            keyAlias = "notas"
+            keyPassword = "V9JuGvbEBuwdsAk6VJlFlNu8"
         }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
-            // Si no se pasan las propiedades de firma (build local), cae de
-            // vuelta a la firma debug para que `assembleRelease` siga
-            // funcionando sin configuración adicional.
-            signingConfig = if (project.hasProperty("RELEASE_KEYSTORE_PATH")) {
-                signingConfigs.getByName("release")
-            } else {
-                signingConfigs.getByName("debug")
-            }
+            // Firma fija incluida en el repo para que todos los builds de CI
+            // usen la misma clave y las actualizaciones se instalen encima
+            // de la versión anterior sin necesidad de desinstalar.
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
