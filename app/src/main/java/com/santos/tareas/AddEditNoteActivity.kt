@@ -555,7 +555,7 @@ class AddEditNoteActivity : AppCompatActivity() {
                 FrameLayout.LayoutParams.MATCH_PARENT
             )
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-            val bitmap = android.graphics.BitmapFactory.decodeFile(path)
+            val bitmap = BitmapUtils.decodeSampledBitmap(path, 220, 220)
             if (bitmap != null) imageView.setImageBitmap(bitmap)
 
             val tableData = loadTableData(path)

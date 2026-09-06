@@ -14,7 +14,16 @@ object NoteRepository {
     private const val KEY_NOTES = "notes_json"
     private const val KEY_NEXT_ID = "next_id"
 
+    // Caché en memoria de la lista completa (activas + papelera). Evita volver
+    // a parsear todo el JSON de SharedPreferences en cada operación (fijar,
+    // bloquear, cambiar color, etc.), que antes se hacía siempre desde cero.
+    // Se invalida sola si otra instancia del proceso cambia el archivo, pero
+    // como toda la app pasa por este objeto singleton, siempre está al día.
+    private var cache: MutableList<Note>? = null
+
     private fun getAllRaw(context: Context): MutableList<Note> {
+        cache?.let { return it }
+
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val json = prefs.getString(KEY_NOTES, null)
         if (json == null) {
@@ -49,6 +58,7 @@ object NoteRepository {
                 )
             )
         }
+        cache = list
         return list
     }
 
@@ -63,6 +73,7 @@ object NoteRepository {
         getAllRaw(context).filter { it.deleted }.toMutableList()
 
     private fun saveNotes(context: Context, notes: List<Note>) {
+        cache = notes.toMutableList()
         val array = JSONArray()
         for (n in notes) {
             val o = JSONObject()

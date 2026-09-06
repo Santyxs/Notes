@@ -28,7 +28,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             // Firma fija incluida en el repo para que todos los builds de CI
             // usen la misma clave y las actualizaciones se instalen encima
             // de la versión anterior sin necesidad de desinstalar.

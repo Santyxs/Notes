@@ -19,7 +19,13 @@ object TaskRepository {
     private const val KEY_TASKS = "tasks_json"
     private const val KEY_NEXT_ID = "next_id"
 
+    // Caché en memoria, igual que en NoteRepository: evita reparsear todo el
+    // JSON en cada operación (marcar hecha, borrar, cambiar prioridad...).
+    private var cache: MutableList<Task>? = null
+
     private fun getAllRaw(context: Context): MutableList<Task> {
+        cache?.let { return it }
+
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val json = prefs.getString(KEY_TASKS, null)
         if (json == null) {
@@ -47,6 +53,7 @@ object TaskRepository {
                 )
             )
         }
+        cache = list
         return list
     }
 
@@ -59,6 +66,7 @@ object TaskRepository {
         getAllRaw(context).filter { it.deleted }.toMutableList()
 
     private fun saveTasks(context: Context, tasks: List<Task>) {
+        cache = tasks.toMutableList()
         val array = JSONArray()
         for (t in tasks) {
             val o = JSONObject()
