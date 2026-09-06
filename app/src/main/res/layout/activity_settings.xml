@@ -129,7 +129,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_restore"
+                android:src="@drawable/ic_update_cloud"
                 android:layout_marginEnd="16dp" />
 
             <TextView
@@ -154,15 +154,6 @@
                 android:visibility="gone" />
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/dark_row_background"
-            android:padding="16dp"
-            android:text="@string/acerca_de"
-            android:textColor="@color/dark_text_secondary"
-            android:textSize="13sp" />
 
     </LinearLayout>
 
