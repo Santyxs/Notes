@@ -16,6 +16,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivitySettingsBinding
+    private var pendingUpdate: UpdateManager.UpdateInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,44 @@ class SettingsActivity : AppCompatActivity() {
                 .setNegativeButton(android.R.string.cancel, null)
                 .show()
         }
+
+        binding.checkUpdateRow.setOnClickListener { checkForUpdate() }
+        binding.downloadUpdateButton.setOnClickListener {
+            pendingUpdate?.let { info ->
+                UpdateManager.downloadUpdate(this, info)
+                binding.downloadUpdateButton.visibility = android.view.View.GONE
+                binding.checkUpdateText.text = getString(R.string.buscar_actualizacion)
+                Toast.makeText(this, R.string.actualizacion_descarga_iniciada, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun checkForUpdate() {
+        binding.downloadUpdateButton.visibility = android.view.View.GONE
+        binding.checkUpdateText.text = getString(R.string.actualizacion_buscando)
+
+        Thread {
+            val result = UpdateManager.checkForUpdate(this)
+            runOnUiThread {
+                when (result) {
+                    is UpdateManager.CheckResult.UpdateAvailable -> {
+                        pendingUpdate = result.info
+                        binding.checkUpdateText.text =
+                            getString(R.string.actualizacion_disponible, result.info.tagName)
+                        binding.downloadUpdateButton.visibility = android.view.View.VISIBLE
+                    }
+                    is UpdateManager.CheckResult.UpToDate -> {
+                        pendingUpdate = null
+                        binding.checkUpdateText.text = getString(R.string.actualizacion_al_dia)
+                    }
+                    is UpdateManager.CheckResult.Error -> {
+                        pendingUpdate = null
+                        binding.checkUpdateText.text = getString(R.string.buscar_actualizacion)
+                        Toast.makeText(this, result.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }.start()
     }
 
     private fun exportBackup() {
