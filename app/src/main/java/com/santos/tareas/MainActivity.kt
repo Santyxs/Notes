@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
     private var searchQuery = ""
     private var viewMode = ViewMode.CARD
     private var completedExpanded = false
+    // onCreate() ya deja la lista cargada (vía applyViewMode -> refresh). El
+    // primer onResume() que sigue justo después no necesita repetir ese
+    // trabajo (relectura + parseo + DiffUtil) en el arranque en frío; solo
+    // hace falta refrescar en los onResume() posteriores (p. ej. al volver
+    // de editar una nota).
+    private var isFirstResume = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -144,7 +150,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        refresh()
+        if (isFirstResume) {
+            isFirstResume = false
+        } else {
+            refresh()
+        }
     }
 
     private fun showViewModeMenu() {
@@ -219,9 +229,9 @@ class MainActivity : AppCompatActivity() {
         binding.emptyText.text = getString(if (showingNotes) R.string.sin_notas else R.string.sin_tareas)
 
         if (showingNotes) {
-            var notes: List<Note> = NoteRepository.getNotes(this)
-            // Las notas ancladas siempre van primero
-            notes = notes.sortedByDescending { it.pinned }
+            // NoteRepository.getNotes() ya devuelve las notas con las
+            // ancladas primero, no hace falta volver a ordenarlas aquí.
+            val notes: List<Note> = NoteRepository.getNotes(this)
             noteAdapter.submitList(notes)
             binding.emptyView.visibility = if (notes.isEmpty()) android.view.View.VISIBLE else android.view.View.GONE
         } else {
